@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jamie Houston — UX & Product Designer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+    :root {
+      --color-white-100:#ffffff;--color-egg-white-200:#fffbf7;--color-egg-white-300:#fff5ee;
+      --color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;
+      --color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-lemon-300:#ffff65;
+      --color-violet-100:#ece9ff;--color-violet-200:#c3baff;--color-violet-300:#9081f1;
+      --font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:1200px;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--color-egg-white-200);color:var(--color-aubergine-200);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;}ul{list-style:none;}
+    .layout{display:flex;min-height:100vh;}
+    .main{margin-left:var(--sidebar-w);flex:1;padding:48px 60px;max-width:calc(100% - var(--sidebar-w));}
+    .content{max-width:var(--content-max);}
+    .sidebar{width:var(--sidebar-w);background:var(--color-aubergine-300);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:10;}
+    .sidebar-identity{display:flex;align-items:center;gap:12px;margin-bottom:32px;padding:0 4px;text-decoration:none;}
+    .avatar{width:42px;height:42px;background:var(--color-lemon-200);color:var(--color-aubergine-300);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;letter-spacing:-0.5px;}
+    .sidebar-name{color:var(--color-egg-white-200);font-weight:700;font-size:14px;line-height:1.2;}
+    .sidebar-role{color:rgba(255,251,247,0.4);font-size:12px;margin-top:2px;}
+    .available-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,139,0.08);border:1px solid rgba(255,255,139,0.18);border-radius:var(--radius-sm);padding:7px 10px;margin-bottom:20px;font-size:12px;color:var(--color-lemon-200);font-weight:500;}
+    .available-dot{width:6px;height:6px;background:var(--color-lemon-200);border-radius:50%;flex-shrink:0;animation:pulse 2.2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+    .sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1;}
+    .nav-label{color:rgba(255,251,247,0.25);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:0 10px;margin-top:20px;margin-bottom:4px;}
+    .nav-link{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);color:rgba(255,251,247,0.5);text-decoration:none;font-size:14px;font-weight:500;transition:background 0.14s ease,color 0.14s ease;}
+    .nav-link svg{flex-shrink:0;opacity:0.6;transition:opacity 0.14s;}
+    .nav-link:hover{background:rgba(255,255,255,0.06);color:var(--color-egg-white-200);}
+    .nav-link:hover svg{opacity:1;}
+    .nav-link.active{background:rgba(255,255,139,0.1);color:var(--color-lemon-200);}
+    .nav-link.active svg{opacity:1;}
+    .sidebar-footer{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:6px;}
+    .contact-link{display:flex;align-items:center;gap:8px;color:rgba(255,251,247,0.3);text-decoration:none;font-size:12px;padding:3px 0;transition:color 0.14s;}
+    .contact-link svg{flex-shrink:0;}
+    .contact-link:hover{color:var(--color-lemon-200);}
+    .section{margin-bottom:72px;scroll-margin-top:32px;}
+    .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;}
+    .section-title{font-size:20px;font-weight:700;color:var(--color-aubergine-200);}
+    .section-meta{font-size:13px;color:var(--color-aubergine-100);opacity:0.55;}
+    .tag{display:inline-block;background:var(--color-violet-100);color:var(--color-aubergine-200);font-size:12px;font-weight:600;padding:5px 13px;border-radius:100px;}
+    .tag-warm{background:var(--color-lemon-100);color:var(--color-aubergine-200);}
+    .tag-outline{background:transparent;color:var(--color-aubergine-100);border:1px solid var(--color-egg-white-300);font-weight:500;}
+    .tag-tool{background:var(--color-egg-white-300);color:var(--color-aubergine-100);}
+    .tags-row{display:flex;flex-wrap:wrap;gap:8px;}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-size:14px;font-weight:700;padding:10px 20px;border-radius:var(--radius-sm);text-decoration:none;cursor:pointer;border:none;transition:opacity 0.14s,transform 0.14s;}
+    .btn:hover{opacity:0.88;transform:translateY(-1px);}
+    .btn-primary{background:var(--color-lemon-200);color:var(--color-aubergine-300);}
+    .btn-secondary{background:var(--color-aubergine-200);color:var(--color-egg-white-200);}
+    .btn-ghost{background:transparent;color:var(--color-aubergine-100);border:1px solid var(--color-egg-white-300);padding:9px 18px;}
+    .card{background:var(--color-white-100);border-radius:var(--radius-md);padding:24px;color:var(--color-aubergine-200);}
+    .page-header{margin-bottom:48px;}
+    .page-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-aubergine-100);opacity:0.5;margin-bottom:8px;}
+    .page-title{font-size:30px;font-weight:700;color:var(--color-aubergine-200);line-height:1.2;margin-bottom:12px;}
+    .page-subtitle{font-size:15px;color:var(--color-aubergine-100);line-height:1.7;max-width:520px;}
+    .site-footer{border-top:1px solid var(--color-egg-white-300);padding-top:28px;display:flex;align-items:center;justify-content:space-between;}
+    .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
+    .footer-meta{font-size:12px;color:var(--color-aubergine-100);opacity:0.45;}
+    @media(max-width:768px){
+      .sidebar{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;flex-direction:row;padding:10px 16px;overflow-x:auto;overflow-y:hidden;align-items:center;}
+      .sidebar-identity,.sidebar-footer,.available-badge,.nav-label{display:none;}
+      .sidebar-nav{flex-direction:row;gap:4px;width:100%;justify-content:center;flex:unset;}
+      .nav-link{padding:8px 12px;font-size:13px;white-space:nowrap;}
+      .nav-link span{display:none;}
+      .main{margin-left:0;max-width:100%;padding:28px 20px 90px;}
+    }
+    @media(max-width:600px){.main{padding:24px 16px 90px;}.page-title{font-size:24px;}}
+    @media(min-width:1280px){.main{padding:56px 80px;}}
+    .share-btn{display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:9px 12px;color:rgba(255,251,247,0.5);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.14s,color 0.14s;}
+    .share-btn:hover{background:rgba(255,255,255,0.1);color:var(--color-egg-white-200);}
+    .share-btn.copied{color:var(--color-lemon-200);border-color:rgba(255,255,139,0.3);}
+    .theme-toggle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,251,247,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.14s,color 0.14s;margin-bottom:10px;flex-shrink:0;}
+    .theme-toggle:hover{background:rgba(255,255,255,0.12);color:var(--color-egg-white-200);}
+    html:not(.dark) .sidebar{background:#ffffff;border-right:1px solid rgba(53,3,22,0.07);}
+    html:not(.dark) .sidebar-name{color:#350316;}
+    html:not(.dark) .sidebar-role{color:rgba(53,3,22,0.4);}
+    html:not(.dark) .available-badge{background:rgba(53,3,22,0.04);border-color:rgba(53,3,22,0.1);color:#350316;}
+    html:not(.dark) .available-dot{background:#350316;}
+    html:not(.dark) .nav-label{color:rgba(53,3,22,0.28);}
+    html:not(.dark) .nav-link{color:rgba(53,3,22,0.5);}
+    html:not(.dark) .nav-link svg{opacity:0.45;}
+    html:not(.dark) .nav-link:hover{background:rgba(53,3,22,0.05);color:#350316;}
+    html:not(.dark) .nav-link:hover svg,html:not(.dark) .nav-link.active svg{opacity:1;}
+    html:not(.dark) .nav-link.active{background:var(--color-lemon-200);color:#350316;}
+    html:not(.dark) .sidebar-footer{border-top-color:rgba(53,3,22,0.07);}
+    html:not(.dark) .share-btn{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
+    html:not(.dark) .share-btn:hover{background:rgba(53,3,22,0.08);color:#350316;}
+    html:not(.dark) .theme-toggle{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
+    html:not(.dark) .theme-toggle:hover{background:rgba(53,3,22,0.08);color:#350316;}
+    html.dark .sidebar{background:#350316;border-right:1px solid rgba(255,255,255,0.05);}
+    html.dark body{background:var(--color-aubergine-300);color:var(--color-egg-white-200);}
+    html.dark .card,html.dark .project-card,html.dark .about-card,html.dark .skills-block,html.dark .value-card,html.dark .contact-card{background:var(--color-aubergine-200);}
+    html.dark .hero-card,html.dark .about-hero,html.dark .contact-hero{background:var(--color-aubergine-200);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);}
+    html.dark .section-title,html.dark .page-title,html.dark .exp-role,html.dark .project-title,html.dark .value-name,html.dark .fact-value,html.dark .contact-card-value,html.dark .plg-title{color:var(--color-egg-white-200);}
+    html.dark .page-subtitle,html.dark .section-meta,html.dark .page-eyebrow,html.dark .footer-name,html.dark .footer-meta,html.dark .exp-company,html.dark .exp-dates,html.dark .exp-desc,html.dark .project-desc,html.dark .value-text,html.dark .about-card p,html.dark .fact-label,html.dark .contact-card-label,html.dark .avail-text,html.dark .plg-label,html.dark .skills-block-title,html.dark .about-card-title{color:rgba(255,251,247,0.55);}
+    html.dark .hero-eyebrow{color:var(--color-lemon-200);opacity:1;}
+    html.dark .tab-btn{border-color:rgba(255,255,255,0.12);color:rgba(255,251,247,0.45);}
+    html.dark .tab-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.2);color:var(--color-egg-white-200);}
+    html.dark .tab-btn.active{background:var(--color-violet-200);color:var(--color-aubergine-200);border-color:transparent;}
+    html.dark .tab-text{color:var(--color-egg-white-200);}
+    html.dark .tag{background:rgba(195,186,255,0.18);color:var(--color-egg-white-200);}
+    html.dark .tag-warm{background:rgba(255,255,139,0.14);}
+    html.dark .tag-outline{border-color:rgba(255,255,255,0.12);color:rgba(255,251,247,0.45);}
+    html.dark .tag-tool,html.dark .exp-skill{background:rgba(255,255,255,0.07);color:rgba(255,251,247,0.55);}
+    html.dark .project-cat{background:rgba(195,186,255,0.15);color:rgba(255,251,247,0.7);}
+    html.dark .project-cat-warm{background:rgba(255,255,139,0.12);}
+    html.dark .btn-ghost{border-color:rgba(255,255,255,0.15);color:rgba(255,251,247,0.6);}
+    html.dark .site-footer{border-top-color:rgba(255,255,255,0.08);}
+    html.dark .exp-entry{border-bottom-color:rgba(255,255,255,0.08);}
+    html.dark .fact-row{border-bottom-color:rgba(255,255,255,0.08);}
+    html.dark .plg-box{background:rgba(255,255,255,0.04);}
+    html.dark .exp-bullet{color:rgba(255,251,247,0.6);}
+    html.dark .exp-current-badge{background:rgba(255,255,139,0.12);}
+    html.dark .availability-card{background:rgba(255,255,139,0.05);border-color:rgba(255,255,139,0.12);}
+    html.dark .icon-email{background:rgba(195,186,255,0.1);}
+    html.dark .icon-linkedin{background:rgba(255,255,139,0.08);}
+    html.dark .icon-website{background:rgba(255,255,255,0.05);}
+    html.dark .contact-card{border-color:rgba(255,255,255,0.06);}
+    /* ---- Page styles ---- */
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-aubergine-100);
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    /* ---- Audience tabs ---- */
+    .tab-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(53,3,22,0.12);
+      background: transparent;
+      color: var(--color-aubergine-100);
+      cursor: pointer;
+      transition: background 0.14s, color 0.14s, border-color 0.14s;
+    }
+
+    .tab-btn:hover {
+      background: var(--color-egg-white-300);
+      border-color: rgba(53,3,22,0.2);
+    }
+
+    .tab-btn.active {
+      background: var(--color-violet-200);
+      color: var(--color-aubergine-200);
+      border-color: transparent;
+    }
+
+    .tab-content { min-height: 120px; margin-bottom: 24px; }
+
+    .tab-text {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--color-aubergine-200);
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .tab-text.hidden { display: none; }
+
+    .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: flex-end;
+    }
+
+    .stat-item { text-align: right; }
+
+    .stat-number {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--color-aubergine-200);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--color-aubergine-100);
+      opacity: 0.5;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* ---- HOME: Featured projects card ---- */
+    .hero-card {
+      background: var(--color-aubergine-300);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(195,186,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ---- Featured projects (2-up teaser) ---- */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      background: var(--color-white-100);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(53,3,22,0.1);
+    }
+
+    .project-cover {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .cover-1 { background: linear-gradient(135deg, #350316 0%, #642940 55%, #9081f1 100%); }
+    .cover-5 { background: linear-gradient(135deg, #ffff8c 0%, #c3baff 60%, #9081f1 100%); }
+
+    .cover-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .project-body { padding: 18px 20px 20px; }
+
+    .project-cats {
+      display: flex;
+      gap: 5px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-cat {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: var(--color-violet-100);
+      color: var(--color-aubergine-200);
+    }
+
+    .project-cat-warm { background: var(--color-lemon-100); }
+
+    .project-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-aubergine-200);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--color-aubergine-100);
+      line-height: 1.6;
+    }
+
+    .see-all-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title-row { flex-direction: column; gap: 16px; }
+      .hero-stats { flex-direction: row; gap: 32px; }
+      .stat-item { text-align: left; }
+      .hero-card { padding: 20px; }
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-identity">
+      <div class="avatar">JB</div>
+      <div>
+        <div class="sidebar-name">Jamie Houston</div>
+        <div class="sidebar-role">UX &amp; Product Designer</div>
+      </div>
+    </a>
+
+    <div class="available-badge">
+      <span class="available-dot"></span>
+      Open to new work
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-label">Menu</span>
+      <a href="index.html" class="nav-link active">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 00-.708 0L1 7.793V14.5A.5.5 0 001.5 15h4a.5.5 0 00.5-.5v-3h4v3a.5.5 0 00.5.5h4a.5.5 0 00.5-.5V7.793L8.354 1.146z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="work.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg>
+        <span>Work</span>
+      </a>
+      <a href="experience.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M6 1h4a1 1 0 011 1v1h2a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h2V2a1 1 0 011-1zm1 2h2V2H7v1zM4 5v8h8V5H4z"/></svg>
+        <span>Experience</span>
+      </a>
+      <a href="about.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 6a5 5 0 1110 0H3z"/></svg>
+        <span>About</span>
+      </a>
+      <a href="contact.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3h14v1.5L8 9.5 1 4.5V3zm0 3l7 5 7-5V13H1V6z"/></svg>
+        <span>Contact</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light / dark mode"></button>
+      <button class="share-btn" onclick="sharePortfolio(this)">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg>
+        Share portfolio
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="content">
+
+      <!-- Home page -->
+      <section class="section">
+
+
+
+        <div class="tab-row">
+          <button class="tab-btn active" onclick="switchTab(this,'everyone')">Everyone</button>
+          <button class="tab-btn" onclick="switchTab(this,'recruiters')">Recruiters</button>
+          <button class="tab-btn" onclick="switchTab(this,'designers')">Product designers</button>
+          <button class="tab-btn" onclick="switchTab(this,'pms')">Product managers</button>
+          <button class="tab-btn" onclick="switchTab(this,'directors')">Design directors</button>
+        </div>
+
+        <div class="tab-content">
+          <p class="tab-text" id="tab-everyone">Hello there, I'm a designer passionate about creating beautiful, intuitive experiences, where thoughtful design makes complex problems feel simple.</p>
+          <p class="tab-text hidden" id="tab-recruiters">I'm a Melbourne-based Product and UX Designer with 10 years of experience across brand and product. I've worked freelance, in-house, and at startups, including my current role at WORK180, building a flexible, multi-disciplinary skill set along the way.</p>
+          <p class="tab-text hidden" id="tab-designers">I'm a systems thinker with a high bar for quality — from research and interaction design to scalable design systems. I value collaboration, learning from others, and creating impactful work we can both be proud of.</p>
+          <p class="tab-text hidden" id="tab-pms">I'll work closely with you from vision and discovery through to delivery, helping shape priorities, define requirements, and keep the user at the centre of every decision. I do my best work tackling complex problems and driving clarity through experimentation.</p>
+          <p class="tab-text hidden" id="tab-directors">I take pride in my craft and build strong cross-functional partnerships across product, engineering, and marketing. I've led PLG initiatives, run alignment workshops, and know how to balance user needs, technical constraints, and business goals to find the highest-impact path forward.</p>
+        </div>
+
+        <!-- Featured work card -->
+        <div class="hero-card" style="margin-bottom:28px;">
+          <div class="featured-grid">
+            <a class="project-card" href="work.html">
+              <div class="project-cover cover-1">
+                <span class="cover-badge">2025</span>
+              </div>
+              <div class="project-body">
+                <div class="project-cats">
+                  <span class="project-cat">Product</span>
+                  <span class="project-cat">UX / UI</span>
+                </div>
+                <div class="project-title">WORK180: Onboarding</div>
+                <p class="project-desc">Redesigning the onboarding experience to reduce friction and improve user activation.</p>
+              </div>
+            </a>
+
+            <a class="project-card" href="work.html">
+              <div class="project-cover cover-5">
+                <span class="cover-badge">2020</span>
+              </div>
+              <div class="project-body">
+                <div class="project-cats">
+                  <span class="project-cat project-cat-warm">Branding</span>
+                  <span class="project-cat project-cat-warm">Illustration</span>
+                </div>
+                <div class="project-title">Geronimo</div>
+                <p class="project-desc">Full brand identity and custom illustration system for a bold, characterful brand.</p>
+              </div>
+            </a>
+          </div>
+
+          <div class="see-all-row" style="margin-top:20px;">
+            <a href="work.html" class="btn btn-ghost" style="color:rgba(255,251,247,0.6);border-color:rgba(255,255,255,0.15);">View all 6 projects →</a>
+          </div>
+        </div>
+
+        <div class="hero-ctas" style="margin-bottom:28px;">
+          <a href="work.html" class="btn btn-primary">View my work</a>
+          <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+        </div>
+
+        <div class="tags-row">
+          <span class="tag">UX Design</span>
+          <span class="tag">UI Design</span>
+          <span class="tag">Product Design</span>
+          <span class="tag">Branding</span>
+          <span class="tag">Illustration</span>
+          <span class="tag tag-warm">Melbourne, AU</span>
+          <span class="tag tag-outline">Originally from NZ 🥝</span>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <span class="footer-name">Jamie Houston</span>
+        <span class="footer-meta">Melbourne, AU · UX &amp; Product Designer</span>
+      </footer>
+
+    </div>
+  </main>
+</div>
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-text').forEach(t => t.classList.add('hidden'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.remove('hidden');
+}
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  updateThemeIcon();
+}
+function updateThemeIcon() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  const isDark = document.documentElement.classList.contains('dark');
+  btn.innerHTML = isDark
+    ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>'
+    : '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+}
+(function() {
+  if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  updateThemeIcon();
+})();
+function sharePortfolio(btn) {
+  const url = window.location.href;
+  if (navigator.share) {
+    navigator.share({ title: 'Jamie Houston — UX & Product Designer', url });
+  } else {
+    navigator.clipboard.writeText(url).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M13 3L6 11 3 8"/></svg> Link copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+}
+</script>
+</body>
+</html>

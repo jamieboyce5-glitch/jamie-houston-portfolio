@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "WebFetch(domain:www.heyjamie.com.au)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(sed -i '' 's|href=\"#\" aria-label=\"WORK180 Onboarding\"|href=\"project-w180-onboarding.html\"|g' work.html)",
+      "Bash(sed -i '' 's|href=\"#\" aria-label=\"WORK180 Benefits Table\"|href=\"project-w180-benefits.html\"|g' work.html)",
+      "Bash(sed -i '' 's|href=\"#\" aria-label=\"WORK180 Top Employers Page\"|href=\"project-w180-top-employers.html\"|g' work.html)",
+      "Bash(sed -i '' 's|href=\"#\" aria-label=\"WORK180 Progress Hub — NDA\"|href=\"project-w180-progress-hub.html\"|g' work.html)",
+      "Bash(sed -i '' 's|href=\"#\" aria-label=\"Geronimo Branding\"|href=\"project-geronimo.html\"|g' work.html)",
+      "Bash(sed -i '' 's|<a class=\"featured-project\" href=\"#\">|<a class=\"featured-project\" href=\"project-w180-onboarding.html\">|g' work.html)",
+      "Bash(cp *.html /tmp/jamie-portfolio/)"
+    ]
+  }
+}

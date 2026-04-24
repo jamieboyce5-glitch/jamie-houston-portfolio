@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WORK180: Onboarding — Jamie Houston</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+    :root {
+      --color-white-100:#ffffff;--color-egg-white-200:#fffbf7;--color-egg-white-300:#fff5ee;
+      --color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;
+      --color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-lemon-300:#ffff65;
+      --color-violet-100:#ece9ff;--color-violet-200:#c3baff;--color-violet-300:#9081f1;
+      --font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font);background:var(--color-egg-white-200);color:var(--color-aubergine-200);line-height:1.6;-webkit-font-smoothing:antialiased;}
+    a{color:inherit;}ul{list-style:none;}
+    .layout{display:flex;min-height:100vh;}
+    .main{margin-left:var(--sidebar-w);flex:1;padding:0;max-width:calc(100% - var(--sidebar-w));}
+    .sidebar{width:var(--sidebar-w);background:var(--color-aubergine-300);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:10;}
+    .sidebar-identity{display:flex;align-items:center;gap:12px;margin-bottom:32px;padding:0 4px;text-decoration:none;}
+    .avatar{width:42px;height:42px;background:var(--color-lemon-200);color:var(--color-aubergine-300);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;letter-spacing:-0.5px;}
+    .sidebar-name{color:var(--color-egg-white-200);font-weight:700;font-size:14px;line-height:1.2;}
+    .sidebar-role{color:rgba(255,251,247,0.4);font-size:12px;margin-top:2px;}
+    .available-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,139,0.08);border:1px solid rgba(255,255,139,0.18);border-radius:var(--radius-sm);padding:7px 10px;margin-bottom:20px;font-size:12px;color:var(--color-lemon-200);font-weight:500;}
+    .available-dot{width:6px;height:6px;background:var(--color-lemon-200);border-radius:50%;flex-shrink:0;animation:pulse 2.2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+    .sidebar-nav{display:flex;flex-direction:column;gap:2px;flex:1;}
+    .nav-label{color:rgba(255,251,247,0.25);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:0 10px;margin-top:20px;margin-bottom:4px;}
+    .nav-link{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);color:rgba(255,251,247,0.5);text-decoration:none;font-size:14px;font-weight:500;transition:background 0.14s ease,color 0.14s ease;}
+    .nav-link svg{flex-shrink:0;opacity:0.6;transition:opacity 0.14s;}
+    .nav-link:hover{background:rgba(255,255,255,0.06);color:var(--color-egg-white-200);}
+    .nav-link:hover svg{opacity:1;}
+    .nav-link.active{background:rgba(255,255,139,0.1);color:var(--color-lemon-200);}
+    .nav-link.active svg{opacity:1;}
+    .sidebar-footer{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:6px;}
+    .contact-link{display:flex;align-items:center;gap:8px;color:rgba(255,251,247,0.3);text-decoration:none;font-size:12px;padding:3px 0;transition:color 0.14s;}
+    .contact-link svg{flex-shrink:0;}
+    .contact-link:hover{color:var(--color-lemon-200);}
+    .share-btn{display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:9px 12px;color:rgba(255,251,247,0.5);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.14s,color 0.14s;}
+    .share-btn:hover{background:rgba(255,255,255,0.1);color:var(--color-egg-white-200);}
+    .share-btn.copied{color:var(--color-lemon-200);border-color:rgba(255,255,139,0.3);}
+    .theme-toggle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,251,247,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.14s,color 0.14s;margin-bottom:10px;flex-shrink:0;}
+    .theme-toggle:hover{background:rgba(255,255,255,0.12);color:var(--color-egg-white-200);}
+    /* Light mode sidebar */
+    html:not(.dark) .sidebar{background:#ffffff;border-right:1px solid rgba(53,3,22,0.07);}
+    html:not(.dark) .sidebar-name{color:#350316;}
+    html:not(.dark) .sidebar-role{color:rgba(53,3,22,0.4);}
+    html:not(.dark) .available-badge{background:rgba(53,3,22,0.04);border-color:rgba(53,3,22,0.1);color:#350316;}
+    html:not(.dark) .available-dot{background:#350316;}
+    html:not(.dark) .nav-label{color:rgba(53,3,22,0.28);}
+    html:not(.dark) .nav-link{color:rgba(53,3,22,0.5);}
+    html:not(.dark) .nav-link svg{opacity:0.45;}
+    html:not(.dark) .nav-link:hover{background:rgba(53,3,22,0.05);color:#350316;}
+    html:not(.dark) .nav-link:hover svg,html:not(.dark) .nav-link.active svg{opacity:1;}
+    html:not(.dark) .nav-link.active{background:var(--color-lemon-200);color:#350316;}
+    html:not(.dark) .sidebar-footer{border-top-color:rgba(53,3,22,0.07);}
+    html:not(.dark) .share-btn{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
+    html:not(.dark) .share-btn:hover{background:rgba(53,3,22,0.08);color:#350316;}
+    html:not(.dark) .theme-toggle{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
+    html:not(.dark) .theme-toggle:hover{background:rgba(53,3,22,0.08);color:#350316;}
+    /* Dark mode */
+    html.dark .sidebar{background:#350316;border-right:1px solid rgba(255,255,255,0.05);}
+    html.dark body{background:var(--color-aubergine-300);color:var(--color-egg-white-200);}
+    html.dark .btn-ghost{border-color:rgba(255,255,255,0.15);color:rgba(255,251,247,0.6);}
+    html.dark .cs-meta-strip{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.06);}
+    html.dark .cs-meta-label{color:rgba(255,251,247,0.4);}
+    html.dark .cs-meta-value{color:var(--color-egg-white-200);}
+    html.dark .cs-meta-divider{background:rgba(255,255,255,0.1);}
+    html.dark .cs-section h2{color:var(--color-egg-white-200);}
+    html.dark .cs-section h3{color:var(--color-egg-white-200);}
+    html.dark .cs-section p, html.dark .cs-section li{color:rgba(255,251,247,0.75);}
+    html.dark .cs-callout{background:var(--color-aubergine-200);border-left-color:var(--color-lemon-200);}
+    html.dark .cs-callout p{color:rgba(255,251,247,0.8);}
+    html.dark .cs-image-placeholder{background:var(--color-aubergine-200);}
+    html.dark .cs-next{background:var(--color-aubergine-200);}
+    html.dark .cs-next-label{color:rgba(255,251,247,0.4);}
+    html.dark .cs-next-title{color:var(--color-egg-white-200);}
+    html.dark .cs-back{color:rgba(255,251,247,0.5);}
+    html.dark .cs-back:hover{color:var(--color-egg-white-200);}
+    html.dark .site-footer{border-top-color:rgba(255,255,255,0.08);}
+    html.dark .footer-name{color:var(--color-egg-white-200);}
+    html.dark .footer-meta{color:rgba(255,251,247,0.4);}
+    html.dark .cs-tag{background:rgba(195,186,255,0.18);color:var(--color-egg-white-200);}
+    html.dark .cs-outcomes-grid .outcome-card{background:var(--color-aubergine-200);}
+    html.dark .outcome-value{color:var(--color-lemon-200);}
+    html.dark .outcome-label{color:rgba(255,251,247,0.55);}
+    /* Case study layout */
+    .cs-topbar{padding:28px 60px 0;display:flex;align-items:center;gap:8px;}
+    .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--color-aubergine-100);text-decoration:none;opacity:0.6;transition:opacity 0.14s,color 0.14s;}
+    .cs-back:hover{opacity:1;color:var(--color-aubergine-200);}
+    /* Hero */
+    .cs-hero{padding:40px 60px 0;}
+    .cs-hero-cover{width:100%;aspect-ratio:16/7;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(135deg,#350316 0%,#642940 55%,#9081f1 100%);background-size:cover;background-position:center;margin-bottom:40px;}
+    /* Title block */
+    .cs-title-block{max-width:var(--content-max);margin:0 auto;padding:0 60px 40px;}
+    .cs-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+    .cs-tag{display:inline-block;background:var(--color-violet-100);color:var(--color-aubergine-200);font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;}
+    .cs-tag-warm{background:var(--color-lemon-100);}
+    .cs-title{font-size:36px;font-weight:700;line-height:1.2;color:var(--color-aubergine-200);margin-bottom:16px;}
+    .cs-subtitle{font-size:17px;color:var(--color-aubergine-100);line-height:1.7;max-width:600px;}
+    /* Meta strip */
+    .cs-meta-strip{background:var(--color-white-100);border-top:1px solid var(--color-egg-white-300);border-bottom:1px solid var(--color-egg-white-300);padding:24px 60px;display:flex;gap:0;margin-bottom:64px;}
+    .cs-meta-item{display:flex;flex-direction:column;gap:4px;padding-right:40px;margin-right:40px;position:relative;}
+    .cs-meta-item:not(:last-child)::after{content:'';position:absolute;right:0;top:4px;bottom:4px;width:1px;background:var(--color-egg-white-300);}
+    .cs-meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-aubergine-100);opacity:0.5;}
+    .cs-meta-value{font-size:14px;font-weight:600;color:var(--color-aubergine-200);}
+    /* Content body */
+    .cs-body{max-width:var(--content-max);margin:0 auto;padding:0 60px 80px;}
+    .cs-section{margin-bottom:56px;}
+    .cs-section h2{font-size:22px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:16px;}
+    .cs-section h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
+    .cs-section p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
+    .cs-section p:last-child{margin-bottom:0;}
+    .cs-section ul{margin-bottom:16px;padding-left:0;}
+    .cs-section ul li{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;padding-left:20px;position:relative;margin-bottom:6px;}
+    .cs-section ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--color-aubergine-200);border-radius:50%;}
+    /* Full-width image block */
+    .cs-image{width:100%;border-radius:var(--radius-md);overflow:hidden;margin-bottom:56px;}
+    .cs-image-placeholder{background:var(--color-egg-white-300);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-aubergine-100);font-size:13px;font-weight:600;opacity:0.4;letter-spacing:0.04em;}
+    .cs-image img{width:100%;display:block;border-radius:var(--radius-md);}
+    /* 2-col image + text */
+    .cs-2col{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-bottom:56px;}
+    .cs-2col-image{border-radius:var(--radius-md);overflow:hidden;background:var(--color-egg-white-300);}
+    .cs-2col-image img{width:100%;display:block;}
+    .cs-2col-text h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
+    .cs-2col-text p{font-size:15px;color:var(--color-aubergine-100);line-height:1.8;}
+    /* Callout / insight */
+    .cs-callout{background:var(--color-lemon-100);border-left:3px solid var(--color-aubergine-200);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;margin-bottom:56px;}
+    .cs-callout p{font-size:16px;font-weight:600;color:var(--color-aubergine-200);line-height:1.65;margin:0;}
+    /* Outcomes */
+    .cs-outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+    .outcome-card{background:var(--color-white-100);border-radius:var(--radius-md);padding:24px;text-align:center;}
+    .outcome-value{font-size:32px;font-weight:700;color:var(--color-aubergine-200);line-height:1;}
+    .outcome-label{font-size:13px;color:var(--color-aubergine-100);margin-top:6px;line-height:1.5;}
+    /* Next project */
+    .cs-next-wrap{padding:0 60px 60px;}
+    .cs-next{display:flex;align-items:center;justify-content:space-between;background:var(--color-white-100);border-radius:var(--radius-lg);padding:28px 32px;text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s;}
+    .cs-next:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(53,3,22,0.1);}
+    .cs-next-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-aubergine-100);opacity:0.45;margin-bottom:6px;}
+    .cs-next-title{font-size:18px;font-weight:700;color:var(--color-aubergine-200);}
+    .cs-next-arrow{font-size:22px;color:var(--color-aubergine-100);opacity:0.4;}
+    /* Footer */
+    .site-footer{border-top:1px solid var(--color-egg-white-300);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;}
+    .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
+    .footer-meta{font-size:12px;color:var(--color-aubergine-100);opacity:0.45;}
+    /* Responsive */
+    @media(max-width:768px){
+      .sidebar{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;flex-direction:row;padding:10px 16px;overflow-x:auto;overflow-y:hidden;align-items:center;}
+      .sidebar-identity,.sidebar-footer,.available-badge,.nav-label{display:none;}
+      .sidebar-nav{flex-direction:row;gap:4px;width:100%;justify-content:center;flex:unset;}
+      .nav-link{padding:8px 12px;font-size:13px;white-space:nowrap;}
+      .nav-link span{display:none;}
+      .main{margin-left:0;max-width:100%;}
+      .cs-topbar,.cs-hero,.cs-title-block,.cs-body,.cs-next-wrap,.site-footer{padding-left:20px;padding-right:20px;}
+      .cs-meta-strip{padding:20px;flex-wrap:wrap;gap:16px;}
+      .cs-meta-item{padding-right:0;margin-right:0;}
+      .cs-meta-item::after{display:none;}
+      .cs-2col{grid-template-columns:1fr;}
+      .cs-outcomes-grid{grid-template-columns:1fr 1fr;}
+      .cs-title{font-size:26px;}
+      .main{padding-bottom:80px;}
+    }
+    @media(min-width:1280px){
+      .cs-topbar,.cs-hero,.cs-next-wrap,.site-footer{padding-left:80px;padding-right:80px;}
+      .cs-meta-strip{padding-left:80px;padding-right:80px;}
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-identity">
+      <div class="avatar">JH</div>
+      <div>
+        <div class="sidebar-name">Jamie Houston</div>
+        <div class="sidebar-role">UX &amp; Product Designer</div>
+      </div>
+    </a>
+    <div class="available-badge">
+      <span class="available-dot"></span>
+      Open to new work
+    </div>
+    <nav class="sidebar-nav">
+      <span class="nav-label">Menu</span>
+      <a href="index.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8.354 1.146a.5.5 0 00-.708 0L1 7.793V14.5A.5.5 0 001.5 15h4a.5.5 0 00.5-.5v-3h4v3a.5.5 0 00.5.5h4a.5.5 0 00.5-.5V7.793L8.354 1.146z"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="work.html" class="nav-link active">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1.5"/><rect x="9" y="1" width="6" height="6" rx="1.5"/><rect x="1" y="9" width="6" height="6" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/></svg>
+        <span>Work</span>
+      </a>
+      <a href="experience.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M6 1h4a1 1 0 011 1v1h2a1 1 0 011 1v10a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h2V2a1 1 0 011-1zm1 2h2V2H7v1zM4 5v8h8V5H4z"/></svg>
+        <span>Experience</span>
+      </a>
+      <a href="about.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 6a5 5 0 1110 0H3z"/></svg>
+        <span>About</span>
+      </a>
+      <a href="contact.html" class="nav-link">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3h14v1.5L8 9.5 1 4.5V3zm0 3l7 5 7-5V13H1V6z"/></svg>
+        <span>Contact</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light / dark mode"></button>
+      <button class="share-btn" onclick="sharePortfolio(this)">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg>
+        Share portfolio
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Back link -->
+    <div class="cs-topbar">
+      <a href="work.html" class="cs-back">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Back to work
+      </a>
+    </div>
+
+    <!-- Hero cover image -->
+    <!-- TO EDIT: Replace the background gradient below with your own image -->
+    <!-- style="background-image: url('images/w180-onboarding-hero.jpg'); background-size: cover; background-position: center;" -->
+    <div class="cs-hero">
+      <div class="cs-hero-cover" style="background: linear-gradient(135deg, #350316 0%, #642940 55%, #9081f1 100%);"></div>
+    </div>
+
+    <!-- Title block -->
+    <div class="cs-title-block">
+      <div class="cs-tags">
+        <span class="cs-tag">Product</span>
+        <span class="cs-tag">UX / UI</span>
+      </div>
+      <h1 class="cs-title">WORK180: Onboarding</h1>
+      <p class="cs-subtitle">Redesigning the new user onboarding experience to reduce friction and improve activation — making the first impression count for both jobseekers and employers.</p>
+    </div>
+
+    <!-- Meta strip -->
+    <div class="cs-meta-strip">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Lead Product Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Company</span>
+        <span class="cs-meta-value">WORK180</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Year</span>
+        <span class="cs-meta-value">2025</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tools</span>
+        <span class="cs-meta-value">Figma · Hotjar · Jira</span>
+      </div>
+    </div>
+
+    <!-- Case study body -->
+    <div class="cs-body">
+
+      <!-- ============================================================
+           SECTION: Overview / The Challenge
+           Edit the text below to describe the problem you were solving.
+           ============================================================ -->
+      <div class="cs-section">
+        <h2>The challenge</h2>
+        <p>Write 1–3 paragraphs here describing the problem. What was broken, what the business context was, and why it mattered. Be specific about the friction points you identified.</p>
+        <p>You can add as many paragraphs as you need. Keep it focused — readers want to understand the problem before you introduce your solution.</p>
+      </div>
+
+      <!-- ============================================================
+           FULL-WIDTH IMAGE
+           Replace the placeholder div with an <img> tag, or set a
+           background-image on the placeholder.
+           ============================================================ -->
+      <div class="cs-image">
+        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">
+          Add an image here — e.g. &lt;img src="images/w180-onboarding-before.jpg" alt="Before state"&gt;
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SECTION: Research / Discovery
+           ============================================================ -->
+      <div class="cs-section">
+        <h2>Research &amp; discovery</h2>
+        <p>Describe how you approached understanding the problem. What methods did you use? What did you learn?</p>
+        <ul>
+          <li>Key finding or insight from research</li>
+          <li>Another key finding</li>
+          <li>A third finding that shaped your approach</li>
+        </ul>
+      </div>
+
+      <!-- ============================================================
+           CALLOUT — use this for key insights, quotes, or principles
+           ============================================================ -->
+      <div class="cs-callout">
+        <p>"A key insight, principle, or quote that shaped your design direction goes here."</p>
+      </div>
+
+      <!-- ============================================================
+           2-COLUMN: Image + Text
+           Swap order by changing to: cs-2col-text then cs-2col-image
+           ============================================================ -->
+      <div class="cs-2col">
+        <div class="cs-2col-image">
+          <div class="cs-image-placeholder" style="aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">📸 Add image — &lt;img src="images/w180-onboarding-3.jpg" alt=""&gt;</div>
+        </div>
+        <div class="cs-2col-text">
+          <h3>Design direction</h3>
+          <p>Describe this phase of the work — ideation, exploration, key decisions made and why.</p>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SECTION: The Solution
+           ============================================================ -->
+      <div class="cs-section">
+        <h2>The solution</h2>
+        <p>Describe what you designed. Walk through the key parts of the experience, the thinking behind layout/interaction decisions, and any tradeoffs you made.</p>
+      </div>
+
+      <!-- Full-width solution image -->
+      <div class="cs-image">
+        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">
+          Final design or key screens
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SECTION: Outcomes
+           Edit the three outcome cards with your actual metrics.
+           ============================================================ -->
+      <div class="cs-section">
+        <h2>Outcomes</h2>
+        <p>Summarise the impact of the work — what changed after launch, and what you learned.</p>
+        <div class="cs-outcomes-grid">
+          <div class="outcome-card">
+            <div class="outcome-value">+0%</div>
+            <div class="outcome-label">Replace with a real metric</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-value">+0%</div>
+            <div class="outcome-label">Replace with a real metric</div>
+          </div>
+          <div class="outcome-card">
+            <div class="outcome-value">+0%</div>
+            <div class="outcome-label">Replace with a real metric</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           SECTION: Reflections (optional — delete if not needed)
+           ============================================================ -->
+      <div class="cs-section">
+        <h2>Reflections</h2>
+        <p>What would you do differently? What did this project teach you? This section is optional but adds depth to the narrative.</p>
+      </div>
+
+    </div><!-- /cs-body -->
+
+    <!-- Next project link -->
+    <div class="cs-next-wrap">
+      <a href="project-w180-benefits.html" class="cs-next">
+        <div>
+          <div class="cs-next-label">Next project</div>
+          <div class="cs-next-title">WORK180: Benefits Table</div>
+        </div>
+        <span class="cs-next-arrow">→</span>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <span class="footer-name">Jamie Houston</span>
+      <span class="footer-meta">Melbourne, AU · UX &amp; Product Designer</span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const THEME_KEY = 'theme';
+  const SUN = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 100-6 3 3 0 000 6zm0 1a4 4 0 100-8 4 4 0 000 8zM8 0a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 0zm0 13a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 13zm8-5a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2a.5.5 0 01.5.5zM3 8a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2A.5.5 0 013 8zm9.657-5.657a.5.5 0 010 .707l-1.414 1.415a.5.5 0 11-.707-.708l1.414-1.414a.5.5 0 01.707 0zm-9.193 9.193a.5.5 0 010 .707L2.05 13.657a.5.5 0 01-.707-.707l1.414-1.414a.5.5 0 01.707 0zm9.193 2.121a.5.5 0 01-.707 0l-1.414-1.414a.5.5 0 01.707-.707l1.414 1.414a.5.5 0 010 .707zM4.464 4.465a.5.5 0 01-.707 0L2.343 3.05a.5.5 0 11.707-.707l1.414 1.414a.5.5 0 010 .707z"/></svg>`;
+  const MOON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.768.768 0 01.08.858 7.208 7.208 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 01.81.316.733.733 0 01-.031.893A8.349 8.349 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 016 .278z"/></svg>`;
+  function updateThemeIcon() {
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.innerHTML = document.documentElement.classList.contains('dark') ? SUN : MOON;
+  }
+  function toggleTheme() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+    updateThemeIcon();
+  }
+  (function() {
+    const saved = localStorage.getItem(THEME_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) document.documentElement.classList.add('dark');
+    updateThemeIcon();
+  })();
+  function sharePortfolio(btn) {
+    const url = window.location.href;
+    if (navigator.share) { navigator.share({ title: 'Jamie Houston — UX & Product Designer', url }); return; }
+    navigator.clipboard.writeText(url).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('svg').insertAdjacentHTML('afterend', ' Copied!');
+      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg> Share portfolio`; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
