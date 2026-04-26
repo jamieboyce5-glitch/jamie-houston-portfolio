@@ -60,6 +60,17 @@
     .page-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(100,41,64,0.7);margin-bottom:8px;}
     .page-title{font-size:30px;font-weight:700;color:var(--color-aubergine-200);line-height:1.2;margin-bottom:12px;}
     .page-subtitle{font-size:15px;color:var(--color-aubergine-100);line-height:1.7;max-width:520px;}
+    /* Photo slider */
+    .about-slider-section{margin-bottom:72px;}
+    .about-slider-section h2{font-size:20px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:24px;}
+    .about-slider-wrap{overflow:hidden;margin-left:-60px;margin-right:-60px;}
+    @keyframes about-slide{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    .about-slider-track{display:flex;gap:12px;width:max-content;animation:about-slide 80s linear infinite;padding:4px 0;}
+    .about-slider-track:hover{animation-play-state:paused;}
+    .about-slider-track img{height:280px;width:auto;display:block;border-radius:var(--radius-md);flex-shrink:0;object-fit:cover;}
+    @media(max-width:768px){.about-slider-wrap{margin-left:-20px;margin-right:-20px;}.about-slider-track img{height:200px;}}
+    @media(min-width:1280px){.about-slider-wrap{margin-left:-80px;margin-right:-80px;}}
+    html.dark .about-slider-section h2{color:var(--color-egg-white-200);}
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding-top:28px;display:flex;align-items:center;justify-content:space-between;}
     .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
@@ -131,6 +142,10 @@
       margin-bottom: 20px;
       position: relative;
       overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 48px;
+      align-items: center;
     }
 
     .about-hero::after {
@@ -145,8 +160,11 @@
     .about-hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 560px;
     }
+
+    .about-hero-img{position:relative;z-index:1;}
+    .about-hero-img img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius-lg);display:block;}
+    @media(max-width:768px){.about-hero{grid-template-columns:1fr;}.about-hero-img{display:none;}}
 
     .about-eyebrow {
       font-size: 11px;
@@ -203,31 +221,24 @@
     }
 
     /* ---- Values ---- */
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .value-card {
-      background: var(--color-white-100);
-      border-radius: var(--radius-md);
-      padding: 24px 22px;
-      border-top: 3px solid var(--color-lemon-200);
-    }
-
-    .value-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--color-aubergine-200);
-      margin-bottom: 8px;
-    }
-
-    .value-text {
-      font-size: 13px;
-      color: var(--color-aubergine-100);
-      line-height: 1.65;
-    }
+    .how-list{display:flex;flex-direction:column;gap:0;}
+    .how-item{background:var(--color-violet-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);margin-bottom:8px;overflow:hidden;}
+    .how-item-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font);}
+    .how-item-left{display:flex;align-items:center;gap:16px;}
+    .how-item-num{display:none;}
+    .how-item-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);line-height:1.3;}
+    .how-item-chevron{flex-shrink:0;color:var(--color-aubergine-200);opacity:0.4;transition:transform 0.25s ease,opacity 0.2s ease;}
+    .how-item-trigger:hover .how-item-chevron{animation:how-jump 0.35s ease;}
+    .how-item.open .how-item-chevron{transform:rotate(45deg);opacity:0.7;}
+    @keyframes how-jump{0%{transform:translateY(0);}35%{transform:translateY(-5px);}65%{transform:translateY(1px);}100%{transform:translateY(0);}}
+    .how-item.open .how-item-trigger:hover .how-item-chevron{animation:none;}
+    .how-item-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+    .how-item.open .how-item-body{max-height:200px;}
+    .how-item-text{font-size:14px;color:var(--color-aubergine-100);line-height:1.7;padding:0 24px 20px 24px;margin:0;}
+    html.dark .how-item{background:rgba(195,186,255,0.06);border-color:rgba(195,186,255,0.12);}
+    html.dark .how-item-title{color:var(--color-egg-white-200);}
+    html.dark .how-item-chevron{color:var(--color-egg-white-200);}
+    html.dark .how-item-text{color:rgba(255,251,247,0.6);}
 
     /* ---- Quick facts ---- */
     .facts-list {
@@ -278,6 +289,47 @@
     html.dark .mobile-topbar-name{color:var(--color-egg-white-200);}
     html.dark .hamburger-btn{border-color:rgba(255,255,255,0.15);color:var(--color-egg-white-200);}
     html.dark .hamburger-btn:hover{background:rgba(255,255,255,0.08);}
+
+    /* ---- Listening section ---- */
+    .listening-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .song-card{position:relative;overflow:hidden;background:var(--color-aubergine-200);border-radius:var(--radius-lg);padding:20px;display:flex;align-items:center;gap:14px;text-decoration:none;transition:transform 0.25s ease,box-shadow 0.25s ease;border:1px solid rgba(255,255,255,0.06);}
+    .song-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(34,0,13,0.35);}
+    .song-card-glow{position:absolute;width:140px;height:140px;border-radius:50%;top:-40px;right:-30px;pointer-events:none;opacity:0.45;transition:opacity 0.3s ease;}
+    .song-card:hover .song-card-glow{opacity:0.85;}
+    .song-card--violet .song-card-glow{background:radial-gradient(circle,rgba(195,186,255,0.6) 0%,transparent 70%);}
+    .song-card--lemon .song-card-glow{background:radial-gradient(circle,rgba(255,255,139,0.45) 0%,transparent 70%);}
+    .song-note-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform 0.25s ease;}
+    .song-card:hover .song-note-icon{transform:scale(1.1);}
+    .song-card--violet .song-note-icon{background:rgba(195,186,255,0.15);color:var(--color-violet-200);}
+    .song-card--lemon .song-note-icon{background:rgba(255,255,139,0.12);color:var(--color-lemon-200);}
+    .song-info{flex:1;min-width:0;}
+    .song-now-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,251,247,0.4);margin-bottom:5px;}
+    .song-title{font-size:15px;font-weight:700;color:var(--color-egg-white-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;}
+    .song-meta{font-size:12px;color:rgba(255,251,247,0.45);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .song-waves{display:flex;align-items:flex-end;gap:3px;height:22px;flex-shrink:0;}
+    .wave-bar{width:3px;border-radius:2px;animation:wave-anim 1s ease-in-out infinite;}
+    .song-card:hover .wave-bar{animation-duration:0.45s;}
+    .song-card--violet .wave-bar{background:var(--color-violet-200);}
+    .song-card--lemon .wave-bar{background:var(--color-lemon-200);}
+    @keyframes wave-anim{0%,100%{height:4px;opacity:0.5;}50%{height:20px;opacity:1;}}
+    .wave-bar:nth-child(1){animation-delay:0s;}
+    .wave-bar:nth-child(2){animation-delay:0.18s;}
+    .wave-bar:nth-child(3){animation-delay:0.36s;}
+    .wave-bar:nth-child(4){animation-delay:0.09s;}
+    .wave-bar:nth-child(5){animation-delay:0.27s;}
+    @media(max-width:640px){.listening-grid{grid-template-columns:1fr;}}
+
+    /* ---- Page load animations ---- */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    .anim-hero{animation:fadeUp 0.6s ease both;}
+    .anim-tags{animation:fadeUp 0.6s ease 0.15s both;}
+    .anim-how-head{animation:fadeUp 0.55s ease 0.25s both;}
+    .anim-how-item{opacity:0;animation:fadeUp 0.45s ease both;}
+    .anim-slider{animation:fadeIn 0.7s ease 0.5s both;}
+    @media(prefers-reduced-motion:reduce){
+      .anim-hero,.anim-tags,.anim-how-head,.anim-how-item,.anim-slider{animation:none;opacity:1;}
+    }
   </style>
 </head>
 <body>
@@ -347,92 +399,180 @@
 
       <!-- Hero -->
       <section class="section">
-        <div class="about-hero">
+        <div class="about-hero anim-hero">
           <div class="about-hero-inner">
             <div class="about-eyebrow">A bit about me</div>
             <h1 class="about-headline">Designer, problem-solver,<br>and lover of a good coffee</h1>
             <p class="about-body">
-              I'm <strong>Jamie Houston</strong> — a UX and product designer based in Melbourne, originally from New Zealand. I'm passionate about creating intuitive, user-centred experiences where thoughtful design makes complex problems feel simple.<br><br>
-              With a <strong>Bachelor of Communication Design</strong> and 8 years across freelance, in-house, and startup environments, I've built a multi-disciplinary practice that spans product strategy, UX research, UI design, branding, and illustration. I care deeply about craft — not just how things look, but how they work and feel.
+              I'm <strong>Jamie Houston</strong>, a UX and product designer based in Melbourne. I'm passionate about creating intuitive, user-centred experiences where thoughtful design makes complex problems feel simple.<br><br>
+              With a <strong>Bachelor of Communication Design</strong> and 10 years across freelance, in-house, and startup environments, I've built a multi-disciplinary practice that spans product strategy, UX research, UI design, branding, and illustration.<br><br>
+              Originally from New Zealand, I now call Melbourne home, where I live with my partner and daughter. Outside of design, you can find me outdoors exploring, discovering new places to eat, and enjoying a good coffee.
             </p>
           </div>
+          <div class="about-hero-img">
+            <img src="images/about-image-jamie.png" alt="Jamie Houston">
+          </div>
         </div>
 
-        <div class="tags-row">
-          <span class="tag tag-warm">Melbourne, AU</span>
-          <span class="tag tag-outline">Originally from NZ 🥝</span>
-          <span class="tag tag-outline">Partner &amp; daughter 🌿</span>
-          <span class="tag tag-outline">Outdoor explorer</span>
-          <span class="tag tag-outline">Coffee enthusiast ☕</span>
+      </section>
+
+
+      <!-- How I work -->
+      <section class="section">
+        <div class="section-header anim-how-head">
+          <h2 class="section-title">How I work</h2>
+        </div>
+        <div class="how-list">
+          <div class="how-item anim-how-item" style="animation-delay:0.32s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">01</span>
+                <span class="how-item-title">Ship early, learn along the way</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">I'd rather test something real than debate it endlessly. Put it in front of users, learn fast, iterate.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.39s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">02</span>
+                <span class="how-item-title">Shape the process around the work</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">Every project is different. I stay flexible in how I work, choosing an approach that fits the challenge rather than following a fixed process.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.46s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">03</span>
+                <span class="how-item-title">Great work happens together</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">I value collaboration and open thinking. Sharing ideas early and often helps create better, more considered work.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.53s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">04</span>
+                <span class="how-item-title">I'll push back respectfully</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">Honest conversations lead to stronger work. I'll question things thoughtfully and bring solutions, not just criticism.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.60s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">05</span>
+                <span class="how-item-title">Show the work early</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">Perfect is too late. Early feedback keeps things moving and stops us solving the wrong problem.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.67s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">06</span>
+                <span class="how-item-title">Balance user needs and business goals</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">I care about creating experiences that work for people and deliver real value for the business. The best solutions consider both.</p></div>
+          </div>
+          <div class="how-item anim-how-item" style="animation-delay:0.74s">
+            <button class="how-item-trigger" aria-expanded="false">
+              <div class="how-item-left">
+                <span class="how-item-num">07</span>
+                <span class="how-item-title">Design for everyone</span>
+              </div>
+              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </button>
+            <div class="how-item-body"><p class="how-item-text">Accessibility isn't a layer, it's the baseline. If it doesn't work for everyone, it doesn't work.</p></div>
+          </div>
         </div>
       </section>
 
-      <!-- Quick facts + background -->
+      <!-- What I'm listening to -->
       <section class="section">
         <div class="section-header">
-          <h2 class="section-title">The details</h2>
+          <h2 class="section-title">What I'm listening to</h2>
         </div>
+        <div class="listening-grid">
 
-        <div class="about-grid">
-          <div class="about-card">
-            <div class="about-card-title">Background</div>
-            <p>Classically trained in communication design, I've spent 8 years honing a practice that goes wide — across digital product, brand, illustration, and marketing — and deep in UX and product design. I'm at my best at the intersection of rigour and creativity.</p>
-          </div>
-          <div class="about-card">
-            <div class="about-card-title">How I work</div>
-            <p>I believe great design comes from asking the right questions, not jumping to solutions. I bring structure to ambiguity, involve teams early, and move between strategic thinking and detailed craft with ease.</p>
-          </div>
-        </div>
+          <a class="song-card song-card--violet" href="https://open.spotify.com/search/Porch%20Light%20Noah%20Kahan" target="_blank" rel="noopener">
+            <div class="song-card-glow"></div>
+            <div class="song-note-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </div>
+            <div class="song-info">
+              <div class="song-now-label">♪ Now playing</div>
+              <div class="song-title">Porch Light</div>
+              <div class="song-meta">Noah Kahan · The Great Divide</div>
+            </div>
+            <div class="song-waves">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            </div>
+          </a>
 
-        <div class="about-card" style="margin-bottom: 0;">
-          <div class="about-card-title">Quick facts</div>
-          <div class="facts-list">
-            <div class="fact-row">
-              <span class="fact-label">Currently</span>
-              <span class="fact-value">UX Designer at WORK180</span>
+          <a class="song-card song-card--lemon" href="https://open.spotify.com/search/You%27re%20Gonna%20Go%20Far%20Noah%20Kahan" target="_blank" rel="noopener">
+            <div class="song-card-glow"></div>
+            <div class="song-note-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
             </div>
-            <div class="fact-row">
-              <span class="fact-label">Based in</span>
-              <span class="fact-value">Melbourne, Australia</span>
+            <div class="song-info">
+              <div class="song-now-label">♪ Now playing</div>
+              <div class="song-title">You're Gonna Go Far</div>
+              <div class="song-meta">Noah Kahan · Stick Season</div>
             </div>
-            <div class="fact-row">
-              <span class="fact-label">Originally</span>
-              <span class="fact-value">New Zealand</span>
+            <div class="song-waves">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
             </div>
-            <div class="fact-row">
-              <span class="fact-label">Education</span>
-              <span class="fact-value">Bachelor of Communication Design</span>
+          </a>
+
+          <a class="song-card song-card--lemon" href="https://open.spotify.com/search/The%20Night%20We%20Met%20Lord%20Huron" target="_blank" rel="noopener">
+            <div class="song-card-glow"></div>
+            <div class="song-note-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
             </div>
-            <div class="fact-row">
-              <span class="fact-label">Years of experience</span>
-              <span class="fact-value">8 years</span>
+            <div class="song-info">
+              <div class="song-now-label">♪ Now playing</div>
+              <div class="song-title">The Night We Met</div>
+              <div class="song-meta">Lord Huron · I'll Be Your Man</div>
             </div>
-            <div class="fact-row">
-              <span class="fact-label">Outside of work</span>
-              <span class="fact-value">Exploring outdoors, dining, coffee</span>
+            <div class="song-waves">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
             </div>
-          </div>
+          </a>
+
+          <a class="song-card song-card--violet" href="https://open.spotify.com/search/The%20Fate%20of%20Ophelia%20Taylor%20Swift" target="_blank" rel="noopener">
+            <div class="song-card-glow"></div>
+            <div class="song-note-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </div>
+            <div class="song-info">
+              <div class="song-now-label">♪ Now playing</div>
+              <div class="song-title">The Fate of Ophelia</div>
+              <div class="song-meta">Taylor Swift · The Tortured Poets Department</div>
+            </div>
+            <div class="song-waves">
+              <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+            </div>
+          </a>
+
         </div>
       </section>
 
-      <!-- Values -->
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">What I stand for</h2>
-        </div>
-
-        <div class="values-grid">
-          <div class="value-card">
-            <div class="value-name">Useful</div>
-            <p class="value-text">Design that solves real problems for real people. If it doesn't help someone do something better, it's decoration.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-name">Efficient</div>
-            <p class="value-text">Elegant solutions over complicated ones. Respect for the user's time and cognitive load in every decision made.</p>
-          </div>
-          <div class="value-card">
-            <div class="value-name">Well made</div>
-            <p class="value-text">Craft matters. The details — the micro-interactions, the spacing, the words — separate good from genuinely great.</p>
+      <!-- Photo slider -->
+      <section class="about-slider-section anim-slider">
+        <h2>Life outside of work</h2>
+        <div class="about-slider-wrap">
+          <div class="about-slider-track">
+            <img src="images/about-image-1.jpg" alt=""><img src="images/about-image-2.JPG" alt=""><img src="images/about-image-3.jpg" alt=""><img src="images/about-image-4.jpg" alt=""><img src="images/about-image-5.jpg" alt=""><img src="images/about-image-6.jpg" alt=""><img src="images/about-image-7.jpg" alt=""><img src="images/about-image-8.jpg" alt=""><img src="images/about-image-9.jpg" alt=""><img src="images/about-image-10.JPG" alt=""><img src="images/about-image-11.jpg" alt=""><img src="images/about-image-12.jpg" alt=""><img src="images/about-image-13.jpg" alt=""><img src="images/about-image-14.jpg" alt=""><img src="images/about-image-15.jpg" alt=""><img src="images/about-image-16.jpg" alt=""><img src="images/about-image-17.jpg" alt=""><img src="images/about-image-18.jpg" alt=""><img src="images/about-image-19.jpg" alt=""><img src="images/about-image-20.JPG" alt=""><img src="images/about-image-21.jpg" alt=""><img src="images/about-image-22.jpg" alt=""><img src="images/about-image-23.jpg" alt=""><img src="images/about-image-24.jpg" alt=""><img src="images/about-image-25.jpg" alt=""><img src="images/about-image-26.jpg" alt=""><img src="images/about-image-27.jpg" alt=""><img src="images/about-image-28.jpg" alt=""><img src="images/about-image-29.jpg" alt=""><img src="images/about-image-30.JPG" alt="">
+            <img src="images/about-image-1.jpg" alt=""><img src="images/about-image-2.JPG" alt=""><img src="images/about-image-3.jpg" alt=""><img src="images/about-image-4.jpg" alt=""><img src="images/about-image-5.jpg" alt=""><img src="images/about-image-6.jpg" alt=""><img src="images/about-image-7.jpg" alt=""><img src="images/about-image-8.jpg" alt=""><img src="images/about-image-9.jpg" alt=""><img src="images/about-image-10.JPG" alt=""><img src="images/about-image-11.jpg" alt=""><img src="images/about-image-12.jpg" alt=""><img src="images/about-image-13.jpg" alt=""><img src="images/about-image-14.jpg" alt=""><img src="images/about-image-15.jpg" alt=""><img src="images/about-image-16.jpg" alt=""><img src="images/about-image-17.jpg" alt=""><img src="images/about-image-18.jpg" alt=""><img src="images/about-image-19.jpg" alt=""><img src="images/about-image-20.JPG" alt=""><img src="images/about-image-21.jpg" alt=""><img src="images/about-image-22.jpg" alt=""><img src="images/about-image-23.jpg" alt=""><img src="images/about-image-24.jpg" alt=""><img src="images/about-image-25.jpg" alt=""><img src="images/about-image-26.jpg" alt=""><img src="images/about-image-27.jpg" alt=""><img src="images/about-image-28.jpg" alt=""><img src="images/about-image-29.jpg" alt=""><img src="images/about-image-30.JPG" alt="">
           </div>
         </div>
       </section>
@@ -466,6 +606,14 @@ function toggleMobileMenu() {
   if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   updateThemeIcon();
 })();
+document.querySelectorAll('.how-item-trigger').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = btn.closest('.how-item');
+    var isOpen = item.classList.contains('open');
+    item.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
 function sharePortfolio(btn) {
   const url = window.location.href;
   if (navigator.share) {

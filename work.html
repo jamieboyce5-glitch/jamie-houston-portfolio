@@ -121,7 +121,15 @@
     html.dark .icon-linkedin{background:rgba(255,255,139,0.08);}
     html.dark .icon-website{background:rgba(255,255,255,0.05);}
     html.dark .contact-card{border-color:rgba(255,255,255,0.06);}
-    html.dark .featured-project{background:var(--color-aubergine-200);}
+    html.dark .featured-project{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
+    html.dark .featured-label{color:rgba(255,251,247,0.4);}
+    html.dark .featured-title{color:var(--color-egg-white-200);}
+    html.dark .featured-desc{color:rgba(255,251,247,0.55);}
+    html.dark .featured-cat{background:rgba(195,186,255,0.15);color:rgba(255,251,247,0.75);}
+    html.dark .project-card{border-color:rgba(255,255,255,0.08);}
+    html.dark .project-body{background:var(--color-aubergine-200);}
+    html.dark .project-company{color:rgba(255,251,247,0.4);}
+    html.dark .project-arrow{color:rgba(255,251,247,0.6);}
     /* ---- Page styles ---- */
     /*
       =====================================================
@@ -354,6 +362,9 @@
     html.dark .mobile-topbar-name{color:var(--color-egg-white-200);}
     html.dark .hamburger-btn{border-color:rgba(255,255,255,0.15);color:var(--color-egg-white-200);}
     html.dark .hamburger-btn:hover{background:rgba(255,255,255,0.08);}
+    .fade-in{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .fade-in.visible{opacity:1;transform:translateY(0);}
+    @media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none;}}
   </style>
 </head>
 <body>
@@ -617,6 +628,19 @@ function sharePortfolio(btn) {
     });
   }
 }
+// Fade-in on load
+(function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e,i){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.featured-project,.project-card').forEach(function(el,i){
+    el.classList.add('fade-in');
+    el.style.transitionDelay=(i*0.07)+'s';
+    obs.observe(el);
+  });
+})();
 </script>
 </body>
 </html>
