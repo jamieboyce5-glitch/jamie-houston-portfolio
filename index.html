@@ -381,6 +381,25 @@
     .fade-in{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
     .fade-in.visible{opacity:1;transform:translateY(0);}
     @media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none;}}
+    /* Stats strip */
+    .stats-strip{background:var(--color-aubergine-300);border-radius:var(--radius-lg);padding:44px 40px;margin-bottom:72px;}
+    .stats-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,139,0.5);margin-bottom:32px;}
+    .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+    .stat-item{padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,0.08);}
+    .stat-item:first-child{padding-left:0;}
+    .stat-item:last-child{border-right:none;}
+    .stat-item+.stat-item{padding-left:28px;}
+    .stat-value{font-size:42px;font-weight:700;color:var(--color-lemon-200);line-height:1;margin-bottom:10px;letter-spacing:-1px;}
+    .stat-label{font-size:13px;font-weight:600;color:var(--color-egg-white-200);line-height:1.4;margin-bottom:4px;}
+    .stat-sub{font-size:11px;color:rgba(255,251,247,0.4);line-height:1.55;font-weight:500;}
+    @media(max-width:960px){.stats-grid{grid-template-columns:repeat(3,1fr);gap:28px 0;}.stat-item{border-right:none!important;padding:0!important;}}
+    @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}}.stats-strip .stat-item:nth-child(n){opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    .stats-strip.revealed .stat-item:nth-child(1){opacity:1;transform:none;transition-delay:0ms;}
+    .stats-strip.revealed .stat-item:nth-child(2){opacity:1;transform:none;transition-delay:80ms;}
+    .stats-strip.revealed .stat-item:nth-child(3){opacity:1;transform:none;transition-delay:160ms;}
+    .stats-strip.revealed .stat-item:nth-child(4){opacity:1;transform:none;transition-delay:240ms;}
+    .stats-strip.revealed .stat-item:nth-child(5){opacity:1;transform:none;transition-delay:320ms;}
+    @media(prefers-reduced-motion:reduce){.stats-strip .stat-item:nth-child(n){opacity:1!important;transform:none!important;transition:none!important;}}
   </style>
 </head>
 <body>
@@ -515,6 +534,38 @@
 
       </section>
 
+      <!-- Stats strip -->
+      <div class="stats-strip" id="statsStrip">
+        <div class="stats-eyebrow">By the numbers</div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">10+</div>
+            <div class="stat-label">Years of experience</div>
+            <div class="stat-sub">Professional design practice</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">20+</div>
+            <div class="stat-label">Projects shipped</div>
+            <div class="stat-sub">Features delivered to production</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5</div>
+            <div class="stat-label">Disciplines</div>
+            <div class="stat-sub">UX · UI · Product · Brand · Illustration</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">3</div>
+            <div class="stat-label">Sectors</div>
+            <div class="stat-sub">Startup · In-house · Freelance</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">20+</div>
+            <div class="stat-label">PLG experiments</div>
+            <div class="stat-sub">Run, validated &amp; more on the go</div>
+          </div>
+        </div>
+      </div>
+
       <!-- Footer -->
       <footer class="site-footer">
         <span class="footer-name">Jamie Houston</span>
@@ -575,6 +626,13 @@ function sharePortfolio(btn) {
     el.style.transitionDelay=(i*0.07)+'s';
     obs.observe(el);
   });
+})();
+(function(){
+  var strip = document.getElementById('statsStrip');
+  if(!strip) return;
+  new IntersectionObserver(function(entries,o){
+    if(entries[0].isIntersecting){strip.classList.add('revealed');o.disconnect();}
+  },{threshold:0.15}).observe(strip);
 })();
 </script>
 </body>

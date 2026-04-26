@@ -171,6 +171,86 @@
     html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
     html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
     @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}}
+    .cs-live-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;font-weight:700;color:var(--color-aubergine-200);text-decoration:none;border-bottom:1.5px solid var(--color-aubergine-200);padding-bottom:1px;opacity:0.6;transition:opacity 0.14s;}
+    .cs-live-link:hover{opacity:1;}
+    html.dark .cs-live-link{color:var(--color-egg-white-200);border-bottom-color:var(--color-egg-white-200);}
+    .cs-meta-tasks{display:flex;flex-direction:column;gap:4px;margin-top:2px;}
+    .cs-meta-tasks span{font-size:12px;font-weight:500;color:rgba(255,251,247,0.7);line-height:1.6;}
+    .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+    .process-card{background:var(--color-white-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);padding:20px 22px;display:flex;align-items:flex-start;gap:14px;}
+    .process-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(53,3,22,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--color-aubergine-200);}
+    .process-card-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:4px;line-height:1.3;}
+    .process-card-body{font-size:14px;color:var(--color-aubergine-100);line-height:1.7;}
+    html.dark .process-card{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
+    html.dark .process-icon{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);}
+    html.dark .process-card-title{color:var(--color-egg-white-200);}
+    html.dark .process-card-body{color:rgba(255,251,247,0.65);}
+    @media(max-width:900px){.process-grid{grid-template-columns:1fr;}}
+    .context-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:56px;}
+    .context-card{background:var(--color-violet-100);border:1.5px solid var(--color-violet-200);border-radius:var(--radius-lg);padding:24px 22px;display:flex;flex-direction:column;gap:14px;}
+    .context-card-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:var(--color-violet-200);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--color-aubergine-200);}
+    .context-card-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:4px;}
+    .context-card-body{font-size:14px;color:var(--color-aubergine-100);line-height:1.7;}
+    .context-card-body ul{padding-left:0;margin-top:8px;}
+    .context-card-body ul li{padding-left:16px;position:relative;margin-bottom:6px;font-size:14px;color:var(--color-aubergine-100);line-height:1.7;}
+    .context-card-body ul li::before{content:'';position:absolute;left:0;top:9px;width:5px;height:5px;background:var(--color-aubergine-200);border-radius:50%;}
+    html.dark .context-card{background:rgba(195,186,255,0.08);border-color:rgba(195,186,255,0.2);}
+    html.dark .context-card-icon{background:rgba(195,186,255,0.15);color:var(--color-violet-200);}
+    html.dark .context-card-title{color:var(--color-egg-white-200);}
+    html.dark .context-card-body{color:rgba(255,251,247,0.65);}
+    html.dark .context-card-body ul li{color:rgba(255,251,247,0.65);}
+    html.dark .context-card-body ul li::before{background:rgba(195,186,255,0.6);}
+    @media(max-width:1024px){.context-grid{grid-template-columns:1fr;}}
+    /* Outcome and impact */
+    .impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+    .impact-card{background:var(--color-aubergine-300);border-radius:var(--radius-lg);padding:28px 28px 32px;display:flex;flex-direction:column;gap:16px;}
+    .impact-card-icon{width:44px;height:44px;border-radius:var(--radius-sm);background:rgba(255,255,139,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--color-lemon-200);}
+    .impact-card-title{font-size:16px;font-weight:700;color:var(--color-lemon-200);line-height:1.3;}
+    .impact-card-body{font-size:14px;color:rgba(255,251,247,0.7);line-height:1.75;}
+    .takeaway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+    .takeaway-card{background:var(--color-white-100);border:1px solid rgba(53,3,22,0.1);border-left:3px solid var(--color-violet-200);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:20px 20px 22px;}
+    .takeaway-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-aubergine-100);opacity:0.45;margin-bottom:8px;}
+    .takeaway-title{font-size:14px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:6px;line-height:1.4;}
+    .takeaway-body{font-size:13px;color:var(--color-aubergine-100);line-height:1.7;}
+    .next-steps-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+    .next-step-item{display:flex;align-items:flex-start;gap:12px;background:var(--color-egg-white-300);border-radius:var(--radius-md);padding:16px 18px;}
+    .next-step-arrow{color:var(--color-aubergine-200);opacity:0.35;font-size:18px;line-height:1;flex-shrink:0;margin-top:1px;}
+    .next-step-text{font-size:14px;color:var(--color-aubergine-100);line-height:1.65;}
+    html.dark .impact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);}
+    html.dark .takeaway-card{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.07);}
+    html.dark .takeaway-title{color:var(--color-egg-white-200);}
+    html.dark .takeaway-body{color:rgba(255,251,247,0.65);}
+    html.dark .next-step-item{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);}
+    html.dark .next-step-text{color:rgba(255,251,247,0.65);}
+    html.dark .next-step-arrow{color:rgba(255,251,247,0.3);}
+    @media(max-width:1024px){.takeaway-grid{grid-template-columns:1fr;}}
+    @media(max-width:900px){.impact-grid{grid-template-columns:1fr;}.next-steps-list{grid-template-columns:1fr;}}
+    /* Animation system */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes heroReveal{from{opacity:0;transform:scale(0.97);}to{opacity:1;transform:scale(1);}}
+    .anim{opacity:0;transform:translateY(22px);transition:opacity 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1);}
+    .anim.revealed{opacity:1;transform:translateY(0);}
+    .anim-scale{opacity:0;transform:scale(0.97);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .anim-scale.revealed{opacity:1;transform:scale(1);}
+    @media(prefers-reduced-motion:reduce){.anim,.anim-scale{transition:none!important;opacity:1!important;transform:none!important;}}
+    /* Component scroll strip */
+    .component-section{margin-bottom:56px;}
+    .component-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+    .component-section-title{font-size:22px;font-weight:700;color:var(--color-aubergine-200);}
+    .component-scroll-hint{font-size:12px;font-weight:600;color:var(--color-aubergine-100);opacity:0.45;display:flex;align-items:center;gap:6px;}
+    html.dark .component-section-title{color:var(--color-egg-white-200);}
+    html.dark .component-scroll-hint{color:rgba(255,251,247,0.4);}
+    .component-track-wrap{position:relative;}
+    .component-track{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab;}
+    .component-track:active{cursor:grabbing;}
+    .component-track::-webkit-scrollbar{height:4px;}
+    .component-track::-webkit-scrollbar-track{background:rgba(53,3,22,0.06);border-radius:4px;}
+    .component-track::-webkit-scrollbar-thumb{background:var(--color-violet-200);border-radius:4px;}
+    html.dark .component-track::-webkit-scrollbar-track{background:rgba(255,255,255,0.07);}
+    .component-item{flex-shrink:0;scroll-snap-align:start;background:var(--color-white-100);border:1px solid rgba(53,3,22,0.08);border-radius:var(--radius-lg);overflow:hidden;width:340px;height:260px;display:flex;align-items:center;justify-content:center;}
+    .component-item img{width:100%;height:100%;display:block;object-fit:contain;}
+    html.dark .component-item{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
   </style>
 </head>
 <body>
@@ -219,55 +299,145 @@
     <div class="cs-intro-block">
       <div class="cs-intro-text">
       <div class="cs-tags">
-        <span class="cs-tag">Product</span>
-        <span class="cs-tag">UX / UI</span>
+        <span class="cs-tag">Product Design</span>
+        <span class="cs-tag">UX / UI Design</span>
       </div>
-      <h1 class="cs-title">WORK180: Benefits Table</h1>
-      <p class="cs-subtitle">A structured UI system for presenting employer benefits in a way that's scannable, comparable, and immediately trustworthy for job seekers evaluating workplace culture.</p>
+      <h1 class="cs-title">Benefits Table</h1>
+      <p class="cs-subtitle">A benefits table rich with data that lets users quickly scan key company offerings by featured benefits, with the option to explore deeper insights when desired and follow an employer they want updates on.</p>
+      <a href="#" target="_blank" class="cs-live-link">View live page <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1v-3M10 2h4m0 0v4m0-4L7 9"/></svg></a>
     </div>
 
       <div class="cs-meta-card">
-      <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-pill">Lead Product Designer</span></div>
       <div class="cs-meta-item"><span class="cs-meta-label">Company</span><span class="cs-meta-pill">WORK180</span></div>
       <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2025</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-pill">Figma · Hotjar · Jira</span></div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Tasks</span>
+        <div class="cs-meta-tasks">
+          <span>Product research</span><span>Wireframing</span><span>UX UI Design</span><span>Prototyping</span><span>Workshops</span><span>Stakeholder management</span><span>Collaboration with engineers</span><span>A/B test</span>
+        </div>
+      </div>
     </div>
 
     </div>
     <div class="cs-body">
       <div class="cs-section">
-        <h2>The challenge</h2>
-        <p>Write 1–3 paragraphs here describing the problem you were solving.</p>
+        <h2>Overview</h2>
+        <p>WORK180 have a comprehensive dataset on employer benefits, but the previous benefits table was static, difficult to interpret, and full of industry jargon that didn't resonate with job seekers.</p>
       </div>
-      <div class="cs-image">
-        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">📸 Add image — &lt;img src="images/w180-benefits-1.jpg" alt="" style="width:100%;display:block;border-radius:var(--radius-md);"&gt;</div>
+      <div class="context-grid">
+        <div class="context-card">
+          <div class="context-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+          <div>
+            <div class="context-card-title">Objective</div>
+            <div class="context-card-body">
+              <p>Redesign the benefits table to transform a static, hard-to-understand product into a dynamic research tool that empowers our community to make informed decisions.</p>
+              <ul>
+                <li>Empower job seekers to make informed decisions based on the benefits that matter most to them.</li>
+                <li>Help employers clearly communicate their value propositions and increase engagement.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="context-card">
+          <div class="context-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div>
+            <div class="context-card-title">Problem</div>
+            <div class="context-card-body">While we had high-quality data about employer benefits, the previous table design failed to communicate it effectively. The data was difficult to interpret, lacked context, and used industry-heavy language that didn't resonate with employer &amp; job seekers.</div>
+          </div>
+        </div>
+        <div class="context-card">
+          <div class="context-card-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <div>
+            <div class="context-card-title">Business goal</div>
+            <div class="context-card-body">Improve clarity and usability of the benefits table, increase user engagement, and better showcase the unique offerings of each company — helping employers stand out for the benefits they provide.</div>
+          </div>
+        </div>
       </div>
       <div class="cs-section">
-        <h2>Research &amp; discovery</h2>
-        <p>Describe your research approach and key findings.</p>
-        <ul>
-          <li>Key finding or insight</li>
-          <li>Another key finding</li>
-          <li>A third finding</li>
-        </ul>
+        <h2>Process</h2>
+        <p>As the Lead Designer, I led the redesign from discovery through to implementation, collaborating closely with Product, Engineering, Marketing, and our DEI advisory team.</p>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+            <div><div class="process-card-title">Discovery</div><div class="process-card-body">Used insights from Hotjar recordings, support queries, surveys, and past research to understand pain points and areas of confusion.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div><div class="process-card-title">Design Workshops</div><div class="process-card-body">Facilitated cross-functional sessions to identify opportunities and define high-impact, low-effort solutions.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div><div class="process-card-title">User Flows &amp; Wireframes</div><div class="process-card-body">Mapped out simplified user journeys and structured content in a way that supported progressive disclosure and comparison.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+            <div><div class="process-card-title">Prototyping &amp; Feedback</div><div class="process-card-body">Developed interactive prototypes and ran internal review sessions with key stakeholders to validate direction.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <div><div class="process-card-title">UI Design</div><div class="process-card-body">Created a clean, accessible, responsive design using WORK180's brand system, with a clear hierarchy and built-in tooltips for deeper context.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div><div class="process-card-title">Collaboration &amp; QA</div><div class="process-card-body">Worked closely with Engineering to ensure smooth implementation, documented edge cases, and supported for launch-readiness.</div></div>
+          </div>
+          <div class="process-card">
+            <div class="process-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+            <div><div class="process-card-title">Content Review</div><div class="process-card-body">Partnered with Marketing and our DEI advisor to rewrite content using inclusive, plain language that's easy to understand.</div></div>
+          </div>
+        </div>
       </div>
-      <div class="cs-callout">
-        <p>"A key insight, principle, or quote that shaped your design direction."</p>
+      <div class="component-section">
+        <div class="component-section-head">
+          <div class="component-section-title">Components</div>
+          <div class="component-scroll-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Scroll to explore</div>
+        </div>
+        <div class="component-track-wrap">
+          <div class="component-track" id="componentTrack">
+            <div class="component-item"><img src="images/w180-image-benefit-table-component-1.svg" alt="Benefits table component 1"></div>
+            <div class="component-item"><img src="images/w180-image-benefit-table-component-2.svg" alt="Benefits table component 2"></div>
+            <div class="component-item"><img src="images/w180-image-benefit-table-component-3.svg" alt="Benefits table component 3"></div>
+            <div class="component-item"><img src="images/w180-image-benefit-table-component-4.svg" alt="Benefits table component 4"></div>
+            <div class="component-item"><img src="images/w180-image-benefit-table-component-5.svg" alt="Benefits table component 5"></div>
+          </div>
+        </div>
       </div>
       <div class="cs-section">
-        <h2>The solution</h2>
-        <p>Describe what you designed and the key decisions behind it.</p>
-      </div>
-      <div class="cs-image">
-        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">📸 Add image — &lt;img src="images/w180-benefits-2.jpg" alt="" style="width:100%;display:block;border-radius:var(--radius-md);"&gt;</div>
-      </div>
-      <div class="cs-section">
-        <h2>Outcomes</h2>
-        <p>Summarise the impact of the work.</p>
-        <div class="cs-outcomes-grid">
-          <div class="outcome-card"><div class="outcome-value">+0%</div><div class="outcome-label">Replace with a real metric</div></div>
-          <div class="outcome-card"><div class="outcome-value">+0%</div><div class="outcome-label">Replace with a real metric</div></div>
-          <div class="outcome-card"><div class="outcome-value">+0%</div><div class="outcome-label">Replace with a real metric</div></div>
+        <h2>Outcome and impact</h2>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
+            <div class="impact-card-title">Improved User Experience</div>
+            <div class="impact-card-body">The redesigned table transformed a static list into an interactive research tool, making it easier for users to explore and compare benefits that align with their needs.</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+            <div class="impact-card-title">Boosted Employer Visibility &amp; Engagement</div>
+            <div class="impact-card-body">Employers could now showcase their benefits more clearly, while users gained the ability to follow companies — driving ongoing engagement and repeat visits.</div>
+          </div>
+        </div>
+        <h3>Key takeaways</h3>
+        <div class="takeaway-grid">
+          <div class="takeaway-card">
+            <div class="takeaway-num">01</div>
+            <div class="takeaway-title">Context is key</div>
+            <div class="takeaway-body">Presenting data with plain language, clear icons, and meaningful grouping helped users feel informed rather than overwhelmed.</div>
+          </div>
+          <div class="takeaway-card">
+            <div class="takeaway-num">02</div>
+            <div class="takeaway-title">Data should tell a story</div>
+            <div class="takeaway-body">Visualising employer benefits with benchmarks and consistent formatting made it easier to highlight what made each company unique.</div>
+          </div>
+          <div class="takeaway-card">
+            <div class="takeaway-num">03</div>
+            <div class="takeaway-title">Cross-functional collaboration matters</div>
+            <div class="takeaway-body">Involving product, design, marketing, and sales early helped ensure the solution met user needs while supporting business objectives.</div>
+          </div>
+        </div>
+        <h3>Next steps</h3>
+        <div class="next-steps-list">
+          <div class="next-step-item"><span class="next-step-arrow">→</span><span class="next-step-text">Explore benefit-based notifications and personalisation based on user interests and followed employers.</span></div>
+          <div class="next-step-item"><span class="next-step-arrow">→</span><span class="next-step-text">Monitor user interaction trends post-launch.</span></div>
         </div>
       </div>
     </div>
@@ -291,6 +461,53 @@
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
   function sharePortfolio(btn){const url=window.location.href;if(navigator.share){navigator.share({title:'Jamie Houston — UX & Product Designer',url});return;}navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');setTimeout(()=>{btn.classList.remove('copied');},2000);});}
+  // Page load animations
+  (function(){
+    var loadEls = [
+      {sel:'.cs-hero-cover', delay:0, cls:'anim-scale'},
+      {sel:'.cs-tags', delay:120},
+      {sel:'.cs-title', delay:210},
+      {sel:'.cs-subtitle', delay:300},
+      {sel:'.cs-live-link', delay:380},
+      {sel:'.cs-meta-card', delay:260},
+    ];
+    loadEls.forEach(function(t){
+      var el=document.querySelector(t.sel);
+      if(!el) return;
+      el.classList.add(t.cls||'anim');
+      setTimeout(function(){ el.classList.add('revealed'); }, t.delay);
+    });
+  })();
+  // Scroll reveal animations
+  (function(){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.08, rootMargin:'0px 0px -32px 0px'});
+    // Single elements
+    document.querySelectorAll('.cs-section h2,.cs-section h3,.component-section-title,.cs-section > p,.cs-next,.component-scroll-hint').forEach(function(el){
+      el.classList.add('anim'); obs.observe(el);
+    });
+    // Staggered groups
+    ['.context-card','.process-card','.component-item','.impact-card','.takeaway-card','.next-step-item'].forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el,i){
+        el.classList.add('anim');
+        el.style.transitionDelay=(i*90)+'ms';
+        obs.observe(el);
+      });
+    });
+  })();
+  // Drag-to-scroll component track
+  (function(){
+    var track = document.getElementById('componentTrack');
+    if (!track) return;
+    var isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', function(e){ isDown=true; track.classList.add('active'); startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
+    track.addEventListener('mouseleave', function(){ isDown=false; });
+    track.addEventListener('mouseup', function(){ isDown=false; });
+    track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX)*1.5; });
+  })();
   // Scroll progress
   (function(){
     var bar = document.getElementById("scrollProgress");

@@ -204,7 +204,7 @@
     .cs-overview-text p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
     .cs-overview-text p:last-child{margin-bottom:0;}
     .cs-visual-stage{position:relative;height:440px;padding:20px;}
-    .cs-visual-card{position:absolute;border-radius:var(--radius-md);overflow:hidden;box-shadow:0 8px 28px rgba(53,3,22,0.13);}
+    .cs-visual-card{position:absolute;border-radius:var(--radius-md);overflow:hidden;}
     .cs-visual-card img{width:100%;display:block;}
     @keyframes ph-float-1{0%,100%{transform:translateY(0px) rotate(1.5deg);}50%{transform:translateY(-10px) rotate(1.5deg);}}
     @keyframes ph-float-2{0%,100%{transform:translateY(0px) rotate(-2deg);}50%{transform:translateY(-10px) rotate(-2deg);}}
@@ -227,6 +227,33 @@
     html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
     html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
     @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}}
+    /* Split hero */
+    .cs-hero-wrap{background:var(--color-violet-100);position:relative;overflow:hidden;margin-bottom:56px;}
+    .cs-hero-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(144,129,241,0.4) 0%,transparent 65%);pointer-events:none;z-index:0;}
+    .cs-hero-wrap .cs-topbar{background:transparent;position:relative;z-index:1;}
+    .cs-hero-wrap .cs-back{color:var(--color-aubergine-100);}
+    .cs-hero-split{background:transparent;padding:0 60px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;min-height:420px;position:relative;margin-bottom:0;}
+    .cs-hero-split::before{display:none;}
+    .cs-hero-left{position:relative;z-index:1;}
+    .cs-hero-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-aubergine-100);opacity:0.55;margin-bottom:18px;}
+    .cs-hero-split .cs-tags{margin-bottom:22px;}
+    .cs-hero-split .cs-tag{background:rgba(53,3,22,0.1);color:var(--color-aubergine-200);}
+    .cs-hero-split .cs-title{font-size:46px;color:var(--color-aubergine-200);margin-bottom:18px;letter-spacing:-1px;line-height:1.1;}
+    .cs-hero-split .cs-subtitle{color:var(--color-aubergine-100);margin-bottom:32px;font-size:16px;line-height:1.7;}
+    .cs-hero-chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .cs-hero-chip{font-size:12px;font-weight:600;color:var(--color-aubergine-100);background:rgba(53,3,22,0.07);border-radius:100px;padding:5px 13px;display:inline-flex;align-items:center;gap:5px;}
+    .cs-hero-chip strong{color:var(--color-aubergine-200);font-weight:600;}
+    .cs-hero-right{position:relative;z-index:1;height:420px;}
+    .cs-hero-right .cs-visual-stage{height:100%;background:transparent;padding:0;}
+    .cs-hero-right .cs-visual-card--1{right:auto;left:0;}
+    @media(max-width:900px){.cs-hero-split{grid-template-columns:1fr;min-height:auto;}.cs-hero-right{display:none;}.cs-hero-split .cs-title{font-size:34px;}}
+    @media(max-width:768px){.cs-hero-split{padding:40px 20px 40px;}}
+    /* Animations */
+    .anim{opacity:0;transform:translateY(22px);transition:opacity 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1);}
+    .anim.revealed{opacity:1;transform:translateY(0);}
+    .anim-scale{opacity:0;transform:scale(0.97);transition:opacity 0.65s ease,transform 0.65s ease;}
+    .anim-scale.revealed{opacity:1;transform:scale(1);}
+    @media(prefers-reduced-motion:reduce){.anim,.anim-scale{transition:none!important;opacity:1!important;transform:none!important;}}
   </style>
 </head>
 <body>
@@ -259,43 +286,50 @@
     </div>
   </aside>
   <main class="main">
+    <div class="cs-hero-wrap">
     <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
-    <div class="cs-hero">
-      <div class="cs-hero-cover" style="background-image: url('images/w180-progress-hub-hero.png'); background-size: cover; background-position: center;"></div>
-    </div>
-    <div class="cs-intro-block">
-      <div class="cs-intro-text">
-      <div class="cs-tags"><span class="cs-tag">Product</span><span class="cs-tag">UX / UI</span></div>
-      <h1 class="cs-title">WORK180: Progress Hub</h1>
-      <p class="cs-subtitle">An employer portal that empowers users to manage their profile data, complete the DEI Assessment, access the knowledge base, and use product features like the gender bias analyser.</p>
-    </div>
-
-      <div class="cs-meta-card">
-      <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-pill">Lead Product Designer</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Company</span><span class="cs-meta-pill">WORK180</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2022–23</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">NDA</span><span class="cs-meta-pill">Available on request</span></div>
-    </div>
-
-    </div>
-    <div class="cs-body">
-
-      <div class="cs-overview-split">
-        <div class="cs-overview-text">
-          <h2>Overview</h2>
-          <p>Our existing employer portal didn't support the updated DEI assessment model and offered only a limited self-service experience. Employers struggled to manage their own data independently, leading to frequent support requests that diverted valuable time from Account Managers.</p>
-          <p>The objective was to design a more intuitive, scalable portal that would enable employers with clearer insights and actions, incorporating the new DEI assessment, reducing the time Account Managers spent assisting clients, and significantly cutting the time it takes new employers to launch their profile by 50%.</p>
+    <!-- Split hero -->
+    <div class="cs-hero-split">
+      <div class="cs-hero-left">
+        <div class="cs-hero-eyebrow">WORK180 · Lead Product Designer · 2022–23</div>
+        <div class="cs-tags">
+          <span class="cs-tag">Product Design</span>
+          <span class="cs-tag">UX / UI</span>
         </div>
+        <h1 class="cs-title">WORK180:<br>Progress Hub</h1>
+        <p class="cs-subtitle">An employer portal that empowers users to manage their profile data, complete the DEI Assessment, access the knowledge base, and use product features like the gender bias analyser.</p>
+        <div class="cs-hero-chips">
+          <div class="cs-hero-chip"><strong>Role</strong> Lead Product Designer</div>
+          <div class="cs-hero-chip"><strong>Year</strong> 2022–23</div>
+        </div>
+        <div class="cs-tags" style="margin-top:16px;">
+          <span class="cs-tag">Product research</span>
+          <span class="cs-tag">Wireframing</span>
+          <span class="cs-tag">UX UI Design</span>
+          <span class="cs-tag">Usability testing</span>
+          <span class="cs-tag">Collaboration with engineers</span>
+        </div>
+      </div>
+      <div class="cs-hero-right">
         <div class="cs-visual-stage">
           <div class="cs-visual-card cs-visual-card--1"><img src="images/w180-progress-hub-hero1.svg" alt="Progress Hub UI"></div>
           <div class="cs-visual-card cs-visual-card--2"><img src="images/w180-progress-hub-hero4.svg" alt="Progress Hub UI"></div>
           <div class="cs-visual-card cs-visual-card--3"><img src="images/w180-progress-hub-hero6.svg" alt="Progress Hub UI"></div>
         </div>
       </div>
+    </div>
+    </div><!-- /cs-hero-wrap -->
+    <div class="cs-body">
+
+      <div class="cs-section">
+        <h2>Overview</h2>
+        <p>Our existing employer portal didn't support the updated DEI assessment model and offered only a limited self-service experience. Employers struggled to manage their own data independently, leading to frequent support requests that diverted valuable time from Account Managers.</p>
+        <p>The objective was to design a more intuitive, scalable portal that would enable employers with clearer insights and actions, incorporating the new DEI assessment, reducing the time Account Managers spent assisting clients, and significantly cutting the time it takes new employers to launch their profile by 50%.</p>
+      </div>
 
       <div class="cs-section">
         <h2>The challenge</h2>
-        <p>The existing portal created friction at every stage of the employer onboarding journey. Through early user testing and feedback, Account Managers always received [COMPLETE THIS SENTENCE].</p>
+
 
         <div class="challenge-grid">
           <div class="challenge-item">
@@ -492,6 +526,41 @@
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
   function sharePortfolio(btn){const url=window.location.href;if(navigator.share){navigator.share({title:'Jamie Houston — UX & Product Designer',url});return;}navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');setTimeout(()=>btn.classList.remove('copied'),2000);});}
+  // Page load animations
+  (function(){
+    var loadEls = [
+      {sel:'.cs-hero-eyebrow', delay:0},
+      {sel:'.cs-hero-split .cs-tags', delay:100},
+      {sel:'.cs-title', delay:200},
+      {sel:'.cs-subtitle', delay:300},
+      {sel:'.cs-hero-chips', delay:380},
+      {sel:'.cs-hero-right', delay:180, cls:'anim-scale'},
+    ];
+    loadEls.forEach(function(t){
+      var el=document.querySelector(t.sel);
+      if(!el) return;
+      el.classList.add(t.cls||'anim');
+      setTimeout(function(){ el.classList.add('revealed'); }, t.delay);
+    });
+  })();
+  // Scroll reveal animations
+  (function(){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); }
+      });
+    }, {threshold:0.08, rootMargin:'0px 0px -32px 0px'});
+    document.querySelectorAll('.cs-section h2,.cs-section h3,.cs-section > p,.cs-next').forEach(function(el){
+      el.classList.add('anim'); obs.observe(el);
+    });
+    ['.challenge-item','.process-step','.outcome-card','.takeaway-card','.context-card'].forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el,i){
+        el.classList.add('anim');
+        el.style.transitionDelay=(i*80)+'ms';
+        obs.observe(el);
+      });
+    });
+  })();
   // Scroll progress
   (function(){
     var bar = document.getElementById("scrollProgress");

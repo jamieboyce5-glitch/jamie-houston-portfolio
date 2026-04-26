@@ -116,6 +116,7 @@
     .cs-body{padding:0 60px 80px;}
     .cs-section{margin-bottom:56px;}
     .cs-section h2{font-size:22px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:16px;}
+    .section-pill{display:inline-block;background:var(--color-violet-200);color:var(--color-aubergine-200);font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;margin-bottom:14px;letter-spacing:0.02em;}
     .cs-section h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
     .cs-section p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
     .cs-section p:last-child{margin-bottom:0;}
@@ -147,6 +148,21 @@
     html.dark .outcome-value{color:#ffff8c;}
     html.dark .outcome-label{color:rgba(255,255,255,0.6);}
     @media(max-width:640px){.cs-outcomes-grid{grid-template-columns:1fr;}}
+    /* Screens showcase */
+    .screens-showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:end;margin-bottom:56px;padding:32px 24px 8px;background:var(--color-violet-200);border-radius:20px;}
+    .screen-wrap{border-radius:28px;overflow:hidden;}
+    .screen-wrap img{width:100%;display:block;}
+    .screen-wrap:nth-child(1){animation:float-a 5.5s ease-in-out infinite;transform:translateY(0px);}
+    .screen-wrap:nth-child(2){animation:float-b 6.5s ease-in-out infinite;transform:translateY(-14px);}
+    .screen-wrap:nth-child(3){animation:float-c 5s ease-in-out infinite;transform:translateY(-6px);}
+    .screen-wrap:nth-child(4){animation:float-b 6s ease-in-out infinite;transform:translateY(-10px);}
+    .screen-wrap:nth-child(5){animation:float-c 5.8s ease-in-out infinite;transform:translateY(-18px);}
+    .screen-wrap:nth-child(6){animation:float-a 6.2s ease-in-out infinite;transform:translateY(-4px);}
+    @keyframes float-a{0%,100%{transform:translateY(0px);}50%{transform:translateY(-10px);}}
+    @keyframes float-b{0%,100%{transform:translateY(-14px);}50%{transform:translateY(-4px);}}
+    @keyframes float-c{0%,100%{transform:translateY(-6px);}50%{transform:translateY(-16px);}}
+    @media(max-width:640px){.screens-showcase{grid-template-columns:repeat(2,1fr);}.screen-wrap:nth-child(5),.screen-wrap:nth-child(6){display:none;}}
+    @media(prefers-reduced-motion:reduce){.screen-wrap{animation:none!important;}}
     /* Process grid */
     .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
     .process-card{background:var(--color-white-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);padding:20px 22px;display:flex;align-items:flex-start;gap:14px;}
@@ -217,6 +233,29 @@
     html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
     html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
     @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}}
+    /* Split hero */
+    .cs-hero-split{background:var(--color-aubergine-300);padding:52px 60px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;min-height:480px;position:relative;overflow:hidden;margin-bottom:56px;}
+    .cs-hero-split::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(144,129,241,0.15) 0%,transparent 60%);pointer-events:none;}
+    .cs-hero-left{padding-bottom:56px;position:relative;z-index:1;}
+    .cs-hero-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,139,0.55);margin-bottom:18px;}
+    .cs-hero-split .cs-tags{margin-bottom:22px;}
+    .cs-hero-split .cs-tag{background:rgba(255,255,255,0.1);color:rgba(255,251,247,0.85);}
+    .cs-hero-split .cs-title{font-size:46px;color:var(--color-egg-white-200);margin-bottom:18px;letter-spacing:-1px;line-height:1.1;}
+    .cs-hero-split .cs-subtitle{color:rgba(255,251,247,0.6);margin-bottom:32px;font-size:16px;}
+    .cs-hero-chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .cs-hero-chip{font-size:12px;font-weight:600;color:rgba(255,251,247,0.5);background:rgba(255,255,255,0.07);border-radius:100px;padding:5px 13px;display:inline-flex;align-items:center;gap:5px;}
+    .cs-hero-chip strong{color:rgba(255,251,247,0.85);font-weight:600;}
+    /* Right: stacked screens */
+    .cs-hero-right{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:center;height:460px;}
+    .cs-stack{position:relative;width:240px;height:440px;}
+    .cs-stack-item{position:absolute;bottom:0;border-radius:28px;overflow:hidden;box-shadow:0 28px 56px rgba(0,0,0,0.55);}
+    .cs-stack-item:nth-child(1){width:196px;left:50%;transform:translateX(-50%) rotate(-11deg) translateY(-20px);opacity:0.55;z-index:1;}
+    .cs-stack-item:nth-child(2){width:212px;left:50%;transform:translateX(-50%) rotate(-4deg) translateY(-8px);opacity:0.82;z-index:2;}
+    .cs-stack-item:nth-child(3){width:228px;left:50%;transform:translateX(-50%);z-index:3;animation:hero-float 5.5s ease-in-out infinite;}
+    .cs-stack-item img{width:100%;display:block;}
+    @keyframes hero-float{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
+    @media(max-width:900px){.cs-hero-split{grid-template-columns:1fr;min-height:auto;}.cs-hero-right{display:none;}.cs-hero-split .cs-title{font-size:34px;}.cs-hero-left{padding-bottom:40px;}}
+    @media(max-width:768px){.cs-hero-split{padding:40px 20px 0;}}
   </style>
 </head>
 <body>
@@ -289,49 +328,36 @@
       </a>
     </div>
 
-    <!-- Hero cover image -->
-    <!-- TO EDIT: Replace the background gradient below with your own image -->
-    <!-- style="background-image: url('images/w180-onboarding-hero.jpg'); background-size: cover; background-position: center;" -->
-    <div class="cs-hero">
-      <div class="cs-hero-cover" style="background-image: url('images/w180-onboarding-hero.png'); background-size: cover; background-position: center;"></div>
-    </div>
-
-    <!-- Title block -->
-    <div class="cs-intro-block">
-      <div class="cs-intro-text">
-      <div class="cs-tags">
-        <span class="cs-tag">Product</span>
-        <span class="cs-tag">UX / UI</span>
+    <!-- Split hero -->
+    <div class="cs-hero-split">
+      <div class="cs-hero-left">
+        <div class="cs-hero-eyebrow">WORK180 · Lead Product Designer · 2025</div>
+        <div class="cs-tags">
+          <span class="cs-tag">Product Design</span>
+          <span class="cs-tag">UX / UI</span>
+        </div>
+        <h1 class="cs-title">WORK180:<br>Onboarding</h1>
+        <p class="cs-subtitle">Introducing onboarding earlier in the user journey to personalise the experience sooner, guide users toward relevant employers, and drive a significant uplift in employer follows.</p>
+        <div class="cs-hero-chips">
+          <div class="cs-hero-chip"><strong>Role</strong> Lead Product Designer</div>
+          <div class="cs-hero-chip"><strong>Year</strong> 2025</div>
+          <div class="cs-hero-chip"><strong>Tools</strong> Figma · Hotjar · Jira</div>
+        </div>
       </div>
-      <h1 class="cs-title">WORK180: Onboarding</h1>
-      <p class="cs-subtitle">Introducing onboarding earlier in the user journey to personalise the experience sooner, guide users toward relevant employers, and drive a significant uplift in employer follows.</p>
-    </div>
-
-    <!-- Meta strip -->
-    <div class="cs-meta-strip">
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Role</span>
-        <span class="cs-meta-pill">Lead Product Designer</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Company</span>
-        <span class="cs-meta-pill">WORK180</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Year</span>
-        <span class="cs-meta-pill">2025</span>
-      </div>
-      <div class="cs-meta-item">
-        <span class="cs-meta-label">Tools</span>
-        <span class="cs-meta-pill">Figma · Hotjar · Jira</span>
+      <div class="cs-hero-right">
+        <div class="cs-stack">
+          <div class="cs-stack-item"><img src="images/w180-onboarding-image-3.png" alt="Onboarding screen"></div>
+          <div class="cs-stack-item"><img src="images/w180-onboarding-image-2.png" alt="Onboarding screen"></div>
+          <div class="cs-stack-item"><img src="images/w180-onboarding-image-1.png" alt="Onboarding screen"></div>
+        </div>
       </div>
     </div>
-    </div><!-- /cs-intro-block -->
 
     <!-- Case study body -->
     <div class="cs-body">
 
       <div class="cs-section">
+        <span class="section-pill">The challenge</span>
         <h2>The challenge</h2>
         <p>This project focused on designing an onboarding experience for users creating an account, with one clear primary goal: increase employer follows. Users were only prompted to sign up at high-intent moments, resulting in low awareness of the value of following employers, delayed personalisation, and limited repeat engagement.</p>
         <p>This meant:</p>
@@ -344,10 +370,11 @@
       </div>
 
       <div class="cs-image">
-        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">Image coming soon</div>
+        <img src="images/w180-onboarding-hero.png" alt="WORK180 Onboarding">
       </div>
 
       <div class="cs-section">
+        <span class="section-pill">Research</span>
         <h2>Research</h2>
         <h3>Two blockers killing growth</h3>
         <p>Through early research, I discovered two critical blockers hurting WORK180's growth. These weren't just UX issues — they were business problems directly impacting follower growth.</p>
@@ -370,6 +397,7 @@
       </div>
 
       <div class="cs-section">
+        <span class="section-pill">Business goals</span>
         <h2>Business goals</h2>
         <h3>Primary KPI: Increase employer follows</h3>
         <ul>
@@ -414,8 +442,13 @@
         </div>
       </div>
 
-      <div class="cs-image">
-        <div class="cs-image-placeholder" style="aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;">Image coming soon</div>
+      <div class="screens-showcase">
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-1.png" alt="WORK180 Onboarding screen 1"></div>
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-2.png" alt="WORK180 Onboarding screen 2"></div>
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-3.png" alt="WORK180 Onboarding screen 3"></div>
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-4.png" alt="WORK180 Onboarding screen 4"></div>
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-5.png" alt="WORK180 Onboarding screen 5"></div>
+        <div class="screen-wrap"><img src="images/w180-onboarding-image-6.png" alt="WORK180 Onboarding screen 6"></div>
       </div>
 
       <div class="cs-section">
