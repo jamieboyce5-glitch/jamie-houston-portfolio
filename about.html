@@ -68,7 +68,11 @@
     .about-slider-track{display:flex;gap:12px;width:max-content;animation:about-slide 80s linear infinite;padding:4px 0;}
     .about-slider-track:hover{animation-play-state:paused;}
     .about-slider-track img{height:280px;width:auto;display:block;border-radius:var(--radius-md);flex-shrink:0;object-fit:cover;}
-    @media(max-width:768px){.about-slider-wrap{margin-left:-20px;margin-right:-20px;}.about-slider-track img{height:200px;}}
+    @media(max-width:768px){
+      .about-slider-wrap{margin-left:-20px;margin-right:-20px;overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;cursor:grab;}
+      .about-slider-track{animation:none;width:max-content;}
+      .about-slider-track img{height:200px;scroll-snap-align:start;}
+    }
     @media(min-width:1280px){.about-slider-wrap{margin-left:-80px;margin-right:-80px;}}
     html.dark .about-slider-section h2{color:var(--color-egg-white-200);}
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding-top:28px;display:flex;align-items:center;justify-content:space-between;}
@@ -76,8 +80,8 @@
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
     @media(max-width:768px){
       .mobile-topbar{display:flex;}
-      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:30;}
-      .sidebar.open{transform:translateX(0);}
+      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
+      .sidebar.open{transform:translateX(0);}.sidebar .sidebar-identity{display:none;}
       .mobile-overlay.open{display:block;}
       .main{margin-left:0;max-width:100%;padding:76px 20px 40px;}
     }
@@ -401,7 +405,7 @@
             </p>
           </div>
           <div class="about-hero-img">
-            <img src="images/about-image-jamie.png" alt="Jamie Houston">
+            <img src="images/about-image-jamie.jpg" alt="Jamie Houston">
           </div>
         </div>
 
@@ -516,8 +520,8 @@
         <h2>Life outside of work</h2>
         <div class="about-slider-wrap">
           <div class="about-slider-track">
-            <img src="images/about-image-1.jpg" alt=""><img src="images/about-image-2.JPG" alt=""><img src="images/about-image-3.jpg" alt=""><img src="images/about-image-4.jpg" alt=""><img src="images/about-image-5.jpg" alt=""><img src="images/about-image-6.jpg" alt=""><img src="images/about-image-7.jpg" alt=""><img src="images/about-image-8.jpg" alt=""><img src="images/about-image-9.jpg" alt=""><img src="images/about-image-10.JPG" alt=""><img src="images/about-image-11.jpg" alt=""><img src="images/about-image-12.jpg" alt=""><img src="images/about-image-13.jpg" alt=""><img src="images/about-image-14.jpg" alt=""><img src="images/about-image-15.jpg" alt=""><img src="images/about-image-16.jpg" alt=""><img src="images/about-image-17.jpg" alt=""><img src="images/about-image-18.jpg" alt=""><img src="images/about-image-19.jpg" alt=""><img src="images/about-image-20.JPG" alt=""><img src="images/about-image-21.jpg" alt=""><img src="images/about-image-22.jpg" alt=""><img src="images/about-image-23.jpg" alt=""><img src="images/about-image-24.jpg" alt=""><img src="images/about-image-25.jpg" alt=""><img src="images/about-image-26.jpg" alt=""><img src="images/about-image-27.jpg" alt=""><img src="images/about-image-28.jpg" alt=""><img src="images/about-image-29.jpg" alt=""><img src="images/about-image-30.JPG" alt="">
-            <img src="images/about-image-1.jpg" alt=""><img src="images/about-image-2.JPG" alt=""><img src="images/about-image-3.jpg" alt=""><img src="images/about-image-4.jpg" alt=""><img src="images/about-image-5.jpg" alt=""><img src="images/about-image-6.jpg" alt=""><img src="images/about-image-7.jpg" alt=""><img src="images/about-image-8.jpg" alt=""><img src="images/about-image-9.jpg" alt=""><img src="images/about-image-10.JPG" alt=""><img src="images/about-image-11.jpg" alt=""><img src="images/about-image-12.jpg" alt=""><img src="images/about-image-13.jpg" alt=""><img src="images/about-image-14.jpg" alt=""><img src="images/about-image-15.jpg" alt=""><img src="images/about-image-16.jpg" alt=""><img src="images/about-image-17.jpg" alt=""><img src="images/about-image-18.jpg" alt=""><img src="images/about-image-19.jpg" alt=""><img src="images/about-image-20.JPG" alt=""><img src="images/about-image-21.jpg" alt=""><img src="images/about-image-22.jpg" alt=""><img src="images/about-image-23.jpg" alt=""><img src="images/about-image-24.jpg" alt=""><img src="images/about-image-25.jpg" alt=""><img src="images/about-image-26.jpg" alt=""><img src="images/about-image-27.jpg" alt=""><img src="images/about-image-28.jpg" alt=""><img src="images/about-image-29.jpg" alt=""><img src="images/about-image-30.JPG" alt="">
+            <img loading="lazy" decoding="async" src="images/about-image-1.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-2.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-3.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-4.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-5.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-6.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-7.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-8.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-9.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-10.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-11.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-12.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-13.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-14.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-15.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-16.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-17.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-18.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-19.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-20.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-21.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-22.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-23.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-24.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-25.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-26.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-27.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-28.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-29.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-30.JPG" alt="">
+            <img loading="lazy" decoding="async" src="images/about-image-1.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-2.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-3.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-4.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-5.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-6.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-7.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-8.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-9.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-10.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-11.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-12.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-13.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-14.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-15.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-16.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-17.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-18.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-19.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-20.JPG" alt=""><img loading="lazy" decoding="async" src="images/about-image-21.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-22.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-23.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-24.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-25.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-26.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-27.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-28.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-29.jpg" alt=""><img loading="lazy" decoding="async" src="images/about-image-30.JPG" alt="">
           </div>
         </div>
       </section>
@@ -560,6 +564,11 @@ function sharePortfolio(btn) {
     let toast = document.getElementById('shareToast');
     if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
     toast.textContent = 'Link copied, thanks for sharing ♥';
+    const rect = btn.getBoundingClientRect();
+    toast.style.left = rect.left + 'px';
+    toast.style.top = (rect.top - toast.offsetHeight - 10) + 'px';
+    toast.style.transform = 'none';
+    toast.style.bottom = 'auto';
     toast.classList.add('show');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });

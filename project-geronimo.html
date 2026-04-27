@@ -139,8 +139,8 @@
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
     @media(max-width:768px){
       .mobile-topbar{display:flex;}
-      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:30;}
-      .sidebar.open{transform:translateX(0);}
+      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
+      .sidebar.open{transform:translateX(0);}.sidebar .sidebar-identity{display:none;}
       .mobile-overlay.open{display:block;}
       .main{margin-left:0;max-width:100%;padding-top:76px;}
       .cs-topbar,.cs-hero,.cs-body,.cs-next-wrap,.site-footer{padding-left:20px;padding-right:20px;}
@@ -206,7 +206,7 @@
   <main class="main">
     <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
     <div class="cs-hero">
-      <div class="cs-hero-cover" style="background-image: url('images/geronimo-hero.png'); background-size: cover; background-position: center;"></div>
+      <div class="cs-hero-cover" style="background-image: url('images/geronimo-hero.jpg'); background-size: cover; background-position: center;"></div>
     </div>
     <div class="cs-intro-block">
       <div class="cs-intro-text">
@@ -228,8 +228,8 @@
         <p>I created a bold new identity along with a custom illustration pattern to bring warmth and personality to their Yarraville site.</p>
       </div>
       <div class="cs-image-grid">
-        <img src="images/geronimo-1.png" alt="Geronimo brand identity">
-        <img src="images/geronimo-2.png" alt="Geronimo brand identity">
+        <img loading="lazy" decoding="async" src="images/geronimo-1.png" alt="Geronimo brand identity">
+        <img loading="lazy" decoding="async" src="images/geronimo-2.jpg" alt="Geronimo brand identity">
       </div>
       <div class="cs-section">
         <h2>What I delivered</h2>
@@ -237,8 +237,8 @@
         <p>I led the project end-to-end, from concept development through to finished artwork, and managed large-scale print production and on-site installation in coordination with the print team.</p>
       </div>
       <div class="cs-image-grid">
-        <img src="images/geronimo-3.png" alt="Geronimo illustration pattern">
-        <img src="images/geronimo-4.png" alt="Geronimo illustration pattern">
+        <img loading="lazy" decoding="async" src="images/geronimo-3.jpg" alt="Geronimo illustration pattern">
+        <img loading="lazy" decoding="async" src="images/geronimo-4.png" alt="Geronimo illustration pattern">
       </div>
     </div>
     <div class="cs-next-wrap">
@@ -266,6 +266,11 @@
     let toast = document.getElementById('shareToast');
     if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
     toast.textContent = 'Link copied, thanks for sharing ♥';
+    const rect = btn.getBoundingClientRect();
+    toast.style.left = rect.left + 'px';
+    toast.style.top = (rect.top - toast.offsetHeight - 10) + 'px';
+    toast.style.transform = 'none';
+    toast.style.bottom = 'auto';
     toast.classList.add('show');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });

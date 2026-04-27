@@ -251,8 +251,8 @@
     /* Responsive */
     @media(max-width:768px){
       .mobile-topbar{display:flex;}
-      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:30;}
-      .sidebar.open{transform:translateX(0);}
+      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
+      .sidebar.open{transform:translateX(0);}.sidebar .sidebar-identity{display:none;}
       .mobile-overlay.open{display:block;}
       .main{margin-left:0;max-width:100%;padding-top:76px;}
       .cs-topbar,.cs-hero,.cs-body,.cs-next-wrap,.site-footer{padding-left:20px;padding-right:20px;}
@@ -400,9 +400,9 @@
       </div>
       <div class="cs-hero-right">
         <div class="cs-stack">
-          <div class="cs-stack-item"><img src="images/w180-onboarding-image-3.png" alt="Onboarding screen"></div>
-          <div class="cs-stack-item"><img src="images/w180-onboarding-image-2.png" alt="Onboarding screen"></div>
-          <div class="cs-stack-item"><img src="images/w180-onboarding-image-1.png" alt="Onboarding screen"></div>
+          <div class="cs-stack-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-image-3.png" alt="Onboarding screen"></div>
+          <div class="cs-stack-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-image-2.png" alt="Onboarding screen"></div>
+          <div class="cs-stack-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-image-1.png" alt="Onboarding screen"></div>
         </div>
       </div>
     </div>
@@ -478,10 +478,10 @@
         </div>
         <div class="component-track-wrap">
           <div class="component-track" id="componentTrack">
-            <div class="component-item"><img src="images/w180-onboarding-component-1.svg" alt="WORK180 Onboarding component 1"></div>
-            <div class="component-item"><img src="images/w180-onboarding-component-2.svg" alt="WORK180 Onboarding component 2"></div>
-            <div class="component-item"><img src="images/w180-onboarding-component-3.svg" alt="WORK180 Onboarding component 3"></div>
-            <div class="component-item"><img src="images/w180-onboarding-component-4.svg" alt="WORK180 Onboarding component 4"></div>
+            <div class="component-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-component-1.svg" alt="WORK180 Onboarding component 1"></div>
+            <div class="component-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-component-2.svg" alt="WORK180 Onboarding component 2"></div>
+            <div class="component-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-component-3.svg" alt="WORK180 Onboarding component 3"></div>
+            <div class="component-item"><img loading="lazy" decoding="async" src="images/w180-onboarding-component-4.svg" alt="WORK180 Onboarding component 4"></div>
           </div>
         </div>
       </div>
@@ -608,6 +608,11 @@
     let toast = document.getElementById('shareToast');
     if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
     toast.textContent = 'Link copied, thanks for sharing ♥';
+    const rect = btn.getBoundingClientRect();
+    toast.style.left = rect.left + 'px';
+    toast.style.top = (rect.top - toast.offsetHeight - 10) + 'px';
+    toast.style.transform = 'none';
+    toast.style.bottom = 'auto';
     toast.classList.add('show');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });

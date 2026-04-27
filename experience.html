@@ -65,8 +65,8 @@
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
     @media(max-width:768px){
       .mobile-topbar{display:flex;}
-      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;z-index:30;}
-      .sidebar.open{transform:translateX(0);}
+      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
+      .sidebar.open{transform:translateX(0);}.sidebar .sidebar-identity{display:none;}
       .mobile-overlay.open{display:block;}
       .main{margin-left:0;max-width:100%;padding:76px 20px 40px;}
     }
@@ -770,6 +770,11 @@ function sharePortfolio(btn) {
     let toast = document.getElementById('shareToast');
     if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
     toast.textContent = 'Link copied, thanks for sharing ♥';
+    const rect = btn.getBoundingClientRect();
+    toast.style.left = rect.left + 'px';
+    toast.style.top = (rect.top - toast.offsetHeight - 10) + 'px';
+    toast.style.transform = 'none';
+    toast.style.bottom = 'auto';
     toast.classList.add('show');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });
