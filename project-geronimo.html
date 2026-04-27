@@ -6,7 +6,7 @@
   <title>Geronimo — Jamie Houston</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-    :root{--color-white-100:#ffffff;--color-egg-white-200:#fffdfa;--color-egg-white-300:#fff5ee;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
+    :root{--color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:var(--font);background:var(--color-white-100);color:var(--color-aubergine-200);line-height:1.6;-webkit-font-smoothing:antialiased;}
@@ -51,10 +51,12 @@
     html:not(.dark) .theme-toggle{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
     html.dark .sidebar{background:#350316;border-right:1px solid rgba(255,255,255,0.05);}
     html.dark body{background:var(--color-aubergine-300);color:var(--color-egg-white-200);}
-    html.dark 
-    html.dark html.dark 
+    html.dark h1,html.dark h2,html.dark h3{color:var(--color-egg-white-200);}
+    html.dark .cs-title{color:var(--color-egg-white-200);}
+    html.dark .cs-subtitle{color:rgba(255,251,247,0.7);}
     html.dark .cs-section h2,html.dark .cs-section h3{color:var(--color-egg-white-200);}
     html.dark .cs-section p,html.dark .cs-section li{color:rgba(255,251,247,0.75);}
+    html.dark .cs-body p{color:rgba(255,251,247,0.75);}
     html.dark .cs-callout{background:var(--color-aubergine-200);border-left-color:var(--color-lemon-200);}
     html.dark .cs-callout p{color:rgba(255,251,247,0.8);}
     html.dark .cs-image-placeholder{background:var(--color-aubergine-200);}
@@ -75,6 +77,16 @@
     .cs-tag{display:inline-block;background:var(--color-lemon-100);color:var(--color-aubergine-200);font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;}
     .cs-title{font-size:36px;font-weight:700;line-height:1.2;color:var(--color-aubergine-200);margin-bottom:16px;}
     .cs-subtitle{font-size:17px;color:var(--color-aubergine-100);line-height:1.7;}
+    /* Intro block */
+    .cs-intro-block{display:grid;grid-template-columns:1fr 220px;gap:40px;padding:0 60px 48px;align-items:start;}
+    .cs-meta-card{background:var(--color-aubergine-200);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:18px;}
+    .cs-meta-item{display:flex;flex-direction:column;gap:6px;}
+    .cs-meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,251,247,0.45);}
+    .cs-meta-pill{display:inline-flex;background:rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--color-egg-white-200);width:fit-content;}
+    html.dark .cs-meta-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);}
+    html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
+    html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
+    @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}.cs-topbar,.cs-hero{padding-left:20px;padding-right:20px;}}
     
     
     
@@ -176,7 +188,7 @@
   <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
 
   <aside class="sidebar">
-    <a href="index.html" class="sidebar-identity"><img src="images/jamie-houston-icon-lemon.svg" class="avatar" alt="JH"><div><img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston"><div class="sidebar-role">UX &amp; Product Designer</div></div></a>
+    <a href="index.html" class="sidebar-identity"><div><img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston"><div class="sidebar-role">UX &amp; Product Designer</div></div></a>
     <div class="available-badge"><span class="available-dot"></span>Open to new work</div>
     <nav class="sidebar-nav">
       <span class="nav-label">Menu</span>
@@ -198,18 +210,16 @@
     </div>
     <div class="cs-intro-block">
       <div class="cs-intro-text">
-      <div class="cs-tags"><span class="cs-tag">Branding</span><span class="cs-tag">Illustration</span></div>
-      <h1 class="cs-title">Geronimo</h1>
-      <p class="cs-subtitle">A bold rebrand for a children's occupational therapy practice, delivering a new visual identity plus a custom illustration pattern designed to bring warmth, energy, and personality to their Yarraville site.</p>
-    </div>
-
+        <div class="cs-tags"><span class="cs-tag">Branding</span><span class="cs-tag">Illustration</span></div>
+        <h1 class="cs-title">Geronimo</h1>
+        <p class="cs-subtitle">A bold rebrand for a children's occupational therapy practice, delivering a new visual identity plus a custom illustration pattern designed to bring warmth, energy, and personality to their Yarraville site.</p>
+      </div>
       <div class="cs-meta-card">
-      <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-pill">Brand Designer</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Client</span><span class="cs-meta-pill">Geronimo</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2020</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-pill">Illustrator · Photoshop</span></div>
-    </div>
-
+        <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-pill">Brand Designer</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Client</span><span class="cs-meta-pill">Geronimo</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2020</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-pill">Illustrator · Photoshop</span></div>
+      </div>
     </div>
     <div class="cs-body">
       <div class="cs-section">
@@ -258,11 +268,5 @@
     }, {passive:true});
   })();
 </script>
-<div class="gshapes">
-  <div class="gshape gshape--1"><img src="images/geronimo-shape-1.svg" width="90" alt=""></div>
-  <div class="gshape gshape--2"><img src="images/geronimo-shape-2.svg" width="68" alt=""></div>
-  <div class="gshape gshape--3"><img src="images/geronimo-shape-3.svg" width="44" alt=""></div>
-  <div class="gshape gshape--4"><img src="images/geronimo-shape-4.svg" width="72" alt=""></div>
-</div>
 </body>
 </html>

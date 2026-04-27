@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
     :root {
-      --color-white-100:#ffffff;--color-egg-white-200:#fffdfa;--color-egg-white-300:#fff5ee;
+      --color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;
       --color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;
       --color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-lemon-300:#ffff65;
       --color-violet-100:#ece9ff;--color-violet-200:#c3baff;--color-violet-300:#9081f1;
@@ -59,7 +59,7 @@
     .page-header{margin-bottom:48px;}
     .page-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(100,41,64,0.7);margin-bottom:8px;}
     .page-title{font-size:30px;font-weight:700;color:var(--color-aubergine-200);line-height:1.2;margin-bottom:12px;}
-    .page-subtitle{font-size:15px;color:var(--color-aubergine-100);line-height:1.7;max-width:520px;}
+    .page-subtitle{font-size:15px;color:var(--color-aubergine-100);line-height:1.7;}
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding-top:28px;display:flex;align-items:center;justify-content:space-between;}
     .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
@@ -171,8 +171,9 @@
       transition: transform 0.3s ease;
     }
 
-    .featured-project:hover {
-      transform: translateY(-3px);
+    .featured-project:hover,
+    .featured-project.fade-in.visible:hover {
+      transform: translateY(-6px);
     }
 
     .featured-cover {
@@ -247,6 +248,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
+      padding-bottom: 10px;
     }
 
     .project-card {
@@ -257,11 +259,13 @@
       text-decoration: none;
       color: inherit;
       display: block;
-      transition: transform 0.3s ease;
+      transition: transform 0.35s ease;
+      will-change: transform;
     }
 
-    .project-card:hover {
-      transform: translateY(-3px);
+    .project-card:hover,
+    .project-card.fade-in.visible:hover {
+      transform: translateY(-6px);
     }
 
     .project-cover {
@@ -270,11 +274,12 @@
       background-repeat: no-repeat;
       background-position: center;
       position: relative;
-      transition: transform 0.3s ease;
+      transition: transform 0.35s ease;
     }
 
-    .project-card:hover .project-cover {
-      transform: scale(1.02);
+    .project-card:hover .project-cover,
+    .project-card.fade-in.visible:hover .project-cover {
+      transform: scale(1.03);
     }
 
     .cover-1 { background-image: url('images/w180-onboarding-hero.png'); background-size: cover; background-position: center; }
@@ -307,7 +312,9 @@
       gap: 4px;
     }
 
-    .project-body { padding: 20px 22px 22px; }
+    .project-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 14px; }
+    .project-view-btn { align-self: flex-start; font-size: 13px; padding: 7px 16px; border-radius: var(--radius-sm); color: var(--color-aubergine-200); border-color: var(--color-aubergine-100); }
+    html.dark .project-view-btn { color: var(--color-egg-white-200); border-color: rgba(255,255,255,0.3); }
 
     .project-cats {
       display: flex;
@@ -383,7 +390,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <a href="index.html" class="sidebar-identity">
-      <img src="images/jamie-houston-icon-lemon.svg" class="avatar" alt="JH">
+      
       <div>
         <img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston">
         <div class="sidebar-role">UX &amp; Product Designer</div>
@@ -435,37 +442,12 @@
       <div class="page-header">
         <div class="page-eyebrow">Portfolio</div>
         <h1 class="page-title">Work</h1>
-        <p class="page-subtitle">Highlights from a decade of work across product, UX, and brand.</p>
+        <p class="page-subtitle">Highlights from a decade of work across product, UX, brand and illustration.</p>
       </div>
 
       <!-- Featured project -->
-      <section class="section featured-section" style="margin-bottom:40px;">
-        <div class="section-header">
-          <h2 class="section-title">Featured project</h2>
-        </div>
-        <a class="featured-project" href="project-w180-onboarding.html">
-          <div class="featured-cover cover-1">
-            <div class="cover-badges" style="position:absolute;top:12px;right:12px;">
-              <span class="badge">2025</span>
-            </div>
-          </div>
-          <div class="featured-content">
-            <div class="featured-label">Featured</div>
-            <div class="featured-cats">
-              <span class="featured-cat">Product</span>
-              <span class="featured-cat">UX / UI</span>
-            </div>
-            <div class="featured-title">WORK180: Onboarding</div>
-            <p class="featured-desc">Redesigning the new user onboarding experience to reduce friction and improve activation — making the first impression count for both jobseekers and employers.</p>
-            <span class="btn btn-primary" style="align-self:flex-start;">View case study →</span>
-          </div>
-        </a>
-      </section>
 
-      <!-- All projects -->
-      <div class="section-header" style="margin-bottom:20px;">
-        <h2 class="section-title">All projects</h2>
-      </div>
+
 
       <!--
         TO ADD A NEW PROJECT: Copy any .project-card block,
@@ -487,7 +469,8 @@
               <span class="project-cat">UX / UI</span>
             </div>
             <div class="project-title">WORK180: Onboarding</div>
-            <p class="project-desc">Redesigning the new user onboarding experience to reduce friction and improve activation — making the first impression count for both jobseekers and employers.</p>
+            <p class="project-desc">Redesigning the new user onboarding experience to reduce friction and improve activation, making the first impression count for both jobseekers and employers.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -506,6 +489,7 @@
             </div>
             <div class="project-title">WORK180: Benefits Table</div>
             <p class="project-desc">A structured UI system for presenting employer benefits in a way that's scannable, comparable, and immediately trustworthy for job seekers evaluating workplace culture.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -524,6 +508,7 @@
             </div>
             <div class="project-title">WORK180: Top Employers Page</div>
             <p class="project-desc">Redesigning the flagship Top Employers showcase page to drive engagement and more powerfully communicate workplace diversity commitments to a wide audience.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -533,7 +518,6 @@
             <div class="cover-badges">
               <span class="badge">
                 <svg width="9" height="9" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a3 3 0 00-3 3v2H4a1 1 0 00-1 1v7a1 1 0 001 1h8a1 1 0 001-1V7a1 1 0 00-1-1h-1V4a3 3 0 00-3-3zm-1 3a1 1 0 012 0v2H7V4zm1 5a1 1 0 110 2 1 1 0 010-2z"/></svg>
-                NDA
               </span>
               <span class="badge">2022–23</span>
             </div>
@@ -545,6 +529,7 @@
             </div>
             <div class="project-title">WORK180: Progress Hub</div>
             <p class="project-desc">An employer-facing dashboard tracking workplace equity commitments and surfacing progress reports to the community. Available on request.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -562,7 +547,8 @@
               <span class="project-cat project-cat-warm">Illustration</span>
             </div>
             <div class="project-title">Geronimo</div>
-            <p class="project-desc">Full brand identity and custom illustration system — giving a bold, characterful visual voice through bespoke type treatment, colour, and hand-crafted illustration.</p>
+            <p class="project-desc">Full brand identity and custom illustration system, giving a bold, characterful visual voice through bespoke type treatment, colour and hand-crafted illustration.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -580,7 +566,8 @@
               <span class="project-cat project-cat-warm">Mural</span>
             </div>
             <div class="project-title">The Parkway Artway Project</div>
-            <p class="project-desc">Large-scale mural and illustration bringing community identity to a public space — bridging art, place, and people through a bold visual language in the Parkway precinct.</p>
+            <p class="project-desc">Large-scale mural and illustration bringing community identity to a public space, bridging art, place, and people through a bold visual language in the Parkway precinct.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
           </div>
         </a>
 
@@ -632,7 +619,13 @@ function sharePortfolio(btn) {
 (function(){
   var obs = new IntersectionObserver(function(entries){
     entries.forEach(function(e,i){
-      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+      if(e.isIntersecting){
+        var t=e.target;
+        t.classList.add('visible');
+        obs.unobserve(t);
+        var delay=parseFloat(t.style.transitionDelay||0)*1000;
+        setTimeout(function(){t.style.transitionDelay='';},delay+500);
+      }
     });
   },{threshold:0.08});
   document.querySelectorAll('.featured-project,.project-card').forEach(function(el,i){

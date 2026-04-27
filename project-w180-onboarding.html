@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
     :root {
-      --color-white-100:#ffffff;--color-egg-white-200:#fffdfa;--color-egg-white-300:#fff5ee;
+      --color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;
       --color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;
       --color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-lemon-300:#ffff65;
       --color-violet-100:#ece9ff;--color-violet-200:#c3baff;--color-violet-300:#9081f1;
@@ -92,12 +92,25 @@
     html.dark .cs-outcomes-grid .outcome-card{background:var(--color-aubergine-200);}
     html.dark .outcome-value{color:var(--color-lemon-200);}
     html.dark .outcome-label{color:rgba(255,251,247,0.55);}
+    html.dark .outcome-before{color:rgba(255,251,247,0.35);border-top-color:rgba(255,255,255,0.08);}
+    html.dark .section-pill{background:rgba(195,186,255,0.18);color:var(--color-egg-white-200);}
+    html.dark .blocker-card{background:var(--color-aubergine-200);}
+    html.dark .blocker-label{color:rgba(255,255,139,0.6);}
+    html.dark .blocker-title{color:var(--color-egg-white-200);}
+    html.dark .blocker-body{color:rgba(255,251,247,0.65);}
+    html.dark .process-card{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.07);}
+    html.dark .process-card-title{color:var(--color-egg-white-200);}
+    html.dark .process-card-body{color:rgba(255,251,247,0.6);}
+    html.dark .process-icon{color:rgba(195,186,255,0.8);}
+    html.dark .screens-showcase{background:rgba(195,186,255,0.12);}
+    html.dark .cs-hero-chip{background:rgba(255,255,255,0.07);color:rgba(255,251,247,0.65);}
+    html.dark .cs-hero-chip strong{color:var(--color-egg-white-200);}
     /* Scroll progress bar */
     .scroll-progress{position:fixed;bottom:0;left:0;height:3px;width:0%;background:var(--color-violet-200);z-index:999;transition:width 0.05s linear;}
     /* Case study layout */
-    .cs-topbar{padding:28px 60px 0;display:flex;align-items:center;gap:8px;}
-    .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--color-aubergine-100);text-decoration:none;opacity:0.6;transition:opacity 0.14s,color 0.14s;}
-    .cs-back:hover{opacity:1;color:var(--color-aubergine-200);}
+    .cs-topbar{position:absolute;top:20px;left:60px;z-index:2;}
+    .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:rgba(255,251,247,0.5);text-decoration:none;transition:color 0.14s;}
+    .cs-back:hover{color:var(--color-egg-white-200);}
     /* Hero */
     .cs-hero{padding:40px 60px 0;}
     .cs-hero-cover{width:100%;aspect-ratio:16/7;border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(135deg,#350316 0%,#642940 55%,#9081f1 100%);background-size:cover;background-position:center;margin-bottom:40px;}
@@ -115,14 +128,28 @@
     /* Content body */
     .cs-body{padding:0 60px 80px;}
     .cs-section{margin-bottom:56px;}
+    .cs-section-band{margin-left:-60px;margin-right:-60px;padding:56px 60px;background:var(--color-egg-white-300);margin-bottom:56px;}
+    .cs-section-band .cs-section{margin-bottom:0;}
+    html.dark .cs-section-band{background:var(--color-aubergine-200);}
+    @media(max-width:768px){.cs-section-band{margin-left:-20px;margin-right:-20px;padding:40px 20px;}}
+    @media(min-width:1280px){.cs-section-band{margin-left:-80px;margin-right:-80px;padding:56px 80px;}}
     .cs-section h2{font-size:22px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:16px;}
-    .section-pill{display:inline-block;background:var(--color-violet-200);color:var(--color-aubergine-200);font-size:12px;font-weight:700;padding:5px 14px;border-radius:100px;margin-bottom:14px;letter-spacing:0.02em;}
+    .section-pill{display:inline-block;background:rgba(195,186,255,0.3);color:var(--color-aubergine-100);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:14px;letter-spacing:0.02em;}
     .cs-section h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
     .cs-section p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
     .cs-section p:last-child{margin-bottom:0;}
     .cs-section ul{margin-bottom:16px;padding-left:0;}
     .cs-section ul li{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;padding-left:20px;position:relative;margin-bottom:6px;}
     .cs-section ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--color-aubergine-200);border-radius:50%;}
+    /* Business goals */
+    .goal-card{background:var(--color-aubergine-200);border-radius:var(--radius-lg);padding:28px 32px;margin-top:24px;}
+    .goal-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,139,0.7);margin-bottom:20px;}
+    .goal-metrics{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .goal-metric{display:flex;flex-direction:column;gap:6px;padding-left:20px;border-left:2px solid rgba(255,255,139,0.25);}
+    .goal-metric-value{font-size:36px;font-weight:700;color:var(--color-lemon-200);line-height:1;}
+    .goal-metric-desc{font-size:13px;color:rgba(255,251,247,0.6);line-height:1.4;}
+    @media(max-width:560px){.goal-metrics{grid-template-columns:1fr;}}
+    html.dark .goal-card{background:var(--color-aubergine-200);}
     /* Full-width image block */
     .cs-image{width:100%;border-radius:var(--radius-md);overflow:hidden;margin-bottom:56px;}
     .cs-image-placeholder{background:var(--color-violet-100);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-aubergine-100);font-size:13px;font-weight:600;opacity:0.4;letter-spacing:0.04em;}
@@ -148,21 +175,23 @@
     html.dark .outcome-value{color:#ffff8c;}
     html.dark .outcome-label{color:rgba(255,255,255,0.6);}
     @media(max-width:640px){.cs-outcomes-grid{grid-template-columns:1fr;}}
-    /* Screens showcase */
-    .screens-showcase{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:end;margin-bottom:56px;padding:32px 24px 8px;background:var(--color-violet-200);border-radius:20px;}
-    .screen-wrap{border-radius:28px;overflow:hidden;}
-    .screen-wrap img{width:100%;display:block;}
-    .screen-wrap:nth-child(1){animation:float-a 5.5s ease-in-out infinite;transform:translateY(0px);}
-    .screen-wrap:nth-child(2){animation:float-b 6.5s ease-in-out infinite;transform:translateY(-14px);}
-    .screen-wrap:nth-child(3){animation:float-c 5s ease-in-out infinite;transform:translateY(-6px);}
-    .screen-wrap:nth-child(4){animation:float-b 6s ease-in-out infinite;transform:translateY(-10px);}
-    .screen-wrap:nth-child(5){animation:float-c 5.8s ease-in-out infinite;transform:translateY(-18px);}
-    .screen-wrap:nth-child(6){animation:float-a 6.2s ease-in-out infinite;transform:translateY(-4px);}
-    @keyframes float-a{0%,100%{transform:translateY(0px);}50%{transform:translateY(-10px);}}
-    @keyframes float-b{0%,100%{transform:translateY(-14px);}50%{transform:translateY(-4px);}}
-    @keyframes float-c{0%,100%{transform:translateY(-6px);}50%{transform:translateY(-16px);}}
-    @media(max-width:640px){.screens-showcase{grid-template-columns:repeat(2,1fr);}.screen-wrap:nth-child(5),.screen-wrap:nth-child(6){display:none;}}
-    @media(prefers-reduced-motion:reduce){.screen-wrap{animation:none!important;}}
+    /* Component slider */
+    .component-section{margin-bottom:56px;}
+    .component-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+    .component-section-title{font-size:22px;font-weight:700;color:var(--color-aubergine-200);}
+    .component-scroll-hint{font-size:12px;font-weight:600;color:var(--color-aubergine-100);opacity:0.45;display:flex;align-items:center;gap:6px;}
+    html.dark .component-section-title{color:var(--color-egg-white-200);}
+    html.dark .component-scroll-hint{color:rgba(255,251,247,0.4);}
+    .component-track-wrap{position:relative;}
+    .component-track{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab;}
+    .component-track:active{cursor:grabbing;}
+    .component-track::-webkit-scrollbar{height:4px;}
+    .component-track::-webkit-scrollbar-track{background:rgba(53,3,22,0.06);border-radius:4px;}
+    .component-track::-webkit-scrollbar-thumb{background:var(--color-violet-200);border-radius:4px;}
+    html.dark .component-track::-webkit-scrollbar-track{background:rgba(255,255,255,0.07);}
+    .component-item{flex-shrink:0;scroll-snap-align:start;background:var(--color-white-100);border:1px solid rgba(53,3,22,0.08);border-radius:var(--radius-lg);overflow:hidden;width:360px;height:320px;display:flex;align-items:center;justify-content:center;}
+    .component-item img{width:100%;height:100%;display:block;object-fit:contain;}
+    html.dark .component-item{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
     /* Process grid */
     .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
     .process-card{background:var(--color-white-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);padding:20px 22px;display:flex;align-items:flex-start;gap:14px;}
@@ -175,9 +204,9 @@
     html.dark .process-card-body{color:rgba(255,251,247,0.65);}
     @media(max-width:640px){.process-grid{grid-template-columns:1fr;}}
     /* Blocker grid */
-    .blocker-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px;}
+    .blocker-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;margin-bottom:40px;}
     .blocker-card{background:var(--color-aubergine-300);border-radius:var(--radius-md);padding:28px 28px 32px;}
-    .blocker-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.4);margin-bottom:12px;}
+    .blocker-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-lemon-200);margin-bottom:12px;}
     .blocker-title{font-size:17px;font-weight:700;color:#ffffff;margin-bottom:12px;line-height:1.3;}
     .blocker-body{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.8;}
     @media(max-width:640px){.blocker-grid{grid-template-columns:1fr;}}
@@ -191,6 +220,30 @@
     .cs-next-arrow{font-size:22px;color:var(--color-aubergine-100);opacity:0.4;}
     /* Footer */
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;}
+
+    /* ---- Page animations ---- */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+    /* Hero entrance */
+    .cs-topbar{animation:fadeUp 0.5s ease both;}
+    .cs-hero-eyebrow{animation:fadeUp 0.5s ease 0.1s both;}
+    .cs-hero-split .cs-tags{animation:fadeUp 0.5s ease 0.18s both;}
+    .cs-title{animation:fadeUp 0.55s ease 0.26s both;}
+    .cs-subtitle{animation:fadeUp 0.5s ease 0.36s both;}
+    .cs-hero-chips{animation:fadeUp 0.5s ease 0.44s both;}
+    .cs-hero-right{animation:fadeUp 0.6s ease 0.3s both;}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:0.08s;}
+    .reveal-delay-2{transition-delay:0.16s;}
+
+    @media(prefers-reduced-motion:reduce){
+      .cs-topbar,.cs-hero-eyebrow,.cs-hero-split .cs-tags,.cs-title,.cs-subtitle,.cs-hero-chips,.cs-hero-right{animation:none;}
+      .reveal{opacity:1;transform:none;transition:none;}
+    }
     .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
     /* Responsive */
@@ -275,7 +328,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <a href="index.html" class="sidebar-identity">
-      <img src="images/jamie-houston-icon-lemon.svg" class="avatar" alt="JH">
+      
       <div>
         <img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston">
         <div class="sidebar-role">UX &amp; Product Designer</div>
@@ -321,15 +374,14 @@
   <main class="main">
 
     <!-- Back link -->
-    <div class="cs-topbar">
-      <a href="work.html" class="cs-back">
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-        Back to work
-      </a>
-    </div>
-
     <!-- Split hero -->
     <div class="cs-hero-split">
+      <div class="cs-topbar">
+        <a href="work.html" class="cs-back">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          Back to work
+        </a>
+      </div>
       <div class="cs-hero-left">
         <div class="cs-hero-eyebrow">WORK180 · Lead Product Designer · 2025</div>
         <div class="cs-tags">
@@ -356,63 +408,37 @@
     <!-- Case study body -->
     <div class="cs-body">
 
-      <div class="cs-section">
-        <span class="section-pill">The challenge</span>
+      <div class="cs-section reveal">
+        <span class="section-pill">Overview</span>
         <h2>The challenge</h2>
-        <p>This project focused on designing an onboarding experience for users creating an account, with one clear primary goal: increase employer follows. Users were only prompted to sign up at high-intent moments, resulting in low awareness of the value of following employers, delayed personalisation, and limited repeat engagement.</p>
-        <p>This meant:</p>
-        <ul>
-          <li>Users reached key actions without understanding the value of following employers</li>
-          <li>Personalisation came too late in the journey</li>
-          <li>There was no central place reinforcing the value of follows</li>
-        </ul>
-        <p>As a result, employer follows were lower than they could be, and engagement was largely one-off rather than ongoing.</p>
+        <p>This project centred on designing the onboarding experience for new account creation, with a clear objective: double monthly employer follows. Previously, sign-up prompts only appeared at high-intent moments, which led to low awareness of the benefits of following employers, slower personalisation, and weaker repeat engagement.</p>
       </div>
 
-      <div class="cs-image">
-        <img src="images/w180-onboarding-hero.png" alt="WORK180 Onboarding">
-      </div>
-
-      <div class="cs-section">
+      <div class="cs-section reveal">
         <span class="section-pill">Research</span>
-        <h2>Research</h2>
-        <h3>Two blockers killing growth</h3>
-        <p>Through early research, I discovered two critical blockers hurting WORK180's growth. These weren't just UX issues — they were business problems directly impacting follower growth.</p>
-      </div>
-      <div class="blocker-grid">
+        <h2>Two critical blockers</h2>
+
+        <p>Through early research, I discovered two critical blockers hurting WORK180's growth. These weren't just UX issues, they were business problems directly impacting follower growth.</p>
+        <div class="blocker-grid">
         <div class="blocker-card">
           <div class="blocker-label">Blocker 1</div>
           <div class="blocker-title">No onboarding</div>
-          <div class="blocker-body">Our business goal was to increase followers, but interviews made it clear how confusing that journey was. Users were prompted to log in with no onboarding context. Research confirmed that onboarding is something users expect. Being prompted to sign up only at high-intent moments — with no guidance — left users with low awareness of the value of following employers and no path to personalisation.</div>
+          <div class="blocker-body">Our business goal was to increase followers, but research made it clear how confusing that journey was. Users were prompted to log in at high-intent moments, with no guidance or context, leaving users with low awareness of the value of following employers and no path to personalisation.</div>
         </div>
         <div class="blocker-card">
           <div class="blocker-label">Blocker 2</div>
           <div class="blocker-title">No explanation of value</div>
-          <div class="blocker-body">There was no real explanation of what following an employer would do, or how WORK180 differs from a regular jobs board. Introducing onboarding would let us guide users and give them a clear understanding of how to get the most from their account.</div>
+          <div class="blocker-body">There was no real explanation of what following an employer would do, or how WORK180 differs from a regular jobs board. Introducing onboarding would let us guide users and give them a clear understanding of how to get the most from their account and also prompt them to start following employers that matched what they we're looking for.</div>
+        </div>
         </div>
       </div>
 
-      <div class="cs-callout">
-        <p>If we introduce onboarding earlier, we can personalise sooner, communicate value clearly, and give users a reason to keep coming back.</p>
-      </div>
 
-      <div class="cs-section">
-        <span class="section-pill">Business goals</span>
-        <h2>Business goals</h2>
-        <h3>Primary KPI: Increase employer follows</h3>
-        <ul>
-          <li>Double the number of follows per month</li>
-          <li>Target 5% follow conversion rate from onboarding</li>
-        </ul>
-        <h3>Secondary goals</h3>
-        <ul>
-          <li>Increase return visits and time on platform</li>
-          <li>Build a foundation for a personalised dashboard experience</li>
-        </ul>
-      </div>
 
-      <div class="cs-section">
-        <h2>Process</h2>
+
+      <div class="cs-section reveal">
+        <span class="section-pill">Process</span>
+        <h2>How I approached it</h2>
         <p>As the Lead Designer, I led the redesign from discovery through to implementation, collaborating closely with Product, Engineering, Marketing, and our DEI advisory team.</p>
         <div class="process-grid">
           <div class="process-card">
@@ -442,17 +468,26 @@
         </div>
       </div>
 
-      <div class="screens-showcase">
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-1.png" alt="WORK180 Onboarding screen 1"></div>
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-2.png" alt="WORK180 Onboarding screen 2"></div>
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-3.png" alt="WORK180 Onboarding screen 3"></div>
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-4.png" alt="WORK180 Onboarding screen 4"></div>
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-5.png" alt="WORK180 Onboarding screen 5"></div>
-        <div class="screen-wrap"><img src="images/w180-onboarding-image-6.png" alt="WORK180 Onboarding screen 6"></div>
+      <div class="cs-section-band reveal">
+      <div class="component-section">
+        <div class="component-section-head">
+          <div class="component-section-title">Onboarding components</div>
+          <div class="component-scroll-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Scroll to explore</div>
+        </div>
+        <div class="component-track-wrap">
+          <div class="component-track" id="componentTrack">
+            <div class="component-item"><img src="images/w180-onboarding-component-1.svg" alt="WORK180 Onboarding component 1"></div>
+            <div class="component-item"><img src="images/w180-onboarding-component-2.svg" alt="WORK180 Onboarding component 2"></div>
+            <div class="component-item"><img src="images/w180-onboarding-component-3.svg" alt="WORK180 Onboarding component 3"></div>
+            <div class="component-item"><img src="images/w180-onboarding-component-4.svg" alt="WORK180 Onboarding component 4"></div>
+          </div>
+        </div>
+      </div>
       </div>
 
-      <div class="cs-section">
-        <h2>Outcome and impact</h2>
+      <div class="cs-section reveal">
+        <span class="section-pill">Outcome and impact</span>
+        <h2>What I delivered</h2>
         <p>The onboarding experience directly delivered against its primary goal. Employer follows per month doubled immediately after launch and have continued to grow over time. Users are now engaging earlier in their journey and forming stronger connections with employers.</p>
         <div class="cs-outcomes-grid">
           <div class="outcome-card">
@@ -476,9 +511,10 @@
         </div>
       </div>
 
-      <div class="cs-section">
-        <h2>Next steps</h2>
-        <p>Continue iterating on onboarding based on user behaviour and feedback to further improve follow conversion, refine personalisation, and strengthen the value of the dashboard experience.</p>
+      <div class="cs-section reveal">
+        <span class="section-pill">Next steps</span>
+        <h2>Continuous iteration</h2>
+        <p>Using ongoing behavioural data and user feedback to further improve follow conversion rates, while refining the mobile onboarding experience to reduce friction and drive stronger engagement.</p>
       </div>
 
     </div><!-- /cs-body -->
@@ -509,6 +545,10 @@
   function updateThemeIcon() {
     const btn = document.getElementById('themeToggle');
     if (btn) btn.innerHTML = document.documentElement.classList.contains('dark') ? SUN : MOON;
+  }
+  function toggleMobileMenu() {
+    document.querySelector('.sidebar').classList.toggle('open');
+    document.getElementById('mobileOverlay').classList.toggle('open');
   }
   function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
@@ -546,6 +586,17 @@
   }, { threshold: 0.3 });
   document.querySelectorAll('.cs-outcomes-grid').forEach(el => observer.observe(el));
 
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
   function sharePortfolio(btn) {
     const url = window.location.href;
     if (navigator.share) { navigator.share({ title: 'Jamie Houston — UX & Product Designer', url }); return; }
@@ -555,6 +606,16 @@
       setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg> Share portfolio`; }, 2000);
     });
   }
+  // Drag-to-scroll component track
+  (function(){
+    var track = document.getElementById('componentTrack');
+    if (!track) return;
+    var isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', function(e){ isDown=true; track.classList.add('active'); startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
+    track.addEventListener('mouseleave', function(){ isDown=false; });
+    track.addEventListener('mouseup', function(){ isDown=false; });
+    track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX)*1.5; });
+  })();
   // Scroll progress
   (function(){
     var bar = document.getElementById("scrollProgress");

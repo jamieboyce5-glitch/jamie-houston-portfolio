@@ -6,7 +6,7 @@
   <title>WORK180: Progress Hub — Jamie Houston</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-    :root{--color-white-100:#ffffff;--color-egg-white-200:#fffdfa;--color-egg-white-300:#fff5ee;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
+    :root{--color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:var(--font);background:var(--color-white-100);color:var(--color-aubergine-200);line-height:1.6;-webkit-font-smoothing:antialiased;}
@@ -51,10 +51,10 @@
     html:not(.dark) .theme-toggle{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
     html.dark .sidebar{background:#350316;border-right:1px solid rgba(255,255,255,0.05);}
     html.dark body{background:var(--color-aubergine-300);color:var(--color-egg-white-200);}
-    html.dark 
-    html.dark html.dark 
+    html.dark h2,html.dark h3{color:var(--color-egg-white-200);}
     html.dark .cs-section h2,html.dark .cs-section h3{color:var(--color-egg-white-200);}
     html.dark .cs-section p,html.dark .cs-section li{color:rgba(255,251,247,0.75);}
+    html.dark .cs-body p{color:rgba(255,251,247,0.75);}
     html.dark .cs-callout{background:var(--color-aubergine-200);border-left-color:var(--color-lemon-200);}
     html.dark .cs-callout p{color:rgba(255,251,247,0.8);}
     html.dark .cs-image-placeholder{background:var(--color-aubergine-200);}
@@ -68,6 +68,22 @@
     html.dark .outcome-value{color:var(--color-lemon-200);}html.dark .outcome-label{color:rgba(255,251,247,0.55);}
     html.dark .nda-banner{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.1);}
     html.dark .nda-banner p{color:rgba(255,251,247,0.6);}
+    html.dark .section-pill{background:rgba(195,186,255,0.18);color:var(--color-egg-white-200);}
+    html.dark .cs-hero-chip{background:rgba(255,255,255,0.07);color:rgba(255,251,247,0.65);}
+    html.dark .cs-hero-chip strong{color:var(--color-egg-white-200);}
+    html.dark .cs-hero-wrap{background:var(--color-aubergine-300);}
+    html.dark .cs-hero-wrap::before{background:radial-gradient(ellipse at 75% 40%,rgba(144,129,241,0.2) 0%,transparent 65%);}
+    html.dark .cs-hero-eyebrow{color:rgba(255,251,247,0.4);}
+    html.dark .cs-hero-split .cs-tag{background:rgba(195,186,255,0.15);color:var(--color-egg-white-200);}
+    html.dark .cs-hero-split .cs-title{color:var(--color-egg-white-200);}
+    html.dark .cs-hero-split .cs-subtitle{color:rgba(255,251,247,0.65);}
+    html.dark .challenge-item{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.07);}
+    html.dark .challenge-item h3{color:var(--color-egg-white-200);}
+    html.dark .challenge-item p{color:rgba(255,251,247,0.65);}
+    html.dark .process-card{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.07);}
+    html.dark .process-card-title{color:var(--color-egg-white-200);}
+    html.dark .process-card-body{color:rgba(255,251,247,0.6);}
+    html.dark .process-icon{color:rgba(195,186,255,0.8);}
     .cs-topbar{padding:28px 60px 0;}
     .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--color-aubergine-100);text-decoration:none;opacity:0.6;transition:opacity 0.14s,color 0.14s;}
     .cs-back:hover{opacity:1;color:var(--color-aubergine-200);}
@@ -87,6 +103,7 @@
     .nda-banner svg{flex-shrink:0;margin-top:2px;opacity:0.5;}
     .nda-banner p{font-size:14px;color:var(--color-aubergine-100);line-height:1.6;}
     .cs-section{margin-bottom:56px;}
+    .section-pill{display:inline-block;background:rgba(195,186,255,0.3);color:var(--color-aubergine-100);font-size:12px;font-weight:600;padding:5px 14px;border-radius:100px;margin-bottom:14px;letter-spacing:0.02em;}
     .cs-section h2{font-size:22px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:16px;}
     .cs-section h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
     .cs-section p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
@@ -96,7 +113,7 @@
     .cs-section ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--color-aubergine-200);border-radius:50%;}
     .cs-image{width:100%;border-radius:var(--radius-md);overflow:hidden;margin-bottom:56px;}
     .cs-image-placeholder{background:var(--color-violet-100);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-aubergine-100);font-size:13px;font-weight:600;opacity:0.4;letter-spacing:0.04em;}
-    .cs-callout{background:var(--color-lemon-100);border-left:3px solid var(--color-aubergine-200);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;margin-bottom:56px;}
+    .cs-callout{background:var(--color-violet-100);border-left:3px solid var(--color-aubergine-200);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;margin-bottom:56px;}
     .cs-callout p{font-size:16px;font-weight:600;color:var(--color-aubergine-200);line-height:1.65;margin:0;}
     .cs-next-wrap{padding:0 60px 60px;}
     @keyframes cs-next-jump{0%{transform:translateY(0);}35%{transform:translateY(-10px);}55%{transform:translateY(-5px);}75%{transform:translateY(-8px);}100%{transform:translateY(-6px);}}
@@ -228,8 +245,8 @@
     html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
     @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}}
     /* Split hero */
-    .cs-hero-wrap{background:var(--color-violet-100);position:relative;overflow:hidden;margin-bottom:56px;}
-    .cs-hero-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(144,129,241,0.4) 0%,transparent 65%);pointer-events:none;z-index:0;}
+    .cs-hero-wrap{background:var(--color-lemon-100);position:relative;overflow:hidden;margin-bottom:56px;}
+    .cs-hero-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 40%,rgba(255,255,101,0.35) 0%,transparent 65%);pointer-events:none;z-index:0;}
     .cs-hero-wrap .cs-topbar{background:transparent;position:relative;z-index:1;}
     .cs-hero-wrap .cs-back{color:var(--color-aubergine-100);}
     .cs-hero-split{background:transparent;padding:0 60px 48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;min-height:420px;position:relative;margin-bottom:0;}
@@ -270,7 +287,7 @@
   <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
 
   <aside class="sidebar">
-    <a href="index.html" class="sidebar-identity"><img src="images/jamie-houston-icon-lemon.svg" class="avatar" alt="JH"><div><img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston"><div class="sidebar-role">UX &amp; Product Designer</div></div></a>
+    <a href="index.html" class="sidebar-identity"><div><img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston"><div class="sidebar-role">UX &amp; Product Designer</div></div></a>
     <div class="available-badge"><span class="available-dot"></span>Open to new work</div>
     <nav class="sidebar-nav">
       <span class="nav-label">Menu</span>
@@ -322,12 +339,7 @@
     <div class="cs-body">
 
       <div class="cs-section">
-        <h2>Overview</h2>
-        <p>Our existing employer portal didn't support the updated DEI assessment model and offered only a limited self-service experience. Employers struggled to manage their own data independently, leading to frequent support requests that diverted valuable time from Account Managers.</p>
-        <p>The objective was to design a more intuitive, scalable portal that would enable employers with clearer insights and actions, incorporating the new DEI assessment, reducing the time Account Managers spent assisting clients, and significantly cutting the time it takes new employers to launch their profile by 50%.</p>
-      </div>
-
-      <div class="cs-section">
+        <span class="section-pill">Overview</span>
         <h2>The challenge</h2>
 
 
@@ -371,11 +383,12 @@
         </div>
       </div>
 
-      <div class="cs-callout" style="background:var(--color-violet-100);border-left-color:var(--color-aubergine-200);">
+      <div class="cs-callout">
         <p>The primary business goal was to increase employer profile launch rates by 50% and enable a fully self-service experience, reducing Account Manager contact hours.</p>
       </div>
 
       <div class="cs-section">
+        <span class="section-pill">Process</span>
         <h2>Process</h2>
         <p>I joined the product team as UX Designer mid-way through this project, working closely with the Senior UX Designer to design wireframes and user flows for key features, tailoring experiences based on user entitlements.</p>
         <p>I helped plan design workshops and tested designs with internal stakeholders and a select group of employers to validate usability and influence ongoing design decisions. Throughout delivery, I collaborated closely with engineers to ensure a smooth handoff, documenting interaction patterns, edge cases, and providing ongoing support to maintain quality.</p>
@@ -407,6 +420,7 @@
 
       <div class="cs-slider-section">
         <div class="cs-slider-header">
+          <span class="section-pill">Design</span>
           <h2>Components</h2>
           <p>Real components from the design system, exported directly from Figma.</p>
         </div>
@@ -427,6 +441,7 @@
       </div>
 
       <div class="cs-section">
+        <span class="section-pill">Outcome and impact</span>
         <h2>Outcome &amp; impact</h2>
         <p>The redesigned portal delivered measurable improvements across both employer experience and internal operations.</p>
       </div>
@@ -456,6 +471,7 @@
       </div>
 
       <div class="cs-section">
+        <span class="section-pill">Takeaways</span>
         <h2>Key takeaways</h2>
         <div class="takeaway-grid">
           <div class="takeaway-item">
@@ -523,6 +539,7 @@
   const SUN=`<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 100-6 3 3 0 000 6zm0 1a4 4 0 100-8 4 4 0 000 8zM8 0a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 0zm0 13a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 13zm8-5a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2a.5.5 0 01.5.5zM3 8a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2A.5.5 0 013 8zm9.657-5.657a.5.5 0 010 .707l-1.414 1.415a.5.5 0 11-.707-.708l1.414-1.414a.5.5 0 01.707 0zm-9.193 9.193a.5.5 0 010 .707L2.05 13.657a.5.5 0 01-.707-.707l1.414-1.414a.5.5 0 01.707 0zm9.193 2.121a.5.5 0 01-.707 0l-1.414-1.414a.5.5 0 01.707-.707l1.414 1.414a.5.5 0 010 .707zM4.464 4.465a.5.5 0 01-.707 0L2.343 3.05a.5.5 0 11.707-.707l1.414 1.414a.5.5 0 010 .707z"/></svg>`;
   const MOON=`<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.768.768 0 01.08.858 7.208 7.208 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 01.81.316.733.733 0 01-.031.893A8.349 8.349 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 016 .278z"/></svg>`;
   function updateThemeIcon(){const btn=document.getElementById('themeToggle');if(btn)btn.innerHTML=document.documentElement.classList.contains('dark')?SUN:MOON;}
+  function toggleMobileMenu(){document.querySelector('.sidebar').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('open');}
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
   function sharePortfolio(btn){const url=window.location.href;if(navigator.share){navigator.share({title:'Jamie Houston — UX & Product Designer',url});return;}navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');setTimeout(()=>btn.classList.remove('copied'),2000);});}

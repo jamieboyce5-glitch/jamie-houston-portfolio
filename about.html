@@ -7,7 +7,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
     :root {
-      --color-white-100:#ffffff;--color-egg-white-200:#fffdfa;--color-egg-white-300:#fff5ee;
+      --color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;
       --color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;
       --color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-lemon-300:#ffff65;
       --color-violet-100:#ece9ff;--color-violet-200:#c3baff;--color-violet-300:#9081f1;
@@ -164,7 +164,7 @@
 
     .about-hero-img{position:relative;z-index:1;}
     .about-hero-img img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--radius-lg);display:block;}
-    @media(max-width:768px){.about-hero{grid-template-columns:1fr;}.about-hero-img{display:none;}}
+    @media(max-width:960px){.about-hero{grid-template-columns:1fr;}.about-hero-img{width:160px;margin:24px auto 0;}}
 
     .about-eyebrow {
       font-size: 11px;
@@ -222,22 +222,11 @@
 
     /* ---- Values ---- */
     .how-list{display:flex;flex-direction:column;gap:0;}
-    .how-item{background:var(--color-violet-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);margin-bottom:8px;overflow:hidden;}
-    .how-item-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:none;border:none;cursor:pointer;text-align:left;font-family:var(--font);}
-    .how-item-left{display:flex;align-items:center;gap:16px;}
-    .how-item-num{display:none;}
-    .how-item-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);line-height:1.3;}
-    .how-item-chevron{flex-shrink:0;color:var(--color-aubergine-200);opacity:0.4;transition:transform 0.25s ease,opacity 0.2s ease;}
-    .how-item-trigger:hover .how-item-chevron{animation:how-jump 0.35s ease;}
-    .how-item.open .how-item-chevron{transform:rotate(45deg);opacity:0.7;}
-    @keyframes how-jump{0%{transform:translateY(0);}35%{transform:translateY(-5px);}65%{transform:translateY(1px);}100%{transform:translateY(0);}}
-    .how-item.open .how-item-trigger:hover .how-item-chevron{animation:none;}
-    .how-item-body{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
-    .how-item.open .how-item-body{max-height:200px;}
-    .how-item-text{font-size:14px;color:var(--color-aubergine-100);line-height:1.7;padding:0 24px 20px 24px;margin:0;}
+    .how-item{background:linear-gradient(135deg,var(--color-violet-100) 0%,rgba(195,186,255,0.45) 100%);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);margin-bottom:8px;overflow:hidden;padding:20px 24px;}
+    .how-item-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);line-height:1.3;margin-bottom:8px;}
+    .how-item-text{font-size:14px;color:var(--color-aubergine-100);line-height:1.7;margin:0;}
     html.dark .how-item{background:rgba(195,186,255,0.06);border-color:rgba(195,186,255,0.12);}
     html.dark .how-item-title{color:var(--color-egg-white-200);}
-    html.dark .how-item-chevron{color:var(--color-egg-white-200);}
     html.dark .how-item-text{color:rgba(255,251,247,0.6);}
 
     /* ---- Quick facts ---- */
@@ -348,7 +337,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <a href="index.html" class="sidebar-identity">
-      <img src="images/jamie-houston-icon-lemon.svg" class="avatar" alt="JH">
+      
       <div>
         <img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston">
         <div class="sidebar-role">UX &amp; Product Designer</div>
@@ -424,74 +413,28 @@
         </div>
         <div class="how-list">
           <div class="how-item anim-how-item" style="animation-delay:0.32s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">01</span>
-                <span class="how-item-title">Ship early, learn along the way</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">I'd rather test something real than debate it endlessly. Put it in front of users, learn fast, iterate.</p></div>
+            <p class="how-item-title">Ship early, learn along the way</p>
+            <p class="how-item-text">Perfect is too late. Early feedback keeps things moving and stops us solving the wrong problem. Put it in front of users, learn fast, iterate.</p>
           </div>
           <div class="how-item anim-how-item" style="animation-delay:0.39s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">02</span>
-                <span class="how-item-title">Shape the process around the work</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">Every project is different. I stay flexible in how I work, choosing an approach that fits the challenge rather than following a fixed process.</p></div>
+            <p class="how-item-title">Shape the process around the work</p>
+            <p class="how-item-text">Every project is different. I stay flexible in how I work, choosing an approach that fits the challenge rather than following a fixed process.</p>
           </div>
           <div class="how-item anim-how-item" style="animation-delay:0.46s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">03</span>
-                <span class="how-item-title">Great work happens together</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">I value collaboration and open thinking. Sharing ideas early and often helps create better, more considered work.</p></div>
+            <p class="how-item-title">Great work happens together</p>
+            <p class="how-item-text">I value collaboration and open thinking. Sharing ideas early and often helps create better, more considered work.</p>
           </div>
           <div class="how-item anim-how-item" style="animation-delay:0.53s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">04</span>
-                <span class="how-item-title">I'll push back respectfully</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">Honest conversations lead to stronger work. I'll question things thoughtfully and bring solutions, not just criticism.</p></div>
-          </div>
-          <div class="how-item anim-how-item" style="animation-delay:0.60s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">05</span>
-                <span class="how-item-title">Show the work early</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">Perfect is too late. Early feedback keeps things moving and stops us solving the wrong problem.</p></div>
+            <p class="how-item-title">I'll push back respectfully</p>
+            <p class="how-item-text">Honest conversations lead to stronger work. I'll question things thoughtfully and bring solutions, not just criticism.</p>
           </div>
           <div class="how-item anim-how-item" style="animation-delay:0.67s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">06</span>
-                <span class="how-item-title">Balance user needs and business goals</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">I care about creating experiences that work for people and deliver real value for the business. The best solutions consider both.</p></div>
+            <p class="how-item-title">Balance user needs and business goals</p>
+            <p class="how-item-text">I care about creating experiences that work for people and deliver real value for the business. The best solutions consider both.</p>
           </div>
           <div class="how-item anim-how-item" style="animation-delay:0.74s">
-            <button class="how-item-trigger" aria-expanded="false">
-              <div class="how-item-left">
-                <span class="how-item-num">07</span>
-                <span class="how-item-title">Design for everyone</span>
-              </div>
-              <svg class="how-item-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-            </button>
-            <div class="how-item-body"><p class="how-item-text">Accessibility isn't a layer, it's the baseline. If it doesn't work for everyone, it doesn't work.</p></div>
+            <p class="how-item-title">Design for everyone</p>
+            <p class="how-item-text">Accessibility isn't a layer, it's the baseline. If it doesn't work for everyone, it doesn't work.</p>
           </div>
         </div>
       </section>
@@ -606,14 +549,6 @@ function toggleMobileMenu() {
   if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   updateThemeIcon();
 })();
-document.querySelectorAll('.how-item-trigger').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var item = btn.closest('.how-item');
-    var isOpen = item.classList.contains('open');
-    item.classList.toggle('open', !isOpen);
-    btn.setAttribute('aria-expanded', String(!isOpen));
-  });
-});
 function sharePortfolio(btn) {
   const url = window.location.href;
   if (navigator.share) {
