@@ -409,7 +409,7 @@
     .stat-label{font-size:13px;font-weight:600;color:var(--color-egg-white-200);line-height:1.4;margin-bottom:4px;}
     .stat-sub{font-size:11px;color:rgba(255,251,247,0.4);line-height:1.55;font-weight:500;}
     @media(max-width:960px){.stats-grid{grid-template-columns:repeat(3,1fr);gap:28px 0;}.stat-item{border-right:none!important;padding:0!important;}}
-    @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}}.stats-strip .stat-item:nth-child(n){opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
+    @media(max-width:600px){.stats-grid{grid-template-columns:1fr;}}.stats-strip .stat-item:nth-child(n){opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease;}
     .stats-strip.revealed .stat-item:nth-child(1){opacity:1;transform:none;transition-delay:0ms;}
     .stats-strip.revealed .stat-item:nth-child(2){opacity:1;transform:none;transition-delay:80ms;}
     .stats-strip.revealed .stat-item:nth-child(3){opacity:1;transform:none;transition-delay:160ms;}
@@ -637,6 +637,12 @@ function sharePortfolio(btn) {
     toast.classList.add('show');
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });
+}
+const statsStrip = document.getElementById('statsStrip');
+if (statsStrip) {
+  new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) statsStrip.classList.add('revealed'); });
+  }, { threshold: 0.2 }).observe(statsStrip);
 }
 </script>
 </body>
