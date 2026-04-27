@@ -40,6 +40,8 @@
     .share-btn{display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:9px 12px;color:rgba(255,251,247,0.5);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.14s,color 0.14s;}
     .share-btn:hover{background:rgba(255,255,255,0.1);color:var(--color-egg-white-200);}
     .share-btn.copied{color:var(--color-lemon-200);border-color:rgba(255,255,139,0.3);}
+    .share-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--color-aubergine-200);color:var(--color-egg-white-200);font-family:var(--font);font-size:13px;font-weight:500;padding:10px 20px;border-radius:100px;box-shadow:0 4px 24px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s ease;z-index:9999;white-space:nowrap;}
+    .share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
     .theme-toggle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,251,247,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.14s,color 0.14s;margin-bottom:10px;flex-shrink:0;}
     .theme-toggle:hover{background:rgba(255,255,255,0.12);color:var(--color-egg-white-200);}
     html:not(.dark) .sidebar{background:var(--color-egg-white-200);border-right:1px solid rgba(53,3,22,0.07);}
@@ -485,63 +487,19 @@
   function toggleMobileMenu(){document.querySelector('.sidebar').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('open');}
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
-  function sharePortfolio(btn){const url=window.location.href;if(navigator.share){navigator.share({title:'Jamie Houston — UX & Product Designer',url});return;}navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');setTimeout(()=>{btn.classList.remove('copied');},2000);});}
-  // Page load animations
-  (function(){
-    var loadEls = [
-      {sel:'.cs-hero-cover', delay:0, cls:'anim-scale'},
-      {sel:'.cs-tags', delay:120},
-      {sel:'.cs-title', delay:210},
-      {sel:'.cs-subtitle', delay:300},
-      {sel:'.cs-live-link', delay:380},
-      {sel:'.cs-meta-card', delay:260},
-    ];
-    loadEls.forEach(function(t){
-      var el=document.querySelector(t.sel);
-      if(!el) return;
-      el.classList.add(t.cls||'anim');
-      setTimeout(function(){ el.classList.add('revealed'); }, t.delay);
-    });
-  })();
-  // Scroll reveal animations
-  (function(){
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); }
-      });
-    }, {threshold:0.08, rootMargin:'0px 0px -32px 0px'});
-    // Single elements
-    document.querySelectorAll('.cs-section h2,.cs-section h3,.component-section-title,.cs-section > p,.cs-next,.component-scroll-hint').forEach(function(el){
-      el.classList.add('anim'); obs.observe(el);
-    });
-    // Staggered groups
-    ['.context-card','.process-card','.component-item','.impact-card','.takeaway-card','.next-step-item'].forEach(function(sel){
-      document.querySelectorAll(sel).forEach(function(el,i){
-        el.classList.add('anim');
-        el.style.transitionDelay=(i*90)+'ms';
-        obs.observe(el);
-      });
-    });
-  })();
-  // Drag-to-scroll component track
-  (function(){
-    var track = document.getElementById('componentTrack');
-    if (!track) return;
-    var isDown = false, startX, scrollLeft;
-    track.addEventListener('mousedown', function(e){ isDown=true; track.classList.add('active'); startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
-    track.addEventListener('mouseleave', function(){ isDown=false; });
-    track.addEventListener('mouseup', function(){ isDown=false; });
-    track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX)*1.5; });
-  })();
-  // Scroll progress
-  (function(){
-    var bar = document.getElementById("scrollProgress");
-    window.addEventListener("scroll", function(){
-      var s = document.documentElement;
-      var pct = s.scrollTop / (s.scrollHeight - s.clientHeight) * 100;
-      bar.style.width = pct + "%";
-    }, {passive:true});
-  })();
+  function sharePortfolio(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 13 4"></polyline></svg> Link copied!';
+    btn.classList.add('copied');
+    let toast = document.getElementById('shareToast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
+    toast.textContent = 'Link copied, thanks for sharing ♥';
+    toast.classList.add('show');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
+  }).catch(() => { prompt('Copy this link:', url); });
+}
 </script>
 </body>
 </html>

@@ -43,6 +43,8 @@
     .share-btn{display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:9px 12px;color:rgba(255,251,247,0.5);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.14s,color 0.14s;}
     .share-btn:hover{background:rgba(255,255,255,0.1);color:var(--color-egg-white-200);}
     .share-btn.copied{color:var(--color-lemon-200);border-color:rgba(255,255,139,0.3);}
+    .share-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--color-aubergine-200);color:var(--color-egg-white-200);font-family:var(--font);font-size:13px;font-weight:500;padding:10px 20px;border-radius:100px;box-shadow:0 4px 24px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s ease;z-index:9999;white-space:nowrap;}
+    .share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
     .theme-toggle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,251,247,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.14s,color 0.14s;margin-bottom:10px;flex-shrink:0;}
     .theme-toggle:hover{background:rgba(255,255,255,0.12);color:var(--color-egg-white-200);}
     /* Light mode sidebar */
@@ -193,7 +195,7 @@
     .component-item img{width:100%;height:100%;display:block;object-fit:contain;}
     html.dark .component-item{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
     /* Process grid */
-    .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+    .process-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
     .process-card{background:var(--color-white-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-md);padding:20px 22px;display:flex;align-items:flex-start;gap:14px;}
     .process-icon{width:40px;height:40px;border-radius:var(--radius-sm);background:rgba(53,3,22,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--color-aubergine-200);}
     .process-card-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:4px;line-height:1.3;}
@@ -307,8 +309,8 @@
     .cs-stack-item:nth-child(3){width:228px;left:50%;transform:translateX(-50%);z-index:3;animation:hero-float 5.5s ease-in-out infinite;}
     .cs-stack-item img{width:100%;display:block;}
     @keyframes hero-float{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-10px);}}
-    @media(max-width:900px){.cs-hero-split{grid-template-columns:1fr;min-height:auto;}.cs-hero-right{display:none;}.cs-hero-split .cs-title{font-size:34px;}.cs-hero-left{padding-bottom:40px;}}
-    @media(max-width:768px){.cs-hero-split{padding:40px 20px 0;}}
+    @media(max-width:900px){.cs-hero-split{grid-template-columns:1fr;min-height:auto;gap:0;}.cs-hero-right{height:320px;}.cs-stack{transform:scale(0.65);transform-origin:bottom center;}.cs-hero-split .cs-title{font-size:34px;}.cs-hero-left{padding-bottom:8px;}}
+    @media(max-width:768px){.cs-hero-split{padding:40px 20px 24px;}}
   </style>
 </head>
 <body>
@@ -488,7 +490,7 @@
       <div class="cs-section reveal">
         <span class="section-pill">Outcome and impact</span>
         <h2>What I delivered</h2>
-        <p>The onboarding experience directly delivered against its primary goal. Employer follows per month doubled immediately after launch and have continued to grow over time. Users are now engaging earlier in their journey and forming stronger connections with employers.</p>
+        <p>The onboarding experience directly delivered against its primary goal. Employer follows per month doubled immediately after launch and have continued to grow over time. Users are now engaging earlier in their journey and following employers that match their needs.</p>
         <div class="cs-outcomes-grid">
           <div class="outcome-card">
             <div class="outcome-trend">↑ Up from 323</div>
@@ -598,33 +600,18 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   function sharePortfolio(btn) {
-    const url = window.location.href;
-    if (navigator.share) { navigator.share({ title: 'Jamie Houston — UX & Product Designer', url }); return; }
-    navigator.clipboard.writeText(url).then(() => {
-      btn.classList.add('copied');
-      btn.querySelector('svg').insertAdjacentHTML('afterend', ' Copied!');
-      setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg> Share portfolio`; }, 2000);
-    });
-  }
-  // Drag-to-scroll component track
-  (function(){
-    var track = document.getElementById('componentTrack');
-    if (!track) return;
-    var isDown = false, startX, scrollLeft;
-    track.addEventListener('mousedown', function(e){ isDown=true; track.classList.add('active'); startX=e.pageX-track.offsetLeft; scrollLeft=track.scrollLeft; });
-    track.addEventListener('mouseleave', function(){ isDown=false; });
-    track.addEventListener('mouseup', function(){ isDown=false; });
-    track.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX-track.offsetLeft; track.scrollLeft=scrollLeft-(x-startX)*1.5; });
-  })();
-  // Scroll progress
-  (function(){
-    var bar = document.getElementById("scrollProgress");
-    window.addEventListener("scroll", function(){
-      var s = document.documentElement;
-      var pct = s.scrollTop / (s.scrollHeight - s.clientHeight) * 100;
-      bar.style.width = pct + "%";
-    }, {passive:true});
-  })();
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 13 4"></polyline></svg> Link copied!';
+    btn.classList.add('copied');
+    let toast = document.getElementById('shareToast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
+    toast.textContent = 'Link copied, thanks for sharing ♥';
+    toast.classList.add('show');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
+  }).catch(() => { prompt('Copy this link:', url); });
+}
 </script>
 </body>
 </html>

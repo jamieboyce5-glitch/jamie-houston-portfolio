@@ -75,6 +75,8 @@
     .share-btn{display:flex;align-items:center;gap:8px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:9px 12px;color:rgba(255,251,247,0.5);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;transition:background 0.14s,color 0.14s;}
     .share-btn:hover{background:rgba(255,255,255,0.1);color:var(--color-egg-white-200);}
     .share-btn.copied{color:var(--color-lemon-200);border-color:rgba(255,255,139,0.3);}
+    .share-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--color-aubergine-200);color:var(--color-egg-white-200);font-family:var(--font);font-size:13px;font-weight:500;padding:10px 20px;border-radius:100px;box-shadow:0 4px 24px rgba(0,0,0,0.18);opacity:0;pointer-events:none;transition:opacity 0.25s ease,transform 0.25s ease;z-index:9999;white-space:nowrap;}
+    .share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
     .theme-toggle{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:rgba(255,251,247,0.5);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.14s,color 0.14s;margin-bottom:10px;flex-shrink:0;}
     .theme-toggle:hover{background:rgba(255,255,255,0.12);color:var(--color-egg-white-200);}
     html:not(.dark) .sidebar{background:var(--color-egg-white-200);border-right:1px solid rgba(53,3,22,0.07);}
@@ -620,36 +622,17 @@ function toggleMobileMenu() {
 })();
 function sharePortfolio(btn) {
   const url = window.location.href;
-  if (navigator.share) {
-    navigator.share({ title: 'Jamie Houston — UX & Product Designer', url });
-  } else {
-    navigator.clipboard.writeText(url).then(() => {
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M13 3L6 11 3 8"/></svg> Link copied!';
-      btn.classList.add('copied');
-      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-    });
-  }
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 13 4"></polyline></svg> Link copied!';
+    btn.classList.add('copied');
+    let toast = document.getElementById('shareToast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
+    toast.textContent = 'Link copied, thanks for sharing ♥';
+    toast.classList.add('show');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
+  }).catch(() => { prompt('Copy this link:', url); });
 }
-(function(){
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){var t=e.target;t.classList.add('visible');obs.unobserve(t);var delay=parseFloat(t.style.transitionDelay||0)*1000;setTimeout(function(){t.style.transitionDelay='';},delay+500);}
-    });
-  },{threshold:0.08});
-  document.querySelectorAll('.featured-project,.project-card').forEach(function(el,i){
-    el.classList.add('fade-in');
-    el.style.transitionDelay=(i*0.07)+'s';
-    obs.observe(el);
-  });
-})();
-(function(){
-  var strip = document.getElementById('statsStrip');
-  if(!strip) return;
-  new IntersectionObserver(function(entries,o){
-    if(entries[0].isIntersecting){strip.classList.add('revealed');o.disconnect();}
-  },{threshold:0.15}).observe(strip);
-})();
 </script>
 </body>
 </html>

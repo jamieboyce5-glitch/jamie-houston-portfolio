@@ -202,7 +202,7 @@
     <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
     <div class="cs-hero">
       <!-- 📸 HERO IMAGE — replace the gradient with: style="background-image: url('images/w180-top-employers-hero.jpg'); background-size: cover; background-position: center;" | Recommended: 1600×700px -->
-      <div class="cs-hero-cover" style="background-image: url('images/w180-top-employers-hero.png'); background-size: cover; background-position: center;"></div>
+      <div class="cs-hero-cover" style="background-image: url('images/w180-top-employer-page-hero.png'); background-size: cover; background-position: center;"></div>
     </div>
     <div class="cs-intro-block">
       <div class="cs-intro-text">
@@ -349,20 +349,19 @@
   function updateThemeIcon(){const btn=document.getElementById('themeToggle');if(btn)btn.innerHTML=document.documentElement.classList.contains('dark')?SUN:MOON;}
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
-  function sharePortfolio(btn){const url=window.location.href;if(navigator.share){navigator.share({title:'Jamie Houston — UX & Product Designer',url});return;}navigator.clipboard.writeText(url).then(()=>{btn.classList.add('copied');setTimeout(()=>btn.classList.remove('copied'),2000);});}
-  // Counter animation
-  function animateCounter(el){const target=parseInt(el.dataset.count,10);const suffix=el.dataset.suffix||'';const duration=1600;const start=performance.now();const easeOut=t=>1-Math.pow(1-t,3);function tick(now){const progress=Math.min((now-start)/duration,1);el.textContent=Math.round(easeOut(progress)*target).toLocaleString()+suffix;if(progress<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
-  const counterObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.querySelectorAll('[data-count]').forEach(animateCounter);counterObserver.unobserve(entry.target);}});},{threshold:0.3});
-  document.querySelectorAll('.cs-outcomes-grid').forEach(el=>counterObserver.observe(el));
-  // Scroll progress
-  (function(){
-    var bar = document.getElementById("scrollProgress");
-    window.addEventListener("scroll", function(){
-      var s = document.documentElement;
-      var pct = s.scrollTop / (s.scrollHeight - s.clientHeight) * 100;
-      bar.style.width = pct + "%";
-    }, {passive:true});
-  })();
+  function sharePortfolio(btn) {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 13 4"></polyline></svg> Link copied!';
+    btn.classList.add('copied');
+    let toast = document.getElementById('shareToast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
+    toast.textContent = 'Link copied, thanks for sharing ♥';
+    toast.classList.add('show');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
+  }).catch(() => { prompt('Copy this link:', url); });
+}
 </script>
 </body>
 </html>
