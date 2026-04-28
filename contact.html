@@ -344,6 +344,33 @@
       .form-row { grid-template-columns: 1fr; }
       .contact-hero-inner { max-width: 100%; }
     }
+    /* ---- Animations ---- */
+    @keyframes contact-fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Page load — hero content staggers in */
+    .contact-hero       { animation: contact-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s  both; }
+    .contact-eyebrow    { animation: contact-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.2s  both; }
+    .contact-headline   { animation: contact-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.32s both; }
+    .contact-subtext    { animation: contact-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.44s both; }
+    .contact-form       { animation: contact-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.56s both; }
+
+    /* Scroll reveal */
+    .anim {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim.revealed { opacity: 1; transform: translateY(0); }
+
+    @media(prefers-reduced-motion:reduce){
+      .contact-hero,.contact-eyebrow,.contact-headline,.contact-subtext,.contact-form { animation: none; }
+      .anim { opacity: 1; transform: none; transition: none; }
+    }
+
     .sidebar{transition:transform 0.3s ease;}
     @media(min-width:769px){.mobile-topbar{display:none;}}
     .mobile-topbar{position:fixed;top:0;left:0;right:0;z-index:35;height:56px;padding:0 20px;align-items:center;justify-content:space-between;background:var(--color-egg-white-200);border-bottom:1px solid var(--color-egg-white-300);}
@@ -552,6 +579,37 @@ if (contactForm) {
     }
   });
 }
+// Scroll reveal
+(function() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  // Availability card
+  document.querySelectorAll('.availability-card').forEach(el => {
+    el.classList.add('anim');
+    io.observe(el);
+  });
+
+  // Section headers
+  document.querySelectorAll('.section-header').forEach(el => {
+    el.classList.add('anim');
+    io.observe(el);
+  });
+
+  // Contact cards — staggered
+  document.querySelectorAll('.contact-card').forEach((el, i) => {
+    el.classList.add('anim');
+    el.style.transitionDelay = (i * 0.08) + 's';
+    io.observe(el);
+  });
+})();
+
 function sharePortfolio(btn) {
   const url = window.location.href;
   navigator.clipboard.writeText(url).then(() => {
