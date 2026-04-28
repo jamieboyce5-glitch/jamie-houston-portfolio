@@ -147,7 +147,6 @@
     .contact-hero-inner {
       position: relative;
       z-index: 1;
-      max-width: 520px;
     }
 
     .contact-eyebrow {
@@ -265,9 +264,85 @@
       font-weight: 700;
     }
 
+    /* ---- Contact form ---- */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,251,247,0.5);
+    }
+
+    .form-input,
+    .form-textarea {
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-egg-white-200);
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 0.14s, background 0.14s;
+      -webkit-appearance: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(255,251,247,0.3);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--color-lemon-200);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 112px;
+    }
+
+    .form-submit {
+      align-self: flex-start;
+    }
+
+    .form-success {
+      display: none;
+      font-size: 14px;
+      color: var(--color-lemon-200);
+      font-weight: 600;
+      padding: 12px 16px;
+      background: rgba(255,255,139,0.08);
+      border: 1px solid rgba(255,255,139,0.2);
+      border-radius: var(--radius-sm);
+    }
+
     @media (max-width: 600px) {
       .contact-hero { padding: 32px 24px; }
       .contact-cards { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-hero-inner { max-width: 100%; }
     }
     .sidebar{transition:transform 0.3s ease;}
     @media(min-width:769px){.mobile-topbar{display:none;}}
@@ -356,12 +431,28 @@
             <div class="contact-eyebrow">Get in touch</div>
             <h1 class="contact-headline">Let's make something<br><em>great together</em></h1>
             <p class="contact-subtext">
-              Whether you're looking for a designer to join your team, have a project in mind, or just want to say hello — my inbox is always open.
+              Whether you're looking for a designer to join your team, have a project in mind, or just want to say hello. My inbox is always open.
             </p>
-            <a href="mailto:jamieboyce5@gmail.com" class="btn btn-primary">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3h14v1.5L8 9.5 1 4.5V3zm0 3l7 5 7-5V13H1V6z"/></svg>
-              Send me an email
-            </a>
+            <form class="contact-form" id="contactForm" action="https://formspree.io/jamieboyce5@gmail.com" method="POST">
+              <div class="form-row">
+                <div class="form-field">
+                  <label class="form-label" for="cf-name">Name</label>
+                  <input class="form-input" id="cf-name" type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="form-field">
+                  <label class="form-label" for="cf-email">Email</label>
+                  <input class="form-input" id="cf-email" type="email" name="email" placeholder="your@email.com" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="form-label" for="cf-message">Message</label>
+                <textarea class="form-textarea" id="cf-message" name="message" placeholder="What's on your mind?" required></textarea>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary">Send message</button>
+              </div>
+              <div class="form-success" id="formSuccess">✓ Message sent. I'll be in touch soon!</div>
+            </form>
           </div>
         </div>
 
@@ -433,6 +524,34 @@ function toggleMobileMenu() {
   if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   updateThemeIcon();
 })();
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('[type="submit"]');
+    const orig = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.reset();
+        document.getElementById('formSuccess').style.display = 'block';
+        btn.style.display = 'none';
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  });
+}
 function sharePortfolio(btn) {
   const url = window.location.href;
   navigator.clipboard.writeText(url).then(() => {

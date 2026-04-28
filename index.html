@@ -400,7 +400,7 @@
     /* Stats strip */
     .stats-strip{background:var(--color-aubergine-300);border-radius:var(--radius-lg);padding:44px 40px;margin-bottom:72px;}
     .stats-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,139,0.5);margin-bottom:32px;}
-    .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+    .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0;}
     .stat-item{padding:0 28px 0 0;border-right:1px solid rgba(255,255,255,0.08);}
     .stat-item:first-child{padding-left:0;}
     .stat-item:last-child{border-right:none;}
@@ -415,6 +415,7 @@
     .stats-strip.revealed .stat-item:nth-child(3){opacity:1;transform:none;transition-delay:160ms;}
     .stats-strip.revealed .stat-item:nth-child(4){opacity:1;transform:none;transition-delay:240ms;}
     .stats-strip.revealed .stat-item:nth-child(5){opacity:1;transform:none;transition-delay:320ms;}
+    .stats-strip.revealed .stat-item:nth-child(6){opacity:1;transform:none;transition-delay:400ms;}
     @media(prefers-reduced-motion:reduce){.stats-strip .stat-item:nth-child(n){opacity:1!important;transform:none!important;transition:none!important;}}
   </style>
 </head>
@@ -567,6 +568,16 @@
             <div class="stat-sub">Features delivered to production</div>
           </div>
           <div class="stat-item">
+            <div class="stat-value">18+</div>
+            <div class="stat-label">PLG experiments</div>
+            <div class="stat-sub">Run, validated &amp; more on the go</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">15+</div>
+            <div class="stat-label">Brands created</div>
+            <div class="stat-sub">Identity &amp; design systems</div>
+          </div>
+          <div class="stat-item">
             <div class="stat-value">5</div>
             <div class="stat-label">Disciplines</div>
             <div class="stat-sub">UX · UI · Product · Brand · Illustration</div>
@@ -575,11 +586,6 @@
             <div class="stat-value">3</div>
             <div class="stat-label">Sectors</div>
             <div class="stat-sub">Startup · In-house · Freelance</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">20+</div>
-            <div class="stat-label">PLG experiments</div>
-            <div class="stat-sub">Run, validated &amp; more on the go</div>
           </div>
         </div>
       </div>
