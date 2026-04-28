@@ -502,9 +502,29 @@
     html.dark .mobile-topbar-name{color:var(--color-egg-white-200);}
     html.dark .hamburger-btn{border-color:rgba(255,255,255,0.15);color:var(--color-egg-white-200);}
     html.dark .hamburger-btn:hover{background:rgba(255,255,255,0.08);}
-    .fade-in{opacity:0;transform:translateY(18px);transition:opacity 0.5s ease,transform 0.5s ease;}
-    .fade-in.visible{opacity:1;transform:translateY(0);}
-    @media(prefers-reduced-motion:reduce){.fade-in{opacity:1;transform:none;transition:none;}}
+    /* ---- Animations ---- */
+    @keyframes work-fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Page load */
+    .page-eyebrow  { animation: work-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.1s  both; }
+    .page-title    { animation: work-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+    .page-subtitle { animation: work-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.4s  both; }
+
+    /* Scroll reveal */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    @media(prefers-reduced-motion:reduce){
+      .page-eyebrow,.page-title,.page-subtitle{animation:none;}
+      .fade-in{opacity:1;transform:none;transition:none;}
+    }
   </style>
 </head>
 <body>
@@ -788,6 +808,39 @@ function toggleMobileMenu() {
   if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   updateThemeIcon();
 })();
+// Scroll reveal
+(function() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  // Featured project
+  document.querySelectorAll('.featured-project').forEach((el, i) => {
+    el.classList.add('fade-in');
+    el.style.transitionDelay = (i * 0.08) + 's';
+    io.observe(el);
+  });
+
+  // Project grid cards — stagger pairs
+  document.querySelectorAll('.project-card').forEach((el, i) => {
+    el.classList.add('fade-in');
+    el.style.transitionDelay = ((i % 3) * 0.08) + 's';
+    io.observe(el);
+  });
+
+  // Promptly section
+  const promptly = document.querySelector('.promptly-section');
+  if (promptly) {
+    promptly.classList.add('fade-in');
+    io.observe(promptly);
+  }
+})();
+
 // Promptly slider
 let currentSlide = 0;
 const promptlyTotal = 3;
