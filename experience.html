@@ -422,6 +422,34 @@
       .tl-dates { display: none; }
       .skills-block { padding: 20px; }
     }
+    /* ---- Animations ---- */
+    @keyframes exp-fade-up {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes exp-fade-in {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Page load */
+    .page-eyebrow  { animation: exp-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.1s  both; }
+    .page-title    { animation: exp-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+    .page-subtitle { animation: exp-fade-up 0.6s cubic-bezier(0.22,1,0.36,1) 0.4s  both; }
+    .cv-row .btn   { animation: exp-fade-up 0.5s cubic-bezier(0.22,1,0.36,1) 0.5s  both; }
+
+    /* Scroll reveal base state */
+    .anim {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .anim.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .sidebar{transition:transform 0.3s ease;}
     @media(min-width:769px){.mobile-topbar{display:none;}}
     .mobile-topbar{position:fixed;top:0;left:0;right:0;z-index:35;height:56px;padding:0 20px;align-items:center;justify-content:space-between;background:var(--color-egg-white-200);border-bottom:1px solid var(--color-egg-white-300);}
@@ -761,6 +789,32 @@ function toggleMobileMenu() {
   if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   updateThemeIcon();
 })();
+// Scroll reveal
+(function() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  // Stagger siblings within a container
+  function observeGroup(selector, stagger) {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.classList.add('anim');
+      el.style.transitionDelay = (i * stagger) + 's';
+      io.observe(el);
+    });
+  }
+
+  observeGroup('.section-header', 0);
+  observeGroup('.tl-item',        0.07);
+  observeGroup('.edu-entry',      0.06);
+  observeGroup('.skills-block',   0.07);
+})();
+
 function sharePortfolio(btn) {
   const url = window.location.href;
   navigator.clipboard.writeText(url).then(() => {
