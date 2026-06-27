@@ -229,6 +229,9 @@
       margin-bottom: 3px;
     }
 
+    .tl-role-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 1px; }
+    .tl-role--sub { font-size: 14px; font-weight: 600; color: var(--color-aubergine-100); opacity: 0.65; }
+
     .tl-company {
       font-size: 13px;
       font-weight: 500;
@@ -554,14 +557,20 @@
             <div class="tl-dot" onclick="toggleEntry(this)"></div>
             <div class="tl-header" onclick="toggleEntry(this)">
               <div class="tl-left">
-                <div class="tl-role">UX Designer</div>
+                <div class="tl-role-row">
+                  <div class="tl-role">Product Designer</div>
+                  <span class="tl-dates">Jan 2026 – Present</span>
+                </div>
+                <div class="tl-role-row" style="margin-bottom:6px;">
+                  <div class="tl-role tl-role--sub">UX Designer</div>
+                  <span class="tl-dates" style="opacity:0.6;">Dec 2022 – Jan 2026</span>
+                </div>
                 <div class="tl-company">
                   WORK180
                   <span class="exp-current-badge">Current</span>
                 </div>
               </div>
               <div class="tl-right">
-                <span class="tl-dates">Dec 2022 – Present</span>
                 <svg class="tl-chevron" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3 5l5 5 5-5"/></svg>
               </div>
             </div>
