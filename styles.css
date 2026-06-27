@@ -121,7 +121,7 @@ ul { list-style: none; }
 
 /* Availability pill */
 .available-badge {
-  display: flex;
+  display: none !important;
   align-items: center;
   gap: 6px;
   background: rgba(255, 255, 139, 0.08);

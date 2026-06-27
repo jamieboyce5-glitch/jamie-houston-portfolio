@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Parkway Artway Project — Jamie Houston</title>
+  <title>Neotaste — Jamie Houston</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-    :root{--color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--content-max:800px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
+    :root{--color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:var(--font);background:var(--color-white-100);color:var(--color-aubergine-200);line-height:1.6;-webkit-font-smoothing:antialiased;}
@@ -38,10 +38,13 @@
     html:not(.dark) .sidebar-name{color:#350316;}
     .sidebar-logo{height:17px;width:auto;display:block;}
     .mobile-topbar-logo{height:18px;width:auto;display:block;}
-    html.dark .sidebar-logo,html.dark .mobile-topbar-logo{filter:brightness(0) invert(1);}html:not(.dark) .sidebar-role{color:rgba(53,3,22,0.6);}
+    html.dark .sidebar-logo,html.dark .mobile-topbar-logo{filter:brightness(0) invert(1);}
+    html:not(.dark) .sidebar-role{color:rgba(53,3,22,0.6);}
     html:not(.dark) .available-badge{background:rgba(53,3,22,0.04);border-color:rgba(53,3,22,0.1);color:#350316;}
-    html:not(.dark) .available-dot{background:#350316;}html:not(.dark) .nav-label{color:rgba(53,3,22,0.6);}
-    html:not(.dark) .nav-link{color:rgba(53,3,22,0.65);}html:not(.dark) .nav-link svg{opacity:0.45;}
+    html:not(.dark) .available-dot{background:#350316;}
+    html:not(.dark) .nav-label{color:rgba(53,3,22,0.6);}
+    html:not(.dark) .nav-link{color:rgba(53,3,22,0.65);}
+    html:not(.dark) .nav-link svg{opacity:0.45;}
     html:not(.dark) .nav-link:hover{background:rgba(53,3,22,0.05);color:#350316;}
     html:not(.dark) .nav-link:hover svg,html:not(.dark) .nav-link.active svg{opacity:1;}
     html:not(.dark) .nav-link.active{background:var(--color-lemon-200);color:#350316;}
@@ -51,70 +54,41 @@
     html:not(.dark) .theme-toggle{background:rgba(53,3,22,0.05);border-color:rgba(53,3,22,0.1);color:rgba(53,3,22,0.45);}
     html.dark .sidebar{background:#350316;border-right:1px solid rgba(255,255,255,0.05);}
     html.dark body{background:var(--color-aubergine-300);color:var(--color-egg-white-200);}
-    html.dark 
-    html.dark html.dark 
-    html.dark .cs-section h2,html.dark .cs-section h3{color:var(--color-egg-white-200);}
-    html.dark .cs-section p,html.dark .cs-section li{color:rgba(255,251,247,0.75);}
-    html.dark .cs-callout{background:var(--color-aubergine-200);border-left-color:var(--color-lemon-200);}
-    html.dark .cs-callout p{color:rgba(255,251,247,0.8);}
-    html.dark .cs-image-placeholder{background:var(--color-aubergine-200);}
-    html.dark .cs-next{background:var(--color-aubergine-200);border-color:rgba(255,255,255,0.08);}
-    html.dark .cs-next-label{color:rgba(255,251,247,0.55);}html.dark .cs-next-title{color:var(--color-egg-white-200);}
-    html.dark .cs-back{color:rgba(255,251,247,0.5);}html.dark .cs-back:hover{color:var(--color-egg-white-200);}
+    html.dark h1,html.dark h2,html.dark h3{color:var(--color-egg-white-200);}
+    html.dark .cs-title{color:var(--color-egg-white-200);}
+    html.dark .cs-subtitle{color:rgba(255,251,247,0.7);}
+    html.dark .cs-back{color:rgba(255,251,247,0.5);}
+    html.dark .cs-back:hover{color:var(--color-egg-white-200);}
     html.dark .site-footer{border-top-color:rgba(255,255,255,0.08);}
-    html.dark .footer-name{color:var(--color-egg-white-200);}html.dark .footer-meta{color:rgba(255,251,247,0.55);}
+    html.dark .footer-name{color:var(--color-egg-white-200);}
+    html.dark .footer-meta{color:rgba(255,251,247,0.55);}
     html.dark .cs-tag{background:rgba(255,255,139,0.14);color:var(--color-egg-white-200);}
+    html.dark .coming-soon-badge{background:rgba(255,255,139,0.14);color:var(--color-lemon-200);border-color:rgba(255,255,139,0.2);}
+    html.dark .cs-meta-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);}
+    html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
+    html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
+    html.dark .proto-btn{background:var(--color-egg-white-200);color:var(--color-aubergine-200);}
     .cs-topbar{padding:28px 60px 0;}
     .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--color-aubergine-100);text-decoration:none;opacity:0.6;transition:opacity 0.14s,color 0.14s;}
     .cs-back:hover{opacity:1;color:var(--color-aubergine-200);}
     .cs-hero{padding:40px 60px 0;}
-    .cs-hero-cover{width:100%;aspect-ratio:16/7;border-radius:var(--radius-lg);background-size:cover;background-position:center;margin-bottom:40px;}
-    .cs-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+    .cs-hero-cover{width:100%;height:auto;display:block;border-radius:var(--radius-lg);margin-bottom:40px;}
+    .cs-intro-block{display:grid;grid-template-columns:1fr 220px;gap:40px;padding:0 60px 48px;align-items:start;}
+    .cs-intro-text{}
+    .cs-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
     .cs-tag{display:inline-block;background:var(--color-lemon-100);color:var(--color-aubergine-200);font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;}
+    .coming-soon-badge{display:inline-block;background:var(--color-violet-100);color:var(--color-aubergine-100);font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:0.04em;border:1px solid rgba(53,3,22,0.12);}
     .cs-title{font-size:36px;font-weight:700;line-height:1.2;color:var(--color-aubergine-200);margin-bottom:16px;}
-    .cs-subtitle{font-size:17px;color:var(--color-aubergine-100);line-height:1.7;}
-    
-    
-    
-    
-    
-    .cs-body{padding:0 60px 80px;}
-    .cs-section{margin-bottom:56px;}
-    .cs-section h2{font-size:22px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:16px;}
-    .cs-section h3{font-size:17px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
-    .cs-section p{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;margin-bottom:16px;}
-    .cs-section p:last-child{margin-bottom:0;}
-    .cs-section ul{margin-bottom:16px;padding-left:0;}
-    .cs-section ul li{font-size:16px;color:var(--color-aubergine-100);line-height:1.8;padding-left:20px;position:relative;margin-bottom:6px;}
-    .cs-section ul li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:6px;background:var(--color-aubergine-200);border-radius:50%;}
-    .cs-image{width:100%;border-radius:var(--radius-md);overflow:hidden;margin-bottom:56px;}
-    .cs-image-placeholder{background:var(--color-violet-100);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;color:var(--color-aubergine-100);font-size:13px;font-weight:600;opacity:0.4;letter-spacing:0.04em;}
-    .cs-image img{width:100%;display:block;}
-    .cs-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:56px;}
-    .cs-image-grid img{width:100%;display:block;border-radius:var(--radius-md);object-fit:cover;object-position:center;aspect-ratio:3/2;}
-    @media(max-width:600px){.cs-image-grid{grid-template-columns:1fr;}}
-    .cs-callout{background:var(--color-lemon-100);border-left:3px solid var(--color-aubergine-200);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:20px 24px;margin-bottom:56px;}
-    .cs-callout p{font-size:16px;font-weight:600;color:var(--color-aubergine-200);line-height:1.65;margin:0;}
-    .cs-next-wrap{padding:0 60px 60px;}
-    @keyframes cs-next-jump{0%{transform:translateY(0);}35%{transform:translateY(-10px);}55%{transform:translateY(-5px);}75%{transform:translateY(-8px);}100%{transform:translateY(-6px);}}
-    .cs-next{display:flex;align-items:center;justify-content:space-between;background:var(--color-violet-100);border:1px solid rgba(53,3,22,0.12);border-radius:var(--radius-lg);padding:28px 32px;text-decoration:none;color:inherit;}
-    .cs-next:hover{animation:cs-next-jump 0.45s ease forwards;}
-    .cs-next-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-aubergine-100);opacity:0.45;margin-bottom:6px;}
-    .cs-next-title{font-size:18px;font-weight:700;color:var(--color-aubergine-200);}
-    .cs-next-arrow{font-size:22px;color:var(--color-aubergine-100);opacity:0.4;}
+    .cs-subtitle{font-size:17px;color:var(--color-aubergine-100);line-height:1.7;margin-bottom:28px;}
+    .proto-btn{display:inline-flex;align-items:center;gap:8px;background:var(--color-aubergine-200);color:var(--color-egg-white-200);font-family:var(--font);font-size:14px;font-weight:700;padding:12px 24px;border-radius:var(--radius-sm);text-decoration:none;transition:opacity 0.14s,transform 0.14s;}
+    .proto-btn:hover{opacity:0.88;transform:translateY(-2px);}
+    .cs-meta-card{background:var(--color-aubergine-200);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:18px;}
+    .cs-meta-item{display:flex;flex-direction:column;gap:6px;}
+    .cs-meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,251,247,0.45);}
+    .cs-meta-pill{display:inline-flex;background:rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--color-egg-white-200);width:fit-content;}
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;}
     .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
-    @media(max-width:768px){
-      .mobile-topbar{display:flex;}
-      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
-      .sidebar.open{transform:translateX(0);}.sidebar .sidebar-identity{display:none;}
-      .mobile-overlay.open{display:block;}
-      .main{margin-left:0;max-width:100%;padding-top:76px;}
-      .cs-topbar,.cs-hero,.cs-body,.cs-next-wrap,.site-footer{padding-left:20px;padding-right:20px;}
-      .cs-title{font-size:26px;}
-    }
-    @media(min-width:1280px){.cs-topbar,.cs-hero,.cs-next-wrap,.site-footer{padding-left:80px;padding-right:80px;}}
     .sidebar{transition:transform 0.3s ease;}
     @media(min-width:769px){.mobile-topbar{display:none;}}
     .mobile-topbar{position:fixed;top:0;left:0;right:0;z-index:35;height:56px;padding:0 20px;align-items:center;justify-content:space-between;background:var(--color-egg-white-200);border-bottom:1px solid var(--color-egg-white-300);}
@@ -128,21 +102,21 @@
     html.dark .mobile-topbar-name{color:var(--color-egg-white-200);}
     html.dark .hamburger-btn{border-color:rgba(255,255,255,0.15);color:var(--color-egg-white-200);}
     html.dark .hamburger-btn:hover{background:rgba(255,255,255,0.08);}
-    /* Intro block */
-    .cs-intro-block{display:grid;grid-template-columns:1fr 220px;gap:40px;padding:0 60px 48px;align-items:start;}
-    .cs-subtitle{font-size:17px;color:var(--color-aubergine-100);line-height:1.7;}
-    .cs-meta-card{background:var(--color-aubergine-200);border-radius:var(--radius-lg);padding:24px;display:flex;flex-direction:column;gap:18px;}
-    .cs-meta-item{display:flex;flex-direction:column;gap:6px;}
-    .cs-meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,251,247,0.45);}
-    .cs-meta-pill{display:inline-flex;background:rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--color-egg-white-200);width:fit-content;}
-    html.dark .cs-meta-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);}
-    html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
-    html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
-    @media(max-width:768px){.cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}}
+    @media(max-width:768px){
+      .mobile-topbar{display:flex;}
+      .sidebar{transform:translateX(-100%);width:280px;height:100vh;top:0;left:0;flex-direction:column;padding:32px 20px;overflow-y:auto;padding-top:72px;z-index:30;}
+      .sidebar.open{transform:translateX(0);}
+      .sidebar .sidebar-identity{display:none;}
+      .mobile-overlay.open{display:block;}
+      .main{margin-left:0;max-width:100%;padding-top:76px;}
+      .cs-topbar,.cs-hero,.site-footer{padding-left:20px;padding-right:20px;}
+      .cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}
+      .cs-title{font-size:26px;}
+    }
+    @media(min-width:1280px){.cs-topbar,.cs-hero,.site-footer{padding-left:80px;padding-right:80px;}}
   </style>
 </head>
 <body>
-<div class="scroll-progress" id="scrollProgress"></div>
 <div class="layout">
   <!-- MOBILE TOP BAR -->
   <div class="mobile-topbar">
@@ -169,54 +143,29 @@
       <button class="share-btn" onclick="sharePortfolio(this)"><svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg>Share portfolio</button>
     </div>
   </aside>
+
   <main class="main">
     <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
     <div class="cs-hero">
-      <div class="cs-hero-cover" style="background-image: url('images/parkway-hero.jpg'); background-size: cover; background-position: center;"></div>
+      <img class="cs-hero-cover" src="images/Neotaste-hero.png" alt="Neotaste">
     </div>
     <div class="cs-intro-block">
       <div class="cs-intro-text">
-      <div class="cs-tags"><span class="cs-tag">Illustration</span><span class="cs-tag">Mural Design</span><span class="cs-tag">Large Format</span></div>
-      <h1 class="cs-title">The Parkway Artway</h1>
-      <p class="cs-subtitle">Two mural illustrations commissioned for an outdoor public art gallery connecting the Ellenbrook town centre with the future Metronet station, celebrating local flora and the unique character of the area.</p>
-    </div>
-
+        <div class="cs-tags">
+          <span class="cs-tag">Product Design</span>
+          <span class="cs-tag">AI Prototyping</span>
+          <span class="coming-soon-badge">Coming soon</span>
+        </div>
+        <h1 class="cs-title">Neotaste</h1>
+        <p class="cs-subtitle">This project asked: what would it take for users to feel more confident booking, and more compelled to keep exploring? My answer was social signals, subtle, ambient cues that show real activity without disrupting the experience. Built using AI prototyping tools, the concept demonstrates how small additions in the right moments can meaningfully shift both time-in-app and conversion intent.</p>
+        <a href="https://neotaste-social-discovery-phi.vercel.app/" target="_blank" rel="noopener" class="proto-btn">View the prototype →</a>
+      </div>
       <div class="cs-meta-card">
-      <div class="cs-meta-item"><span class="cs-meta-label">Role</span><span class="cs-meta-pill">Illustrator</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Client</span><span class="cs-meta-pill">To &amp; Fro Studio</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2020</span></div>
-      <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-pill">Freelance</span></div>
-    </div>
-
-    </div>
-    <div class="cs-body">
-      <div class="cs-section">
-        <h2>Overview</h2>
-        <p>The Parkway Artway is an outdoor gallery designed to connect the Ellenbrook town centre with the future Metronet station and Hesperia precinct, bringing art into the everyday experience of the local community. I was commissioned by To and Fro Studio in Perth to create two mural illustrations as part of this initiative, contributing to a vibrant and accessible public art project.</p>
+        <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-pill">Concept</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Focus</span><span class="cs-meta-pill">Social Signals</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2025</span></div>
+        <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-pill">AI Prototyping</span></div>
       </div>
-      <div class="cs-section">
-        <h2>The brief</h2>
-        <p>The brief was to create two large-scale illustrations themed around patterns, people, flora, fauna or landscapes that make Ellenbrook unique. I chose to focus on local flora for both pieces.</p>
-      </div>
-      <div class="cs-image-grid">
-        <img loading="lazy" decoding="async" src="images/parkway-1.jpg" alt="Parkway Artway mural illustration">
-        <img loading="lazy" decoding="async" src="images/parkway-2.jpg" alt="Parkway Artway mural illustration">
-      </div>
-      <div class="cs-section">
-        <h2>What I delivered</h2>
-        <p>As someone originally from New Zealand, I spent time researching Australian native plants, specifically those found in the Perth region. I then translated these botanical forms into my illustration style, incorporating their shapes and outlines throughout the compositions.</p>
-        <p>In both designs, you'll notice abstracted representations of local flora, surrounded by lines and forms that fill the space and bring a sense of movement and balance to the work.</p>
-      </div>
-      <div class="cs-image-grid">
-        <img loading="lazy" decoding="async" src="images/parkway-3.jpg" alt="Parkway Artway mural illustration">
-        <img loading="lazy" decoding="async" src="images/parkway-4.jpg" alt="Parkway Artway mural illustration">
-      </div>
-    </div>
-    <div class="cs-next-wrap">
-      <a href="project-w180-onboarding.html" class="cs-next">
-        <div><div class="cs-next-label">Next project</div><div class="cs-next-title">WORK180: Onboarding</div></div>
-        <span class="cs-next-arrow">→</span>
-      </a>
     </div>
     <footer class="site-footer"><span class="footer-name">Jamie Houston</span><span class="footer-meta">Melbourne, AU · Product Designer</span></footer>
   </main>
@@ -229,24 +178,7 @@
   function toggleMobileMenu(){document.querySelector('.sidebar').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('open');}
   function toggleTheme(){const isDark=document.documentElement.classList.toggle('dark');localStorage.setItem(THEME_KEY,isDark?'dark':'light');updateThemeIcon();}
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
-  function sharePortfolio(btn) {
-  const url = window.location.href;
-  navigator.clipboard.writeText(url).then(() => {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 8 12 13 4"></polyline></svg> Link copied!';
-    btn.classList.add('copied');
-    let toast = document.getElementById('shareToast');
-    if (!toast) { toast = document.createElement('div'); toast.id = 'shareToast'; toast.className = 'share-toast'; document.body.appendChild(toast); }
-    toast.textContent = 'Link copied, thanks for sharing ♥';
-    const rect = btn.getBoundingClientRect();
-    toast.style.left = rect.left + 'px';
-    toast.style.top = (rect.top - toast.offsetHeight - 10) + 'px';
-    toast.style.transform = 'none';
-    toast.style.bottom = 'auto';
-    toast.classList.add('show');
-    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
-  }).catch(() => { prompt('Copy this link:', url); });
-}
+  function sharePortfolio(btn){const url=window.location.href;navigator.clipboard.writeText(url).then(()=>{const orig=btn.innerHTML;btn.innerHTML='Link copied!';setTimeout(()=>{btn.innerHTML=orig;},2500);}).catch(()=>{prompt('Copy this link:',url);});}
 </script>
 </body>
 </html>

@@ -376,6 +376,29 @@
       .featured-content { padding: 28px 24px; }
     }
 
+    .work-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+    .work-tab {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(53,3,22,0.15);
+      background: transparent;
+      color: var(--color-aubergine-100);
+      font-family: var(--font);
+      transition: background 0.14s, color 0.14s, border-color 0.14s;
+    }
+    .work-tab:hover { background: rgba(53,3,22,0.05); color: var(--color-aubergine-200); }
+    .work-tab.active { background: var(--color-aubergine-200); color: var(--color-egg-white-200); border-color: var(--color-aubergine-200); }
+    html.dark .work-tab { border-color: rgba(255,255,255,0.15); color: rgba(255,251,247,0.55); }
+    html.dark .work-tab:hover { background: rgba(255,255,255,0.07); color: var(--color-egg-white-200); }
+    html.dark .work-tab.active { background: var(--color-egg-white-200); color: var(--color-aubergine-200); border-color: var(--color-egg-white-200); }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -417,10 +440,13 @@
     .cover-1 { background-image: url('images/w180-onboarding-hero.png'); background-size: cover; background-position: center; }
     .cover-2 { background-image: url('images/w180-benefits-hero.png'); background-size: cover; background-position: center; }
     .cover-3 { background-image: url('images/w180-top-employer-page-hero.png'); background-size: cover; background-position: center; }
-    .cover-4 { background-image: url('images/w180-progress-hub-hero.png'); background-size: cover; background-position: center; }
+    .cover-4 { background-image: url('images/w180-progress-hub-hero-updated.png'); background-size: cover; background-position: center; }
     .cover-5 { background-image: url('images/w180-design-system-hero.png'); background-size: cover; background-position: center; }
     .cover-6 { background-image: url('images/geronimo-hero.jpg'); background-size: cover; background-position: center; }
     .cover-7 { background-image: url('images/parkway-hero.jpg'); background-size: cover; background-position: center; }
+    .cover-neotaste { background-image: url('images/Neotaste-hero.png'); background-size: cover; background-position: center; }
+    .cover-ai-discovery { background-image: url('images/W80-AI-Discovery-hero.png'); background-size: cover; background-position: center; }
+    .cover-apprenticeship { background-image: url('images/W180-apprenticeship-hero.png'); background-size: cover; background-position: center; }
 
     .cover-badges {
       position: absolute;
@@ -546,14 +572,9 @@
       
       <div>
         <img src="images/jamie-houston-logo.svg" class="sidebar-logo" alt="Jamie Houston">
-        <div class="sidebar-role">UX &amp; Product Designer</div>
+        <div class="sidebar-role">Product Designer</div>
       </div>
     </a>
-
-    <div class="available-badge">
-      <span class="available-dot"></span>
-      Open to new work
-    </div>
 
     <nav class="sidebar-nav">
       <span class="nav-label">Menu</span>
@@ -602,6 +623,11 @@
 
 
 
+      <div class="work-tabs">
+        <button class="work-tab active" onclick="filterWork('product', this)">Product Design</button>
+        <button class="work-tab" onclick="filterWork('graphic', this)">Graphic Design</button>
+      </div>
+
       <!--
         TO ADD A NEW PROJECT: Copy any .project-card block,
         update the cover class, year, title, description & tags.
@@ -609,7 +635,7 @@
       <div class="projects-grid">
 
         <!-- PROJECT 1 -->
-        <a class="project-card" href="project-w180-onboarding.html">
+        <a class="project-card" data-category="product" href="project-w180-onboarding.html">
           <div class="project-cover cover-1">
             <div class="cover-badges">
               <span></span>
@@ -628,7 +654,7 @@
         </a>
 
         <!-- PROJECT 2 -->
-        <a class="project-card" href="project-w180-benefits.html">
+        <a class="project-card" data-category="product" data-hidden="true" href="project-w180-benefits.html" style="display:none;">
           <div class="project-cover cover-2">
             <div class="cover-badges">
               <span></span>
@@ -647,7 +673,7 @@
         </a>
 
         <!-- PROJECT 3 -->
-        <a class="project-card" href="project-w180-top-employers.html">
+        <a class="project-card" data-category="product" data-hidden="true" href="project-w180-top-employers.html" style="display:none;">
           <div class="project-cover cover-3">
             <div class="cover-badges">
               <span></span>
@@ -666,7 +692,7 @@
         </a>
 
         <!-- PROJECT 4 — NDA -->
-        <a class="project-card" href="project-w180-progress-hub.html">
+        <a class="project-card" data-category="product" href="project-w180-progress-hub.html">
           <div class="project-cover cover-4">
             <div class="cover-badges">
               <span class="badge">
@@ -687,7 +713,7 @@
         </a>
 
         <!-- PROJECT 5 — Design System -->
-        <a class="project-card" href="project-w180-design-system.html">
+        <a class="project-card" data-category="product" href="project-w180-design-system.html">
           <div class="project-cover cover-5">
             <div class="cover-badges">
               <span></span>
@@ -705,8 +731,63 @@
           </div>
         </a>
 
+        <!-- PROJECT NEOTASTE -->
+        <a class="project-card" data-category="product" href="project-neotaste.html">
+          <div class="project-cover cover-neotaste">
+            <div class="cover-badges">
+              <span class="badge" style="display:flex;align-items:center;gap:5px;">Coming soon</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cats">
+              <span class="project-cat">Product</span>
+              <span class="project-cat">AI Prototyping</span>
+            </div>
+            <div class="project-title">Neotaste</div>
+            <p class="project-desc">Social signals and ambient cues that make users feel more confident booking and more compelled to keep exploring.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
+          </div>
+        </a>
+
+        <a class="project-card" data-category="product" href="project-ai-discovery.html">
+          <div class="project-cover cover-ai-discovery">
+            <div class="cover-badges">
+              <span class="badge" style="display:flex;align-items:center;gap:5px;">Coming soon</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cats">
+              <span class="project-cat">Product</span>
+              <span class="project-cat">AI</span>
+            </div>
+            <div class="project-title">WORK180: Job Discovery</div>
+            <p class="project-desc">Search for roles that match your non-negotiables — jobs and endorsed employers with transparent benefits data, all in one search.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
+          </div>
+        </a>
+
+        <a class="project-card" data-category="product" href="project-apprenticeship.html">
+          <div class="project-cover cover-apprenticeship">
+            <div class="cover-badges">
+              <span class="badge" style="display:flex;align-items:center;gap:5px;">Coming soon</span>
+              <span class="badge">2026</span>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cats">
+              <span class="project-cat">Product</span>
+              <span class="project-cat">Early Careers</span>
+            </div>
+            <div class="project-title">WORK180: Apprenticeship App</div>
+            <p class="project-desc">An app that helps young people find the right apprenticeship path with full transparency on what the work actually involves.</p>
+            <span class="btn btn-ghost project-view-btn">View project →</span>
+          </div>
+        </a>
+
         <!-- PROJECT 6 -->
-        <a class="project-card" href="project-geronimo.html">
+        <a class="project-card" data-category="graphic" href="project-geronimo.html">
           <div class="project-cover cover-6">
             <div class="cover-badges">
               <span></span>
@@ -725,7 +806,7 @@
         </a>
 
         <!-- PROJECT 7 -->
-        <a class="project-card" href="project-parkway.html">
+        <a class="project-card" data-category="graphic" href="project-parkway.html">
           <div class="project-cover cover-7">
             <div class="cover-badges">
               <span></span>
@@ -781,7 +862,7 @@
 
       <footer class="site-footer" style="margin-top: 72px;">
         <span class="footer-name">Jamie Houston</span>
-        <span class="footer-meta">Melbourne, AU · UX &amp; Product Designer</span>
+        <span class="footer-meta">Melbourne, AU · Product Designer</span>
       </footer>
 
     </div>
@@ -872,6 +953,20 @@ function sharePortfolio(btn) {
     setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); toast.classList.remove('show'); }, 2500);
   }).catch(() => { prompt('Copy this link:', url); });
 }
+
+function filterWork(category, btn) {
+  document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (card.dataset.hidden === 'true') return;
+    card.style.display = card.dataset.category === category ? '' : 'none';
+  });
+}
+
+document.querySelectorAll('.project-card').forEach(card => {
+  if (card.dataset.hidden === 'true') return;
+  if (card.dataset.category === 'graphic') card.style.display = 'none';
+});
 </script>
 </body>
 </html>
