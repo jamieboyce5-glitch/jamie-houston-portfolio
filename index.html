@@ -500,6 +500,10 @@
 
     <div class="sidebar-footer">
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle light / dark mode"></button>
+      <button class="share-btn" id="qiTrigger" onclick="toggleQI()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        Quick Interview
+      </button>
       <button class="share-btn" onclick="sharePortfolio(this)">
         <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M11 2.5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm8 5a2.5 2.5 0 115 0 2.5 2.5 0 01-5 0zm-7.4-4.7l4.8 2.8m0-5.6L3.6 7.8"/></svg>
         Share portfolio
@@ -676,6 +680,105 @@ if (statsStrip) {
     entries.forEach(entry => { if (entry.isIntersecting) statsStrip.classList.add('revealed'); });
   }, { threshold: 0.2 }).observe(statsStrip);
 }
+</script>
+
+
+<!-- Quick Interview Panel -->
+<style>
+.qi-panel{position:fixed;left:calc(var(--sidebar-w,264px) + 12px);bottom:24px;width:370px;background:#ffffff;border-radius:16px;box-shadow:0 8px 48px rgba(53,3,22,0.18);z-index:999;overflow:hidden;transform:translateY(10px) scale(0.98);opacity:0;pointer-events:none;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.18s;}
+.qi-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all;}
+html.dark .qi-panel{background:#22000d;box-shadow:0 8px 48px rgba(0,0,0,0.4);}
+.qi-header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 20px 16px;border-bottom:1px solid rgba(53,3,22,0.09);}
+html.dark .qi-header{border-bottom-color:rgba(255,251,247,0.1);}
+.qi-icon-wrap{width:30px;height:30px;background:#ece9ff;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;color:#350316;}
+html.dark .qi-icon-wrap{background:rgba(195,186,255,0.15);color:#fffbf7;}
+.qi-title{font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:16px;font-weight:700;color:#350316;}
+html.dark .qi-title{color:#fffbf7;}
+.qi-subtitle{font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:12px;color:#642940;margin-top:3px;line-height:1.45;}
+html.dark .qi-subtitle{color:rgba(255,251,247,0.6);}
+.qi-close{background:none;border:none;cursor:pointer;font-size:22px;line-height:1;color:#642940;padding:2px 4px;flex-shrink:0;margin-top:-2px;}
+html.dark .qi-close{color:rgba(255,251,247,0.6);}
+.qi-close:hover{color:#350316;}
+html.dark .qi-close:hover{color:#fffbf7;}
+.qi-questions{max-height:340px;overflow-y:auto;}
+.qi-item{border-bottom:1px solid rgba(53,3,22,0.07);}
+html.dark .qi-item{border-bottom-color:rgba(255,251,247,0.08);}
+.qi-item:last-child{border-bottom:none;}
+.qi-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 20px;background:none;border:none;cursor:pointer;font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:600;color:#350316;text-align:left;transition:background 0.12s;}
+html.dark .qi-q{color:#fffbf7;}
+.qi-q:hover{background:#ece9ff;}
+html.dark .qi-q:hover{background:rgba(195,186,255,0.12);}
+.qi-q.active{background:#ece9ff;}
+html.dark .qi-q.active{background:rgba(195,186,255,0.12);}
+.qi-qicon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:background 0.12s,color 0.12s;line-height:0;}.qi-qicon svg{display:block;}.qi-qicon.plus .qi-i-cross{display:none;}.qi-qicon.cross .qi-i-plus{display:none;}
+.qi-qicon.plus{border:1.5px solid rgba(53,3,22,0.18);color:#642940;}
+html.dark .qi-qicon.plus{border-color:rgba(255,251,247,0.2);color:rgba(255,251,247,0.5);}
+.qi-qicon.cross{background:#350316;color:#fffbf7;border:none;}
+html.dark .qi-qicon.cross{background:#fffbf7;color:#350316;}
+.qi-a{display:none;padding:2px 20px 16px;font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:13px;line-height:1.65;color:#350316;}
+html.dark .qi-a{color:rgba(255,251,247,0.85);}
+.qi-a p+p{margin-top:10px;}
+.qi-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:#350316;color:#fffbf7;font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:13px;font-weight:700;padding:8px 18px;border-radius:100px;text-decoration:none;transition:opacity 0.14s;}
+html.dark .qi-cta{background:#fffbf7;color:#350316;}
+.qi-cta:hover{opacity:0.85;}
+.qi-footer{padding:11px 20px;border-top:1px solid rgba(53,3,22,0.08);font-family:var(--font,'Plus Jakarta Sans',sans-serif);font-size:11px;font-weight:700;letter-spacing:0.07em;color:#642940;display:flex;align-items:center;gap:8px;}
+html.dark .qi-footer{border-top-color:rgba(255,251,247,0.08);color:rgba(255,251,247,0.45);}
+.qi-dots{display:flex;gap:4px;align-items:center;}
+.qi-dot{width:5px;height:5px;border-radius:50%;background:#c3baff;}
+.qi-dot:first-child{background:#350316;}
+html.dark .qi-dot:first-child{background:#fffbf7;}
+@media(max-width:768px){.qi-panel{left:16px;right:16px;width:auto;bottom:76px;}}
+</style>
+<div class="qi-panel" id="qiPanel">
+  <div class="qi-header">
+    <div>
+      <div class="qi-icon-wrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+      <div class="qi-title">Quick Interview</div>
+      <div class="qi-subtitle">Common questions recruiters ask.<br>Click any to see my answers instantly.</div>
+    </div>
+    <button class="qi-close" onclick="toggleQI()">−</button>
+  </div>
+  <div class="qi-questions">
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">Tell me about yourself<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>I'm a product designer with 10 years across freelance, in-house, and startup environments. My background spans product strategy, UX research, UI design, branding, and illustration so I can carry an idea from a whiteboard conversation all the way to a shipped, on-brand interface.</p><p>I'm currently a Product Designer at WORK180 in Melbourne, working end-to-end on the employer-facing platform from discovery and research through to delivery and iteration.</p></div>
+    </div>
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">Why should we hire you?<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>Because I don't just design screens I think about outcomes. I started in visual and brand design, which means I care deeply about craft and polish. I grew into UX and product, which means I care about whether it actually works for people and moves the business.</p><p>I'm also fluent with AI-enabled workflows and front-end enough to communicate precisely with engineers. I move fast without dropping quality, and I thrive in teams where design and engineering are genuinely collaborative.</p></div>
+    </div>
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">Explain your design process<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>Discovery first I want to understand the problem, the users, and the constraints before I sketch a single screen. That means research, stakeholder conversations, and auditing what already exists.</p><p>Then I move fast in low-fidelity: flows, rough wireframes, quick prototypes for testing. High-fidelity comes after we've validated the approach, not before. And I stay involved post-launch data and user feedback inform the next iteration.</p></div>
+    </div>
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">How do you work with developers?<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>As a partner, not a handoff machine. I try to involve engineers early ideally in problem framing so they're invested in the solution, not just implementing a spec.</p><p>I'm comfortable reviewing implementations for design fidelity and adjusting specs when engineering constraints make something impractical. I'd rather ship something slightly simpler and well-built than something pixel-perfect and brittle.</p></div>
+    </div>
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">Describe a challenging project<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>The WORK180 onboarding redesign. Users were only prompted to sign up at high-intent moments, so the funnel was narrow and growth was flat. I redesigned the entire journey from awareness to activation balancing what users needed with what the platform needed commercially.</p><p>The result: employer follows grew from 323 to 2,126 per month. The challenge wasn't just the design it was navigating competing stakeholder priorities while keeping the user's experience front and centre.</p><a class="qi-cta" href="project-w180-onboarding.html">Read the case study →</a></div>
+    </div>
+    <div class="qi-item">
+      <button class="qi-q" onclick="toggleQ(this)">What makes you different?<span class="qi-qicon plus"><svg class="qi-i-plus" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg><svg class="qi-i-cross" width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="1.5" y1="1.5" x2="8.5" y2="8.5"/><line x1="8.5" y1="1.5" x2="1.5" y2="8.5"/></svg></span></button>
+      <div class="qi-a"><p>Range, and where I sit between disciplines. I started in visual and brand design, so I have a strong eye for typography, layout, and polish but I grew into UX, design systems, and front-end, so I can carry an idea from a stakeholder conversation all the way to a built, accessible, on-brand interface.</p><p>That blend matters for work that lives between marketing, communications, and product. I'm also a systems thinker who still sweats the pixels.</p></div>
+    </div>
+  </div>
+</div>
+<script>
+function toggleQI(){document.getElementById('qiPanel').classList.toggle('open');}
+function toggleQ(btn){
+  var a=btn.nextElementSibling;
+  var isOpen=a.style.display==='block';
+  document.querySelectorAll('.qi-a').forEach(function(x){x.style.display='none';});
+  document.querySelectorAll('.qi-q').forEach(function(q){q.classList.remove('active');var ic=q.querySelector('.qi-qicon');if(ic){ic.className='qi-qicon plus';}});
+  if(!isOpen){a.style.display='block';btn.classList.add('active');var ic=btn.querySelector('.qi-qicon');if(ic){ic.className='qi-qicon cross';}}
+}
+document.addEventListener('click',function(e){
+  var panel=document.getElementById('qiPanel');
+  var trigger=document.getElementById('qiTrigger');
+  if(panel&&panel.classList.contains('open')&&!panel.contains(e.target)&&trigger&&!trigger.contains(e.target)){panel.classList.remove('open');}
+});
 </script>
 </body>
 </html>
