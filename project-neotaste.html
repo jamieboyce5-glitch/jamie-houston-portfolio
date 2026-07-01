@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neotaste — Jamie Houston</title>
+  <title>Neotaste: Friends and Foodies — Jamie Houston</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
     :root{--color-white-100:#ffffff;--color-egg-white-200:#fdfbf9;--color-egg-white-300:#efe9e3;--color-aubergine-100:#642940;--color-aubergine-200:#350316;--color-aubergine-300:#22000d;--color-lemon-100:#ffffda;--color-lemon-200:#ffff8c;--color-violet-100:#ece9ff;--color-violet-200:#c3baff;--font:'Plus Jakarta Sans',sans-serif;--sidebar-w:264px;--radius-sm:8px;--radius-md:12px;--radius-lg:16px;}
@@ -68,6 +68,56 @@
     html.dark .cs-meta-label{color:rgba(255,251,247,0.45);}
     html.dark .cs-meta-pill{background:rgba(255,255,255,0.08);color:var(--color-egg-white-200);}
     html.dark .proto-btn{background:var(--color-egg-white-200);color:var(--color-aubergine-200);}
+    /* Split hero */
+    .cs-hero-split{background:#11301D;padding:52px 60px 0;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end;min-height:480px;position:relative;overflow:hidden;margin-bottom:56px;}
+    .cs-hero-split::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(255,255,255,0.08) 0%,transparent 60%);pointer-events:none;}
+    .cs-hero-left{padding-bottom:56px;position:relative;z-index:1;}
+    .cs-hero-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.55);margin-bottom:18px;}
+    .cs-hero-split .cs-tags{margin-bottom:22px;}
+    .cs-hero-split .cs-tag{background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);}
+    .cs-hero-split .cs-title{font-size:46px;color:#ffffff;margin-bottom:18px;letter-spacing:-1px;line-height:1.1;}
+    .cs-hero-split .cs-subtitle{color:rgba(255,255,255,0.7);margin-bottom:32px;font-size:16px;}
+    .cs-hero-chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .cs-hero-chip{font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);background:rgba(255,255,255,0.1);border-radius:100px;padding:5px 13px;display:inline-flex;align-items:center;gap:5px;}
+    .cs-hero-chip strong{color:rgba(255,255,255,0.9);font-weight:600;}
+    .cs-hero-right{position:relative;z-index:1;height:480px;}
+    .cs-hero-split .cs-topbar{padding:0 0 28px;}
+    .cs-hero-split .cs-back{color:rgba(255,255,255,0.6);opacity:1;}
+    .cs-hero-split .cs-back:hover{color:#fff;}
+    /* Hero floating stage */
+    .cs-nt-stage{position:relative;width:100%;height:100%;}
+    .cs-nt-el{position:absolute;}
+    /* Phone mockup */
+    .cs-nt-phone{width:170px;border-radius:28px;background:#0d0d0d;box-shadow:0 20px 60px rgba(0,0,0,0.5);overflow:hidden;border:3px solid #1a1a1a;}
+    .cs-nt-phone-notch{height:22px;background:#0d0d0d;display:flex;align-items:center;justify-content:center;}
+    .cs-nt-phone-notch::after{content:'';width:52px;height:8px;background:#111;border-radius:10px;}
+    .cs-nt-phone-screen{width:100%;display:block;}
+    /* Floating elements sizing/positioning */
+    .cs-nt-el--phone{bottom:140px;left:50%;transform:translateX(-50%);z-index:3;}
+    .cs-nt-el--pin1{top:-40px;left:28px;width:52px;z-index:2;}
+    .cs-nt-el--pin2{bottom:180px;right:12px;width:48px;z-index:2;}
+    .cs-nt-el--pin3{top:120px;left:14px;width:40px;z-index:2;position:absolute;}
+    .cs-nt-el--topy{bottom:155px;left:calc(50% - 130px);width:160px;z-index:6;}
+    .cs-nt-el--card{top:-10px;right:0;width:160px;z-index:5;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35);background:#fff;padding:8px;}
+    .cs-nt-el img{width:100%;display:block;}
+    /* Float keyframes */
+    @keyframes nt-float-1{0%,100%{transform:translateX(-50%) translateY(0px) rotate(1deg);}50%{transform:translateX(-50%) translateY(-10px) rotate(1deg);}}
+    @keyframes nt-float-2{0%,100%{transform:translateY(0px) rotate(-2deg);}50%{transform:translateY(-10px) rotate(-2deg);}}
+    @keyframes nt-float-3{0%,100%{transform:translateY(0px) rotate(3deg);}50%{transform:translateY(-8px) rotate(3deg);}}
+    @keyframes nt-float-4{0%,100%{transform:translateY(0px) rotate(-1.5deg);}50%{transform:translateY(-12px) rotate(-1.5deg);}}
+    @keyframes nt-float-5{0%,100%{transform:translateX(-50%) translateY(0px);}50%{transform:translateX(-50%) translateY(-8px);}}
+    @keyframes nt-float-6{0%,100%{transform:translateY(0px) rotate(1.5deg);}50%{transform:translateY(-9px) rotate(1.5deg);}}
+    .cs-nt-el--phone{animation:nt-float-1 5s ease-in-out infinite;}
+    .cs-nt-el--pin1{animation:nt-float-2 5.5s ease-in-out infinite;animation-delay:0.4s;}
+    .cs-nt-el--pin2{animation:nt-float-3 4.8s ease-in-out infinite;animation-delay:1s;}
+    .cs-nt-el--pin3{animation:nt-float-4 5.2s ease-in-out infinite;animation-delay:1.8s;}
+    .cs-nt-el--topy{animation:nt-float-5 4.5s ease-in-out infinite;animation-delay:0.7s;}
+    .cs-nt-el--card{animation:nt-float-6 5s ease-in-out infinite;animation-delay:2.2s;}
+    @media(max-width:900px){.cs-hero-split{padding:40px 32px 0;gap:28px;}.cs-hero-split .cs-title{font-size:36px;}.cs-hero-right{height:420px;}}
+    @media(max-width:600px){.cs-hero-split{grid-template-columns:1fr;min-height:auto;gap:24px;padding:32px 20px 0;}.cs-hero-split .cs-title{font-size:30px;}.cs-hero-left{padding-bottom:8px;}.cs-hero-right{height:300px;}}
+    @media(max-width:768px){.cs-hero-split{padding:40px 20px 0;}}
+
+    /* Case study layout */
     .cs-topbar{padding:28px 60px 0;}
     .cs-back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--color-aubergine-100);text-decoration:none;opacity:0.6;transition:opacity 0.14s,color 0.14s;}
     .cs-back:hover{opacity:1;color:var(--color-aubergine-200);}
@@ -86,9 +136,144 @@
     .cs-meta-item{display:flex;flex-direction:column;gap:6px;}
     .cs-meta-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,251,247,0.45);}
     .cs-meta-pill{display:inline-flex;background:rgba(255,255,255,0.1);border-radius:100px;padding:5px 12px;font-size:13px;font-weight:600;color:var(--color-egg-white-200);width:fit-content;}
+    /* Case study body sections */
+    .cs-body{padding:0 60px;display:flex;flex-direction:column;gap:72px;padding-bottom:80px;}
+    .cs-section{}
+    .cs-section-label{display:inline-block;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--color-aubergine-100);background:var(--color-violet-100);padding:4px 12px;border-radius:100px;margin-bottom:14px;}
+    html.dark .cs-section-label{background:rgba(195,186,255,0.15);color:var(--color-violet-200);}
+    .cs-section-title{font-size:26px;font-weight:700;line-height:1.25;color:var(--color-aubergine-200);margin-bottom:18px;}
+    html.dark .cs-section-title{color:var(--color-egg-white-200);}
+    .cs-body-text{font-size:16px;line-height:1.75;color:var(--color-aubergine-100);}
+    html.dark .cs-body-text{color:rgba(255,251,247,0.7);}
+    .cs-body-text p+p{margin-top:16px;}
+    /* Constraint cards */
+    .cs-constraint-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
+    .cs-constraint-card{background:var(--color-egg-white-300);border:1px solid rgba(53,3,22,0.07);border-radius:var(--radius-md);padding:20px;display:flex;flex-direction:column;gap:8px;}
+    .cs-constraint-icon{font-size:22px;line-height:1;}
+    .cs-constraint-card strong{font-size:14px;font-weight:700;color:var(--color-aubergine-200);line-height:1.3;}
+    .cs-constraint-card p{font-size:13px;line-height:1.6;color:var(--color-aubergine-100);margin:0;}
+    html.dark .cs-constraint-card{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.08);}
+    html.dark .cs-constraint-card strong{color:var(--color-egg-white-200);}
+    html.dark .cs-constraint-card p{color:rgba(255,251,247,0.65);}
+    @media(max-width:768px){.cs-constraint-grid{grid-template-columns:1fr 1fr;}}
+    .cs-divider{border:none;border-top:1px solid var(--color-egg-white-300);margin:0;}
+    html.dark .cs-divider{border-top-color:rgba(255,255,255,0.07);}
+    /* Two-col layout within a section */
+    .cs-two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:28px;}
+    .cs-col-card{background:var(--color-egg-white-200);border:1px solid var(--color-egg-white-300);border-radius:var(--radius-lg);padding:24px;}
+    html.dark .cs-col-card{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.07);}
+    .cs-col-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-aubergine-100);opacity:0.5;margin-bottom:10px;}
+    html.dark .cs-col-card-label{color:rgba(255,251,247,0.4);}
+    .cs-col-card-title{font-size:15px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:8px;}
+    html.dark .cs-col-card-title{color:var(--color-egg-white-200);}
+    .cs-col-card-text{font-size:14px;line-height:1.65;color:var(--color-aubergine-100);}
+    html.dark .cs-col-card-text{color:rgba(255,251,247,0.6);}
+    /* Highlight / pull quote block */
+    .cs-pull{background:var(--color-lemon-100);border-radius:var(--radius-lg);padding:28px 32px;margin-top:28px;}
+    html.dark .cs-pull{background:rgba(255,255,139,0.08);border:1px solid rgba(255,255,139,0.14);}
+    .cs-pull-text{font-size:17px;font-weight:600;line-height:1.6;color:var(--color-aubergine-200);}
+    html.dark .cs-pull-text{color:var(--color-lemon-200);}
+    /* Flow viewer */
+    .cs-flow-viewer{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+    .cs-flow-copy{display:flex;flex-direction:column;gap:20px;}
+    .cs-flow-phone-col{display:flex;flex-direction:column;align-items:center;gap:20px;}
+    .cs-flow-steps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+    .cs-flow-step-btn{display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;padding:0;font-family:var(--font);}
+    .cs-flow-step-num{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--color-egg-white-300);background:transparent;font-size:12px;font-weight:700;color:var(--color-aubergine-100);display:flex;align-items:center;justify-content:center;transition:all 0.18s;flex-shrink:0;}
+    html.dark .cs-flow-step-num{border-color:rgba(255,255,255,0.15);color:rgba(255,251,247,0.4);}
+    .cs-flow-step-label{font-size:13px;font-weight:600;color:var(--color-aubergine-100);opacity:0;width:0;overflow:hidden;white-space:nowrap;transition:opacity 0.18s,width 0.18s;}
+    html.dark .cs-flow-step-label{color:rgba(255,251,247,0.6);}
+    .cs-flow-step-btn.active .cs-flow-step-num{background:#11301D;border-color:#11301D;color:#fff;}
+    .cs-flow-step-btn.active .cs-flow-step-label{opacity:1;width:auto;}
+    .cs-flow-desc-wrap{position:relative;min-height:120px;}
+    .cs-flow-desc{display:none;}
+    .cs-flow-desc.active{display:block;}
+    .cs-flow-desc-title{font-size:18px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:10px;}
+    html.dark .cs-flow-desc-title{color:var(--color-egg-white-200);}
+    .cs-flow-desc p{font-size:15px;line-height:1.7;color:var(--color-aubergine-100);}
+    html.dark .cs-flow-desc p{color:rgba(255,251,247,0.65);}
+    .cs-flow-nav{display:flex;align-items:center;gap:12px;}
+    .cs-flow-nav-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--color-egg-white-300);background:none;cursor:pointer;color:var(--color-aubergine-200);display:flex;align-items:center;justify-content:center;transition:background 0.14s,border-color 0.14s;}
+    .cs-flow-nav-btn:hover{background:var(--color-egg-white-300);}
+    html.dark .cs-flow-nav-btn{border-color:rgba(255,255,255,0.15);color:rgba(255,251,247,0.7);}
+    html.dark .cs-flow-nav-btn:hover{background:rgba(255,255,255,0.08);}
+    .cs-flow-dots{display:flex;gap:6px;align-items:center;}
+    .cs-flow-dot{width:6px;height:6px;border-radius:50%;background:var(--color-egg-white-300);transition:background 0.18s,transform 0.18s;}
+    html.dark .cs-flow-dot{background:rgba(255,255,255,0.15);}
+    .cs-flow-dot.active{background:#11301D;transform:scale(1.3);}
+    html.dark .cs-flow-dot.active{background:var(--color-lemon-200);}
+    .cs-flow-phone-wrap{display:flex;justify-content:center;}
+    .cs-flow-phone-frame{width:240px;background:#0a0a0a;border-radius:40px;border:8px solid #1c1c1e;box-shadow:0 24px 64px rgba(0,0,0,0.28);position:relative;overflow:hidden;}
+    .cs-phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:72px;height:22px;background:#1c1c1e;border-radius:0 0 16px 16px;z-index:2;}
+    .cs-phone-screen{width:100%;display:block;}
+    @media(max-width:768px){.cs-flow-viewer{grid-template-columns:1fr;}.cs-flow-phone-col{order:-1;}.cs-flow-phone-frame{width:200px;}}
+
+    /* Logic two-col */
+    .cs-logic-two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:32px;}
+    @media(max-width:768px){.cs-logic-two-col{grid-template-columns:1fr;}}
+
+    /* Signal hierarchy list */
+    .cs-signal-list{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+    .cs-signal-item{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;background:var(--color-egg-white-200);border:1px solid var(--color-egg-white-300);border-radius:var(--radius-md);}
+    html.dark .cs-signal-item{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.07);}
+    .cs-signal-num{width:28px;height:28px;border-radius:50%;background:var(--color-aubergine-200);color:var(--color-egg-white-200);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    html.dark .cs-signal-num{background:var(--color-lemon-200);color:var(--color-aubergine-200);}
+    .cs-signal-title{font-size:14px;font-weight:700;color:var(--color-aubergine-200);margin-bottom:3px;}
+    html.dark .cs-signal-title{color:var(--color-egg-white-200);}
+    .cs-signal-desc{font-size:13px;line-height:1.6;color:var(--color-aubergine-100);}
+    html.dark .cs-signal-desc{color:rgba(255,251,247,0.6);}
+    /* Laptop mockup */
+    .cs-laptop{position:relative;width:100%;max-width:860px;margin:32px auto 0;}
+    .cs-laptop-screen{background:#0a0a0a;border-radius:12px 12px 0 0;border:8px solid #1a1a1a;overflow:hidden;aspect-ratio:16/10;box-shadow:0 0 0 1px rgba(0,0,0,0.15),0 24px 60px rgba(0,0,0,0.2);}
+    .cs-laptop-video{width:100%;height:100%;object-fit:cover;display:block;}
+    .cs-laptop-base{background:linear-gradient(180deg,#d0d0d0 0%,#b8b8b8 100%);height:22px;border-radius:0 0 4px 4px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+    .cs-laptop-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:6px;background:#c0c0c0;border-radius:0 0 6px 6px;}
+    html.dark .cs-laptop-base{background:linear-gradient(180deg,#3a3a3a 0%,#2a2a2a 100%);}
+    html.dark .cs-laptop-notch{background:#333;}
+    html.dark .cs-laptop-screen{border-color:#2a2a2a;}
+    .cs-video-controls{display:flex;align-items:center;gap:10px;background:var(--color-aubergine-200);border-radius:0 0 var(--radius-md) var(--radius-md);padding:10px 14px;}
+    html.dark .cs-video-controls{background:#1a0009;}
+    .cs-vc-btn{background:none;border:none;cursor:pointer;color:rgba(255,251,247,0.7);display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;flex-shrink:0;transition:color 0.14s,background 0.14s;}
+    .cs-vc-btn:hover{color:#fff;background:rgba(255,255,255,0.1);}
+    .cs-vc-time{font-size:11px;font-weight:600;color:rgba(255,251,247,0.5);font-variant-numeric:tabular-nums;flex-shrink:0;min-width:30px;}
+    .cs-vc-track{flex:1;height:4px;background:rgba(255,255,255,0.15);border-radius:4px;position:relative;cursor:pointer;}
+    .cs-vc-track:hover .cs-vc-thumb{opacity:1;}
+    .cs-vc-fill{height:100%;background:var(--color-lemon-200);border-radius:4px;width:0%;pointer-events:none;}
+    .cs-vc-thumb{position:absolute;top:50%;right:calc(100% - var(--pct, 0%));transform:translate(50%,-50%);width:12px;height:12px;border-radius:50%;background:#fff;opacity:0;transition:opacity 0.14s;pointer-events:none;}
+
+    /* Asset placeholder */
+    .cs-asset{margin-top:32px;border-radius:var(--radius-lg);overflow:hidden;background:var(--color-egg-white-200);border:1px solid var(--color-egg-white-300);}
+    html.dark .cs-asset{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.07);}
+    .cs-asset-inner{padding:48px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;}
+    .cs-asset-icon{width:40px;height:40px;border-radius:var(--radius-md);background:var(--color-egg-white-300);display:flex;align-items:center;justify-content:center;color:var(--color-aubergine-100);}
+    html.dark .cs-asset-icon{background:rgba(255,255,255,0.08);color:rgba(255,251,247,0.4);}
+    .cs-asset-label{font-size:13px;font-weight:600;color:var(--color-aubergine-100);}
+    html.dark .cs-asset-label{color:rgba(255,251,247,0.4);}
+    .cs-asset-sub{font-size:12px;color:var(--color-aubergine-100);opacity:0.5;}
+    /* Insight callout */
+    .cs-insight{display:flex;gap:14px;padding:18px 20px;background:var(--color-violet-100);border-radius:var(--radius-md);margin-top:20px;}
+    html.dark .cs-insight{background:rgba(195,186,255,0.1);border:1px solid rgba(195,186,255,0.15);}
+    .cs-insight-icon{flex-shrink:0;margin-top:2px;color:var(--color-aubergine-200);}
+    html.dark .cs-insight-icon{color:var(--color-violet-200);}
+    .cs-insight-text{font-size:14px;line-height:1.65;color:var(--color-aubergine-200);}
+    html.dark .cs-insight-text{color:var(--color-violet-200);}
+    /* Stress test findings */
+    .cs-finding-list{display:flex;flex-direction:column;gap:16px;margin-top:24px;}
+    .cs-finding{padding:20px 24px;border-left:3px solid var(--color-aubergine-200);background:var(--color-egg-white-200);border-radius:0 var(--radius-md) var(--radius-md) 0;}
+    html.dark .cs-finding{background:rgba(255,255,255,0.04);border-left-color:var(--color-lemon-200);}
+    .cs-finding.broke{border-left-color:#c0392b;}
+    html.dark .cs-finding.broke{border-left-color:#ff6b6b;}
+    .cs-finding-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;color:var(--color-aubergine-100);opacity:0.5;}
+    html.dark .cs-finding-tag{color:rgba(255,251,247,0.4);}
+    .cs-finding.broke .cs-finding-tag{color:#c0392b;opacity:1;}
+    html.dark .cs-finding.broke .cs-finding-tag{color:#ff6b6b;}
+    .cs-finding-text{font-size:14px;line-height:1.65;color:var(--color-aubergine-200);}
+    html.dark .cs-finding-text{color:rgba(255,251,247,0.8);}
+    /* Footer */
     .site-footer{border-top:1px solid var(--color-egg-white-300);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;}
     .footer-name{font-size:13px;font-weight:700;color:var(--color-aubergine-200);}
     .footer-meta{font-size:12px;color:rgba(100,41,64,0.7);}
+    /* Mobile */
     .sidebar{transition:transform 0.3s ease;}
     @media(min-width:769px){.mobile-topbar{display:none;}}
     .mobile-topbar{position:fixed;top:0;left:0;right:0;z-index:35;height:56px;padding:0 20px;align-items:center;justify-content:space-between;background:var(--color-egg-white-200);border-bottom:1px solid var(--color-egg-white-300);}
@@ -112,8 +297,10 @@
       .cs-topbar,.cs-hero,.site-footer{padding-left:20px;padding-right:20px;}
       .cs-intro-block{grid-template-columns:1fr;padding:0 20px 32px;}
       .cs-title{font-size:26px;}
+      .cs-body{padding:0 20px 60px;}
+      .cs-two-col{grid-template-columns:1fr;}
     }
-    @media(min-width:1280px){.cs-topbar,.cs-hero,.site-footer{padding-left:80px;padding-right:80px;}}
+    @media(min-width:1280px){.cs-topbar,.cs-hero,.site-footer{padding-left:80px;padding-right:80px;}.cs-body{padding-left:80px;padding-right:80px;}}
   </style>
 </head>
 <body>
@@ -149,31 +336,268 @@
   </aside>
 
   <main class="main">
-    <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
-    <div class="cs-hero">
-      <img class="cs-hero-cover" src="images/Neotaste-hero.png" alt="Neotaste">
-    </div>
-    <div class="cs-intro-block">
-      <div class="cs-intro-text">
+    <div class="cs-hero-split">
+      <div class="cs-hero-left">
+        <div class="cs-topbar"><a href="work.html" class="cs-back"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>Back to work</a></div>
+        <div class="cs-hero-eyebrow">NeoTaste · Product Design Concept · 2026</div>
         <div class="cs-tags">
-          <span class="cs-tag">Product Design</span>
-          <span class="cs-tag">AI Prototyping</span>
-          <span class="coming-soon-badge">Coming soon</span>
+          <span class="cs-tag">UX Design</span>
+          <span class="cs-tag">UI Design</span>
+          <span class="cs-tag">UX Research</span>
+          <div style="width:100%;height:0;"></div>
+          <span class="cs-tag">User Testing</span>
+          <span class="cs-tag">Prototyping</span>
+          <span class="cs-tag">Design Strategy</span>
+          <div style="width:100%;height:0;"></div>
+          <span class="cs-tag">Design Sprint</span>
+          <span class="cs-tag">Mobile App</span>
         </div>
-        <h1 class="cs-title">Neotaste</h1>
-        <p class="cs-subtitle">This project asked: what would it take for users to feel more confident booking, and more compelled to keep exploring? My answer was social signals, subtle, ambient cues that show real activity without disrupting the experience. Built using AI prototyping tools, the concept demonstrates how small additions in the right moments can meaningfully shift both time-in-app and conversion intent.</p>
-        <a href="https://neotaste-social-discovery-phi.vercel.app/" target="_blank" rel="noopener" class="proto-btn">View the prototype →</a>
-      </div>
-      <div class="cs-meta-card">
-        <div class="cs-meta-item"><span class="cs-meta-label">Type</span><span class="cs-meta-pill">Concept</span></div>
-        <div class="cs-meta-item"><span class="cs-meta-label">Focus</span><span class="cs-meta-pill">Social Signals</span></div>
-        <div class="cs-meta-item"><span class="cs-meta-label">Year</span><span class="cs-meta-pill">2025</span></div>
-        <div class="cs-meta-item"><span class="cs-meta-label">Tools</span><span class="cs-meta-pill">AI Prototyping</span></div>
+        <h1 class="cs-title">NeoTaste: Friends and Foodies</h1>
+        <p class="cs-subtitle">NeoTaste is a live restaurant discovery and deals app with paying subscribers across Germany, the UK, the Netherlands, and Austria. I was tasked with turning their purely transactional experience (find deal, book deal, done) into a social layer that helps people choose a restaurant because they want to go, not just because it's discounted.</p>
+        <div class="cs-hero-chips">
+          <div class="cs-hero-chip"><strong>Type</strong> Concept</div>
+          <div class="cs-hero-chip"><strong>Year</strong> 2026</div>
+          <div class="cs-hero-chip"><strong>Tools</strong> Figma · AI Prototyping</div>
+        </div>
+        </div>
+      <div class="cs-hero-right">
+        <div class="cs-nt-stage">
+          <!-- Phone mockup: Friends filter -->
+          <div class="cs-nt-el cs-nt-el--phone">
+            <div class="cs-nt-phone">
+              <div class="cs-nt-phone-notch"></div>
+              <img src="images/Neotaste_Friends_filter.PNG" alt="Friends and Foodies filter" class="cs-nt-phone-screen">
+            </div>
+          </div>
+          <!-- Map pins -->
+          <div class="cs-nt-el cs-nt-el--pin1"><img src="images/Neotaste_Map pin v1.svg" alt="Map pin 1"></div>
+          <div class="cs-nt-el cs-nt-el--pin2"><img src="images/Neotaste_Map pin v2.png" alt="Map pin 2"></div>
+          <div class="cs-nt-el cs-nt-el--pin3"><img src="images/Neotaste_Map pin v3.svg" alt="Map pin 3"></div>
+          <!-- Top for you pill -->
+          <div class="cs-nt-el cs-nt-el--topy"><img src="images/Neotaste_Top for you pill v1.svg" alt="Top for you"></div>
+          <!-- Cafe card -->
+          <div class="cs-nt-el cs-nt-el--card"><img src="images/Neotaste_cafe card.svg" alt="Cafe card"></div>
+        </div>
       </div>
     </div>
+
+    <div class="cs-body">
+
+      <!-- WALKTHROUGH VIDEO -->
+      <section class="cs-section">
+        <p class="cs-section-label">Project Walkthrough</p>
+        <h2 class="cs-section-title">See the full prototype in action</h2>
+        <div class="cs-laptop">
+          <div class="cs-laptop-screen">
+            <video id="walkthroughVideo" src="images/NeoTaste_SocialDiscovery_JamieHouston_Walkthrough.mp4" poster="images/neotaste-poster.jpg" playsinline class="cs-laptop-video"></video>
+          </div>
+          <div class="cs-laptop-base">
+            <div class="cs-laptop-notch"></div>
+          </div>
+          <div class="cs-video-controls">
+            <button class="cs-vc-btn" id="vcPlayPause" onclick="vcTogglePlay()" title="Play / Pause">
+              <svg id="vcPlayIcon" width="14" height="16" viewBox="0 0 14 16" fill="currentColor"><path d="M2 1.5l10 6.5-10 6.5V1.5z"/></svg>
+              <svg id="vcPauseIcon" width="14" height="16" viewBox="0 0 14 16" fill="currentColor" style="display:none"><rect x="1" y="1" width="4" height="14" rx="1.5"/><rect x="9" y="1" width="4" height="14" rx="1.5"/></svg>
+            </button>
+            <span class="cs-vc-time" id="vcCurrentTime">0:00</span>
+            <div class="cs-vc-track" id="vcTrack" onclick="vcSeek(event)">
+              <div class="cs-vc-fill" id="vcFill"></div>
+              <div class="cs-vc-thumb" id="vcThumb"></div>
+            </div>
+            <span class="cs-vc-time" id="vcDuration">0:00</span>
+            <button class="cs-vc-btn" id="vcMute" onclick="vcToggleMute()" title="Mute / Unmute">
+              <svg id="vcVolIcon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M9 1.5v13L4.5 10H1.5A.5.5 0 011 9.5v-3A.5.5 0 011.5 6H4.5L9 1.5zM11.5 5a.5.5 0 01.354.146 5 5 0 010 7.071.5.5 0 01-.707-.707 4 4 0 000-5.657A.5.5 0 0111.5 5zm1.5-1.5a.5.5 0 01.354.146 7 7 0 010 9.899.5.5 0 01-.707-.707 6 6 0 000-8.485A.5.5 0 0113 3.5z"/></svg>
+              <svg id="vcMuteIcon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display:none"><path d="M9 1.5v13L4.5 10H1.5A.5.5 0 011 9.5v-3A.5.5 0 011.5 6H4.5L9 1.5zm4.854 2.646a.5.5 0 010 .708L12.207 6.5l1.647 1.646a.5.5 0 01-.708.708L11.5 7.207l-1.646 1.647a.5.5 0 01-.708-.708L10.793 6.5 9.146 4.854a.5.5 0 01.708-.708L11.5 5.793l1.646-1.647a.5.5 0 01.708 0z"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- THE CONSTRAINTS -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Constraints</p>
+        <h2 class="cs-section-title">What I couldn't build, and why that mattered</h2>
+        <div class="cs-constraint-grid">
+          <div class="cs-constraint-card">
+            <div class="cs-constraint-icon">🔗</div>
+            <strong>Build on the existing experience</strong>
+            <p>Design within NeoTaste, not replacing it. Core navigation, deal flow, and booking stay intact.</p>
+          </div>
+          <div class="cs-constraint-card">
+            <div class="cs-constraint-icon">🪶</div>
+            <strong>Keep it lightweight</strong>
+            <p>Not a social network. No full profile pages, complex friend management, or anything that belongs in Instagram.</p>
+          </div>
+          <div class="cs-constraint-card">
+            <div class="cs-constraint-icon">⚙️</div>
+            <strong>No heavy backend dependencies</strong>
+            <p>If it needs a moderation team or a 6-month recommendation algorithm to build, scope it down.</p>
+          </div>
+          <div class="cs-constraint-card">
+            <div class="cs-constraint-icon">🌱</div>
+            <strong>Must work with 0 friends</strong>
+            <p>The cold start experience matters just as much as the fully connected one.</p>
+          </div>
+          <div class="cs-constraint-card">
+            <div class="cs-constraint-icon">📱</div>
+            <strong>~70% of users are on iPhone</strong>
+            <p>Design mobile-first with iOS patterns in mind throughout.</p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- THE STRATEGY -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Strategy</p>
+        <h2 class="cs-section-title">One user. One metric. One clear target.</h2>
+        <div class="cs-two-col">
+          <div class="cs-col-card">
+            <p class="cs-col-card-label">The User</p>
+            <p class="cs-col-card-title">Zara</p>
+            <p class="cs-col-card-text">Not "Gen Z foodies." Zara, someone who opens NeoTaste, sees a restaurant with a 5-star review that just says "great food, nothing else," doesn't trust it, and leaves the app to cross-check the same restaurant on Google Maps before deciding. NeoTaste was losing her at the exact moment she needed reassurance most.</p>
+          </div>
+          <div class="cs-col-card">
+            <p class="cs-col-card-label">The Metric</p>
+            <p class="cs-col-card-title">Bookings per subscriber per month</p>
+            <p class="cs-col-card-text">Our north star KPI wasn't "engagement" or "user satisfaction": it was bookings per subscriber per month, alongside trial-to-paid conversion and daily retention. The social layer only mattered if it changed whether someone booked, not whether they scrolled longer.</p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- THE FRICTION -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Friction</p>
+        <h2 class="cs-section-title">A trust gap disguised as a discovery flow</h2>
+        <div class="cs-body-text">
+          <p>The current flow was a trust gap disguised as a discovery flow. Users browsed and decided completely alone, with no sense of what friends liked, no reliable reviews (most were five stars with zero detail or photos), and no signal beyond a star rating. The result: users routinely abandoned NeoTaste mid-decision to go verify the same restaurant on Google Maps, then came back (or didn't) to book.</p>
+        </div>
+        <div class="cs-asset">
+          <div class="cs-asset-inner">
+            <div class="cs-asset-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <p class="cs-asset-label">Drop-off map</p>
+            <p class="cs-asset-sub">Discover page → restaurant detail → exits to Google Maps → returns or churns</p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- THE LOGIC -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Logic</p>
+        <h2 class="cs-section-title">Surfacing trust where the decision actually happens</h2>
+        <div class="cs-body-text">
+          <p>I designed a 'Friends and Foodies' layer that surfaces trust signals exactly where the decision happens (on the map and the restaurant detail page), instead of making users go looking for reassurance. It follows a signal hierarchy: friend proof first, then foodie proof for cold-start users with no friends on the platform yet, then community proof as the fallback. The right signal surfaces automatically based on what data actually exists for that user and that city, with no dead ends, no empty states that kill trust instead of building it.</p>
+        </div>
+        <div class="cs-logic-two-col">
+          <!-- Left: numbered signals -->
+          <div class="cs-signal-list">
+            <div class="cs-signal-item">
+              <div class="cs-signal-num">1</div>
+              <div>
+                <p class="cs-signal-title">Friend proof</p>
+                <p class="cs-signal-desc">"Steve visited, 3× return." A real person you know, with a record that speaks for itself, no review text needed.</p>
+              </div>
+            </div>
+            <div class="cs-signal-item">
+              <div class="cs-signal-num">2</div>
+              <div>
+                <p class="cs-signal-title">Foodie proof</p>
+                <p class="cs-signal-desc">For cold-start users with no friends on the platform yet: verified local experts who've earned a Foodie badge through genuine activity.</p>
+              </div>
+            </div>
+            <div class="cs-signal-item">
+              <div class="cs-signal-num">3</div>
+              <div>
+                <p class="cs-signal-title">Community proof</p>
+                <p class="cs-signal-desc">The aggregate fallback: subscriber saves, return visit counts, and booking trends when neither friend nor foodie data exists.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Right: phone with step pills above, arrows below -->
+          <div class="cs-flow-phone-col">
+            <div class="cs-flow-steps">
+              <button class="cs-flow-step-btn active" onclick="flowGo(0)"><span class="cs-flow-step-num">1</span><span class="cs-flow-step-label">Discover map</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(1)"><span class="cs-flow-step-num">2</span><span class="cs-flow-step-label">Friends filter</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(2)"><span class="cs-flow-step-num">3</span><span class="cs-flow-step-label">Friend selected</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(3)"><span class="cs-flow-step-num">4</span><span class="cs-flow-step-label">Foodies</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(4)"><span class="cs-flow-step-num">5</span><span class="cs-flow-step-label">Filter results</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(5)"><span class="cs-flow-step-num">6</span><span class="cs-flow-step-label">Restaurant detail</span></button>
+              <button class="cs-flow-step-btn" onclick="flowGo(6)"><span class="cs-flow-step-num">7</span><span class="cs-flow-step-label">Booking</span></button>
+            </div>
+            <div class="cs-flow-phone-wrap">
+              <div class="cs-flow-phone-frame">
+                <div class="cs-phone-notch"></div>
+                <img id="flowPhoneImg" src="images/Neotaste_Discover.PNG" alt="Discover map" class="cs-phone-screen">
+              </div>
+            </div>
+            <div class="cs-flow-nav">
+              <button class="cs-flow-nav-btn" onclick="flowStep(-1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+              <div class="cs-flow-dots" id="flowDots"></div>
+              <button class="cs-flow-nav-btn" onclick="flowStep(1)"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- THE STRESS TEST -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Stress Test</p>
+        <h2 class="cs-section-title">What held up. What broke.</h2>
+        <div class="cs-body-text">
+          <p>We put the Friends and Foodies proof block in front of users and the trust hierarchy held up: testers consistently trusted a friend's return visit over a one-off star rating, and several said they trusted friends-and-foodies more than platforms like TimeOut or Google, because those can be sponsored.</p>
+        </div>
+        <div class="cs-pull">
+          <p class="cs-pull-text">"A vetted friend or local foodie response beats a stranger's review because you know it isn't paid placement."</p>
+        </div>
+        <div class="cs-finding-list">
+          <div class="cs-finding">
+            <p class="cs-finding-tag">✓ Held up</p>
+            <p class="cs-finding-text">Most testers said they wouldn't need to check anywhere else before booking. The filters, friend labels, and foodie recommendations covered the decision. One tester still cross-checked Instagram, but for vibe and photos specifically, not trust. A good scope boundary for a future iteration rather than a flaw in the current one.</p>
+          </div>
+          <div class="cs-finding broke">
+            <p class="cs-finding-tag">✗ Broke</p>
+            <p class="cs-finding-text">We'd designed a friends filter to show all friends' activity on the app, but when testing, 4 out of 5 testers tried to tap a single friend's name in the list expecting to see places that friend had eaten, or at least open their profile. The affordance was ambiguous because we hadn't decided what a friend's name was actually for in this context. After this feedback I updated the tap to open that friend's saved and visited restaurants on the map.</p>
+          </div>
+        </div>
+        <div class="cs-insight">
+          <div class="cs-insight-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p class="cs-insight-text">Testing also surfaced where the concept could go next: users independently asked for group bookings, occasion-based filtering (a cheap catch-up vs. a higher-end date night), and dish-level detail not just that a foodie recommended a restaurant, but which menu item they'd order again. All pointing at the same insight: users don't just want to know a place is good, they want to know <em>good at what, and for whom</em>.</p>
+        </div>
+      </section>
+
+
+
+      <!-- THE BUILD -->
+      <section class="cs-section">
+        <p class="cs-section-label">The Build</p>
+        <h2 class="cs-section-title">A prototype you can actually click through</h2>
+        <div class="cs-body-text">
+          <p>I didn't stop at static screens. I built a fully interactive HTML/JS prototype covering the connected user flow (map states, bottom sheet, proof blocks, and booking confirmation) so stakeholders could click through the real interaction logic, not just look at frames. The prototype shows the experience for a user who already has friends on the platform. The cold-start variant is designed and documented but not yet wired into the clickable build.</p>
+        </div>
+        <div style="margin-top:28px;">
+          <a href="https://neotaste-social-discovery-phi.vercel.app/" target="_blank" rel="noopener" class="proto-btn">View the live prototype →</a>
+        </div>
+      </section>
+
+    </div><!-- /cs-body -->
+
     <footer class="site-footer"><span class="footer-name">Jamie Houston</span><span class="footer-meta">Melbourne, AU · Product Designer</span></footer>
   </main>
 </div>
+
 <script>
   const THEME_KEY='theme';
   const SUN=`<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11a3 3 0 100-6 3 3 0 000 6zm0 1a4 4 0 100-8 4 4 0 000 8zM8 0a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 0zm0 13a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 13zm8-5a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2a.5.5 0 01.5.5zM3 8a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2A.5.5 0 013 8zm9.657-5.657a.5.5 0 010 .707l-1.414 1.415a.5.5 0 11-.707-.708l1.414-1.414a.5.5 0 01.707 0zm-9.193 9.193a.5.5 0 010 .707L2.05 13.657a.5.5 0 01-.707-.707l1.414-1.414a.5.5 0 01.707 0zm9.193 2.121a.5.5 0 01-.707 0l-1.414-1.414a.5.5 0 01.707-.707l1.414 1.414a.5.5 0 010 .707zM4.464 4.465a.5.5 0 01-.707 0L2.343 3.05a.5.5 0 11.707-.707l1.414 1.414a.5.5 0 010 .707z"/></svg>`;
@@ -184,7 +608,6 @@
   (function(){const saved=localStorage.getItem(THEME_KEY);const prefersDark=window.matchMedia('(prefers-color-scheme: dark)').matches;if(saved==='dark'||(!saved&&prefersDark))document.documentElement.classList.add('dark');updateThemeIcon();})();
   function sharePortfolio(btn){const url=window.location.href;navigator.clipboard.writeText(url).then(()=>{const orig=btn.innerHTML;btn.innerHTML='Link copied!';setTimeout(()=>{btn.innerHTML=orig;},2500);}).catch(()=>{prompt('Copy this link:',url);});}
 </script>
-
 
 <!-- Quick Interview Panel -->
 <style>
@@ -269,6 +692,47 @@ html.dark .qi-dot:first-child{background:#fffbf7;}
   </div>
 </div>
 <script>
+// Flow viewer
+var flowScreens=['images/Neotaste_Discover.PNG','images/Neotaste_Friends_filter.PNG','images/Neotaste_Friend_selected.PNG','images/Neotaste_foodies_filter.PNG','images/Neotaste_filter_results.PNG','images/Neotaste_restuarant_page.PNG','images/Neotaste_booking_page.PNG'];
+var flowAlts=['Discover map','Friends filter','Friend selected','Foodies cold start','Filter results','Restaurant detail','Booking'];
+var flowIdx=0;
+function flowGo(i){
+  flowIdx=i;
+  document.getElementById('flowPhoneImg').src=flowScreens[i];
+  document.getElementById('flowPhoneImg').alt=flowAlts[i];
+  document.querySelectorAll('.cs-flow-step-btn').forEach(function(b,n){b.classList.toggle('active',n===i);});
+  document.querySelectorAll('.cs-flow-desc').forEach(function(d,n){d.classList.toggle('active',n===i);});
+  document.querySelectorAll('.cs-flow-dot').forEach(function(d,n){d.classList.toggle('active',n===i);});
+}
+function flowStep(dir){flowGo(Math.max(0,Math.min(flowScreens.length-1,flowIdx+dir)));}
+(function(){
+  var dots=document.getElementById('flowDots');
+  if(!dots)return;
+  flowScreens.forEach(function(_,i){var d=document.createElement('div');d.className='cs-flow-dot'+(i===0?' active':'');d.onclick=function(){flowGo(i);};dots.appendChild(d);});
+})();
+
+// Video controls
+var _vid=document.getElementById('walkthroughVideo');
+var _fill=document.getElementById('vcFill');
+var _thumb=document.getElementById('vcThumb');
+var _track=document.getElementById('vcTrack');
+var _cur=document.getElementById('vcCurrentTime');
+var _dur=document.getElementById('vcDuration');
+function vcFmt(s){var m=Math.floor(s/60);var ss=Math.floor(s%60);return m+':'+(ss<10?'0':'')+ss;}
+function vcTogglePlay(){if(_vid.paused){_vid.play();}else{_vid.pause();}}
+function vcToggleMute(){_vid.muted=!_vid.muted;document.getElementById('vcVolIcon').style.display=_vid.muted?'none':'';document.getElementById('vcMuteIcon').style.display=_vid.muted?'':'none';}
+function vcSeek(e){var rect=_track.getBoundingClientRect();var pct=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));_vid.currentTime=pct*_vid.duration;}
+function vcUpdate(){if(!_vid.duration)return;var pct=(_vid.currentTime/_vid.duration)*100;_fill.style.width=pct+'%';_track.style.setProperty('--pct',pct+'%');_cur.textContent=vcFmt(_vid.currentTime);}
+_vid.addEventListener('timeupdate',vcUpdate);
+_vid.addEventListener('loadedmetadata',function(){_dur.textContent=vcFmt(_vid.duration);});
+_vid.addEventListener('play',function(){document.getElementById('vcPlayIcon').style.display='none';document.getElementById('vcPauseIcon').style.display='';});
+_vid.addEventListener('pause',function(){document.getElementById('vcPlayIcon').style.display='';document.getElementById('vcPauseIcon').style.display='none';});
+// drag-to-scrub
+var _dragging=false;
+_track.addEventListener('mousedown',function(e){_dragging=true;vcSeek(e);});
+document.addEventListener('mousemove',function(e){if(_dragging)vcSeek(e);});
+document.addEventListener('mouseup',function(){_dragging=false;});
+
 function toggleQI(){document.getElementById('qiPanel').classList.toggle('open');}
 function toggleQ(btn){
   var a=btn.nextElementSibling;
